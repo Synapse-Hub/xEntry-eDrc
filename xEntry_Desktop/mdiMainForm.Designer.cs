@@ -79,6 +79,7 @@
             this.statLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblInfoForm = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ssmnReportsTAR = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -119,19 +120,20 @@
             this.smnConnect.ImageTransparentColor = System.Drawing.Color.Black;
             this.smnConnect.Name = "smnConnect";
             this.smnConnect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.smnConnect.Size = new System.Drawing.Size(183, 22);
+            this.smnConnect.Size = new System.Drawing.Size(187, 26);
             this.smnConnect.Text = "Connexion";
+            this.smnConnect.Click += new System.EventHandler(this.smnConnect_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(184, 6);
             // 
             // smnDisconnect
             // 
             this.smnDisconnect.Name = "smnDisconnect";
             this.smnDisconnect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.smnDisconnect.Size = new System.Drawing.Size(183, 22);
+            this.smnDisconnect.Size = new System.Drawing.Size(187, 26);
             this.smnDisconnect.Text = "Disconnexion";
             this.smnDisconnect.Click += new System.EventHandler(this.smnDisconnect_Click);
             // 
@@ -139,7 +141,7 @@
             // 
             this.smnExit.Name = "smnExit";
             this.smnExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.smnExit.Size = new System.Drawing.Size(183, 22);
+            this.smnExit.Size = new System.Drawing.Size(187, 26);
             this.smnExit.Text = "Q&uitter";
             this.smnExit.ToolTipText = "Fermer";
             this.smnExit.Click += new System.EventHandler(this.smnExit_Click);
@@ -196,14 +198,14 @@
             // identificationToolStripMenuItem
             // 
             this.identificationToolStripMenuItem.Name = "identificationToolStripMenuItem";
-            this.identificationToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.identificationToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.identificationToolStripMenuItem.Text = "Identification";
             this.identificationToolStripMenuItem.Click += new System.EventHandler(this.identificationToolStripMenuItem_Click);
             // 
             // suiviToolStripMenuItem
             // 
             this.suiviToolStripMenuItem.Name = "suiviToolStripMenuItem";
-            this.suiviToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.suiviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.suiviToolStripMenuItem.Text = "Suivi";
             this.suiviToolStripMenuItem.Click += new System.EventHandler(this.suiviToolStripMenuItem_Click);
             // 
@@ -245,7 +247,7 @@
             this.smnToolBar.CheckOnClick = true;
             this.smnToolBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.smnToolBar.Name = "smnToolBar";
-            this.smnToolBar.Size = new System.Drawing.Size(143, 22);
+            this.smnToolBar.Size = new System.Drawing.Size(156, 26);
             this.smnToolBar.Text = "&Barre d\'outils";
             this.smnToolBar.Click += new System.EventHandler(this.smnToolBar_Click);
             // 
@@ -255,7 +257,7 @@
             this.smnStatusBar.CheckOnClick = true;
             this.smnStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.smnStatusBar.Name = "smnStatusBar";
-            this.smnStatusBar.Size = new System.Drawing.Size(143, 22);
+            this.smnStatusBar.Size = new System.Drawing.Size(156, 26);
             this.smnStatusBar.Text = "Barre d\'é&tat";
             this.smnStatusBar.ToolTipText = "View Status Bar";
             this.smnStatusBar.Click += new System.EventHandler(this.smnStatusBar_Click);
@@ -263,13 +265,15 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(153, 6);
             // 
             // smnReports
             // 
+            this.smnReports.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ssmnReportsTAR});
             this.smnReports.Image = ((System.Drawing.Image)(resources.GetObject("smnReports.Image")));
             this.smnReports.Name = "smnReports";
-            this.smnReports.Size = new System.Drawing.Size(143, 22);
+            this.smnReports.Size = new System.Drawing.Size(156, 26);
             this.smnReports.Text = "&Rapports";
             // 
             // photoGpsToolStripMenuItem
@@ -284,7 +288,7 @@
             // 
             this.smnViewManage.Image = ((System.Drawing.Image)(resources.GetObject("smnViewManage.Image")));
             this.smnViewManage.Name = "smnViewManage";
-            this.smnViewManage.Size = new System.Drawing.Size(163, 22);
+            this.smnViewManage.Size = new System.Drawing.Size(167, 26);
             this.smnViewManage.Text = "Gestion des V&ues";
             // 
             // toolsMenu
@@ -301,7 +305,7 @@
             // 
             this.smnUserManage.Image = ((System.Drawing.Image)(resources.GetObject("smnUserManage.Image")));
             this.smnUserManage.Name = "smnUserManage";
-            this.smnUserManage.Size = new System.Drawing.Size(196, 22);
+            this.smnUserManage.Size = new System.Drawing.Size(200, 26);
             this.smnUserManage.Text = "Gestion des &Utilisateurs";
             this.smnUserManage.Click += new System.EventHandler(this.smnUserManage_Click);
             // 
@@ -312,14 +316,14 @@
             this.ssmnSynchroniseGUI});
             this.smnSynchronise.Image = ((System.Drawing.Image)(resources.GetObject("smnSynchronise.Image")));
             this.smnSynchronise.Name = "smnSynchronise";
-            this.smnSynchronise.Size = new System.Drawing.Size(196, 22);
+            this.smnSynchronise.Size = new System.Drawing.Size(200, 26);
             this.smnSynchronise.Text = "Synchronisation";
             // 
             // ssmnExecute
             // 
             this.ssmnExecute.Image = ((System.Drawing.Image)(resources.GetObject("ssmnExecute.Image")));
             this.ssmnExecute.Name = "ssmnExecute";
-            this.ssmnExecute.Size = new System.Drawing.Size(264, 22);
+            this.ssmnExecute.Size = new System.Drawing.Size(268, 26);
             this.ssmnExecute.Text = "Exécuter";
             this.ssmnExecute.Click += new System.EventHandler(this.ssmnExecute_Click);
             // 
@@ -327,7 +331,7 @@
             // 
             this.ssmnSynchroniseGUI.Image = ((System.Drawing.Image)(resources.GetObject("ssmnSynchroniseGUI.Image")));
             this.ssmnSynchroniseGUI.Name = "ssmnSynchroniseGUI";
-            this.ssmnSynchroniseGUI.Size = new System.Drawing.Size(264, 22);
+            this.ssmnSynchroniseGUI.Size = new System.Drawing.Size(268, 26);
             this.ssmnSynchroniseGUI.Text = "Synchronisation Interface Utilisateur";
             this.ssmnSynchroniseGUI.Click += new System.EventHandler(this.ssmnSynchroniseGUI_Click);
             // 
@@ -513,6 +517,13 @@
             this.lblInfoForm.Text = "el1";
             this.lblInfoForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // ssmnReportsTAR
+            // 
+            this.ssmnReportsTAR.Name = "ssmnReportsTAR";
+            this.ssmnReportsTAR.Size = new System.Drawing.Size(152, 22);
+            this.ssmnReportsTAR.Text = "Rapports TAR";
+            this.ssmnReportsTAR.Click += new System.EventHandler(this.ssmnReportsTAR_Click);
+            // 
             // mdiMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -592,6 +603,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuPR;
         private System.Windows.Forms.ToolStripMenuItem identificationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem suiviToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ssmnReportsTAR;
     }
 }
 

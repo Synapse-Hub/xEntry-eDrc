@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using xEntry_Data;
 
@@ -27,7 +20,7 @@ namespace xEntry_Desktop
 
         private void mdiMainForm_Load(object sender, EventArgs e)
         {
-            LockMenu(false);
+            LockMenu(false, "");
             lblInfoForm.Text = "";
             lblInfoForm.ToolTipText = "Forms informations status";
             lblformstatus = lblInfoForm.Text;
@@ -35,25 +28,133 @@ namespace xEntry_Desktop
         }
 
         //
-        public void LockMenu(bool val)
+        public void LockMenu(bool val, string levelUser)
         {
-            //Sous Menus
-            smnConnect.Enabled = !val;
-            smnDisconnect.Enabled = val;
+            switch(levelUser)
+            {
+                //Utilisateur Administrateur avec tous les menus actives
+                case "Administrateur":
+                    //Sous Menus
+                    smnConnect.Enabled = !val;
+                    smnDisconnect.Enabled = val;
 
-            smnDEntry.Enabled = val;
-            smnReports.Enabled = val;
-            smnViewManage.Enabled = val;
-            smnUserManage.Enabled = val;
-            
-            ssmnExecute.Enabled = val;
-            ssmnSynchroniseGUI.Enabled = val;
+                    smnDEntry.Enabled = val;
+                    smnExplData.Enabled = val;
+                    smnEntryNursery.Enabled = val;
+                    smnEssence.Enabled = val;
+                    smnReports.Enabled = val;
+                    smnViewManage.Enabled = val;
+                    smnUserManage.Enabled = val;
 
-            //Barre d'outil
-            tlbConnect.Enabled = !val;
-            tlbPrint.Enabled = val;
-            tlbDEntry.Enabled = val;
-            tlbReports.Enabled = val;
+                    ssmnExecute.Enabled = val;
+                    ssmnSynchroniseGUI.Enabled = val;
+
+                    ssmnReportsTAR.Enabled = val;
+
+                    //Barre d'outil
+                    tlbConnect.Enabled = !val;
+                    tlbPrint.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbReports.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbEntryNursery.Enabled = val;
+                    tlbEssence.Enabled = val;
+                    tlbExpData.Enabled = val;
+
+                    break;
+
+                //Utilisateur avec pouvoir
+                case "Admin":
+                    //Sous Menus
+                    smnConnect.Enabled = !val;
+                    smnDisconnect.Enabled = val;
+
+                    smnDEntry.Enabled = val;
+                    smnExplData.Enabled = val;
+                    smnEntryNursery.Enabled = val;
+                    smnEssence.Enabled = val;
+                    smnReports.Enabled = val;
+                    smnViewManage.Enabled = val;
+                    smnUserManage.Enabled = val;
+
+                    ssmnExecute.Enabled = val;
+                    ssmnSynchroniseGUI.Enabled = val;
+
+                    ssmnReportsTAR.Enabled = val;
+
+                    //Barre d'outil
+                    tlbConnect.Enabled = !val;
+                    tlbPrint.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbReports.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbEntryNursery.Enabled = val;
+                    tlbEssence.Enabled = val;
+                    tlbExpData.Enabled = val;
+
+                    break;
+
+                //Utilisateur Simple
+                case "User":
+                    //Sous Menus
+                    smnConnect.Enabled = !val;
+                    smnDisconnect.Enabled = val;
+
+                    smnDEntry.Enabled = val;
+                    smnExplData.Enabled = !val;
+                    smnEntryNursery.Enabled =! val;
+                    smnEssence.Enabled = !val;
+                    smnReports.Enabled = val;
+                    smnViewManage.Enabled = !val;
+                    smnUserManage.Enabled = !val;
+
+                    ssmnExecute.Enabled = !val;
+                    ssmnSynchroniseGUI.Enabled = !val;
+
+                    ssmnReportsTAR.Enabled = val;
+
+                    //Barre d'outil
+                    tlbConnect.Enabled = !val;
+                    tlbPrint.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbReports.Enabled = val;
+                    tlbDEntry.Enabled = !val;
+                    tlbEntryNursery.Enabled = !val;
+                    tlbEssence.Enabled = !val;
+                    tlbExpData.Enabled = !val;
+
+                    break;
+
+                default:
+                    //Sous Menus
+                    smnConnect.Enabled = !val;
+                    smnDisconnect.Enabled = val;
+
+                    smnDEntry.Enabled = val;
+                    smnExplData.Enabled = val;
+                    smnEntryNursery.Enabled = val;
+                    smnEssence.Enabled = val;
+                    smnReports.Enabled = val;
+                    smnViewManage.Enabled = val;
+                    smnUserManage.Enabled = val;
+
+                    ssmnExecute.Enabled = val;
+                    ssmnSynchroniseGUI.Enabled = val;
+
+                    ssmnReportsTAR.Enabled = val;
+
+                    //Barre d'outil
+                    tlbConnect.Enabled = !val;
+                    tlbPrint.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbReports.Enabled = val;
+                    tlbDEntry.Enabled = val;
+                    tlbEntryNursery.Enabled = val;
+                    tlbEssence.Enabled = val;
+                    tlbExpData.Enabled = val;
+
+                    break;
+            }
 
             if (val != false)
             {
@@ -138,7 +239,7 @@ namespace xEntry_Desktop
             try
             {
                 clsMetier.GetInstance().closeConnexion();
-                LockMenu(false);
+                LockMenu(false, "");
             }
             catch (Exception) { }
         }
@@ -162,6 +263,7 @@ namespace xEntry_Desktop
         {
             frmIdentificationPepiniere frm = new frmIdentificationPepiniere();
             frm.MdiParent = this;
+            frm.Icon = this.Icon;
             frm.Show();
         }
 
@@ -169,6 +271,7 @@ namespace xEntry_Desktop
         {
             EntryTar frm = new EntryTar();
             frm.MdiParent = this;
+            frm.Icon = this.Icon;
             frm.Show();
         }
 
@@ -186,13 +289,30 @@ namespace xEntry_Desktop
         {
             frmNursery frm = new frmNursery();
             frm.MdiParent = this;
+            frm.Icon = this.Icon;
             frm.Show();
+        }
+
+        private void ssmnReportsTAR_Click(object sender, EventArgs e)
+        {
+            frmReportTAR frm = new frmReportTAR();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void smnConnect_Click(object sender, EventArgs e)
+        {
+            frmxConn frm = new frmxConn();
+            frm.Mainform = this;
+            frm.ShowDialog();
         }
 
         private void identificationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmIdentificationPepiniere frm = new frmIdentificationPepiniere();
             frm.MdiParent = this;
+            frm.Icon = this.Icon;
             frm.Show();
         }
 
@@ -200,12 +320,8 @@ namespace xEntry_Desktop
         {
             PlantationReliaser frm = new PlantationReliaser();
             frm.MdiParent = this;
+            frm.Icon = this.Icon;
             frm.Show();
         }
-
-  
-
-       
-
     }
 }

@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using xEntry_Data;
-
-
 
 namespace xEntry_Desktop
 {
     public partial class EntryTar : Form
     {
-        SqlCommand xCmd;
-        SqlConnection xConn;
-        SqlCommand yCmd;
+        //SqlCommand xCmd;
+        //SqlConnection xConn;
+        //SqlCommand yCmd;
         
         public string myPrValue;
 
@@ -28,7 +20,7 @@ namespace xEntry_Desktop
         private clstbl_saison saisonid = new clstbl_saison();
         private bool blnModifie = false;
 
-        string Texte;
+        //string Texte;
 
         mdiMainForm xMainForm = new mdiMainForm();
 

@@ -134,7 +134,7 @@ namespace xEntry_Desktop
 
                 Mainform.usern = connection.User;
 
-                Mainform.LockMenu(true);
+                Mainform.LockMenu(true, clsDoTraitement.valueUser[0]);
                 this.Cursor = Cursors.Default;
                 this.Close();             
             }

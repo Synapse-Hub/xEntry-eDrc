@@ -62,6 +62,9 @@ namespace xEntry_Data
                 case 2: sch = string.Format("Data Source={0};Persist Security Info=True; Initial Catalog={1};User ID={2}; Password={3}", _host, _db, _user, _pwd); break;
                 case 3: break;
             }
+
+            //On garde la chaine de connexion pour utilisation avec les reports
+            xEntry_Data.Properties.Settings.Default.strChaineConnexion = sch;
             conn = new SqlConnection(sch);
         }
         public void Initialize(string host, string db, string user, string pwd)
