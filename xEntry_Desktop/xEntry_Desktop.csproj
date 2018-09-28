@@ -34,6 +34,7 @@
     <ProductName>xEntry Application</ProductName>
     <PublisherName>SynapsHub</PublisherName>
     <SuiteName>xEntry</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>xEntry.html</WebPage>
     <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
