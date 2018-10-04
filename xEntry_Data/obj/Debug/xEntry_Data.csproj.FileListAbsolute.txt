@@ -56,3 +56,15 @@ D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.pdb
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.config
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\ManageConnexion.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\ManageUtilities.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\MySql.Data.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\Npgsql.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb

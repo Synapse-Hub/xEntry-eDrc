@@ -75,11 +75,11 @@ namespace xEntry_Desktop
             _binsrc.DataSource = clsMetier.GetInstance().getAllClstbl_fiche_suivi_pepi();
             bdNav.BindingSource = _binsrc;
 
-         //   _binGermoirsrc.DataSource = clsMetier.GetInstance().getAllClstbl_germoir_fiche_suivi_pepi_by_uuid(txtuuidSuiviPepi.Text);
-          //  bdNav.BindingSource = _binsrc;
+           _binGermoirsrc.DataSource = clsMetier.GetInstance().getAllClstbl_germoir_fiche_suivi_pepi();
+           bdGermoir.BindingSource = _binGermoirsrc;
 
-          //  _binRepiqsrc.DataSource = clsMetier.GetInstance().getAllClstbl_plant_repiq_fiche_suivi_pepi();
-          //  bdNav.BindingSource = _binsrc;
+          _binRepiqsrc.DataSource = clsMetier.GetInstance().getAllClstbl_plant_repiq_fiche_suivi_pepi();
+          bdRepiq.BindingSource = _binRepiqsrc;
 
             cboSaison.DataSource = clsMetier.GetInstance().getAllClstbl_saison();
             this.setMembersallcbo(cboSaison, "id_saison", "id_saison");
