@@ -14,5 +14,6 @@ G:\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Utilities\obj\
 \\Mac\Home\Documents\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
