@@ -234,7 +234,6 @@ namespace xEntry_Desktop
             cbo.ValueMember = valueMember;
         }
 
-
         public void RefreshData()
         {
             //Chargement de la source des donnes BindingSource) en utilisant un DataTable

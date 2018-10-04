@@ -865,6 +865,36 @@ namespace xEntry_Data
             return dtclstbl_fiche_pr;
         }
 
+        public DataTable getAllClstbl_n_visite_fiche_pr()
+        {
+            DataTable dtclstbl_fiche_pr = new DataTable();
+            try
+            {
+                if (conn.State != ConnectionState.Open) conn.Open();
+                using (IDbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = string.Format(@"SELECT DISTINCT n_visite AS n_visite FROM tbl_fiche_pr
+                    UNION
+                    SELECT DISTINCT n_visite_2 AS n_visite FROM tbl_fiche_pr 
+                    UNION 
+                    SELECT DISTINCT n_viste_3 AS n_visite FROM tbl_fiche_pr");
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        dtclstbl_fiche_pr.Load(dr);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                conn.Close();
+                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
+                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
+                throw new Exception(exc.Message);
+            }
+            return dtclstbl_fiche_pr;
+        }
+
         public int insertClstbl_fiche_pr(clstbl_fiche_pr varclstbl_fiche_pr)
         {
             int i = 0;
@@ -2465,6 +2495,58 @@ namespace xEntry_Data
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
 
+        public DataTable getAllClstbl_Qte_Semee_germoir_fiche_suivi_pepi()
+        {
+            DataTable dtclstbl_germoir_fiche_suivi_pepi = new DataTable();
+            try
+            {
+                if (conn.State != ConnectionState.Open) conn.Open();
+                using (IDbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = string.Format("SELECT DISTINCT qte_semee FROM tbl_germoir_fiche_suivi_pepi ");
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        dtclstbl_germoir_fiche_suivi_pepi.Load(dr);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                conn.Close();
+                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
+                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
+                throw new Exception(exc.Message);
+            }
+            return dtclstbl_germoir_fiche_suivi_pepi;
+        }
+
+        public DataTable getAllClstbl_Lieu_Provenance_germoir_fiche_suivi_pepi()
+        {
+            DataTable dtclstbl_germoir_fiche_suivi_pepi = new DataTable();
+            try
+            {
+                if (conn.State != ConnectionState.Open) conn.Open();
+                using (IDbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = string.Format("SELECT DISTINCT provenance FROM tbl_germoir_fiche_suivi_pepi ");
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        dtclstbl_germoir_fiche_suivi_pepi.Load(dr);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                conn.Close();
+                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
+                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
+                throw new Exception(exc.Message);
+            }
+            return dtclstbl_germoir_fiche_suivi_pepi;
+        }
+
         public DataTable getAllClstbl_germoir_fiche_suivi_pepi_by_uuid(string uuid)
         {
             DataTable dtclstbl_germoir_fiche_suivi_pepi = new DataTable();
@@ -2684,6 +2766,35 @@ namespace xEntry_Data
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = string.Format("SELECT *  FROM tbl_plant_repiq_fiche_suivi_pepi ");
+                    using (IDataReader dr = cmd.ExecuteReader())
+                    {
+                        dtclstbl_plant_repiq_fiche_suivi_pepi.Load(dr);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception exc)
+            {
+                conn.Close();
+                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
+                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
+                throw new Exception(exc.Message);
+            }
+            return dtclstbl_plant_repiq_fiche_suivi_pepi;
+        }
+
+        public DataTable getAllClstbl_planche_repiquage_fiche_suivi_pepi()
+        {
+            DataTable dtclstbl_plant_repiq_fiche_suivi_pepi = new DataTable();
+            try
+            {
+                if (conn.State != ConnectionState.Open) conn.Open();
+                using (IDbCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = string.Format(@"SELECT DISTINCT planches_repiquage_essence AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi
+                    UNION
+                    SELECT DISTINCT plantules_encore_repiques AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi ");
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_plant_repiq_fiche_suivi_pepi.Load(dr);
@@ -4186,7 +4297,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_bailleur ");
+                    cmd.CommandText = string.Format(@"SELECT DISTINCT bailleur AS bailleur FROM tbl_bailleur 
+                    UNION
+                    SELECT DISTINCT bailleur_autre AS bailleur FROM tbl_fiche_suivi_pepi");
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_bailleur.Load(dr);

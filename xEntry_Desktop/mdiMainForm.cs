@@ -50,16 +50,22 @@ namespace xEntry_Desktop
                     ssmnSynchroniseGUI.Enabled = val;
 
                     ssmnReportsTAR.Enabled = val;
+                    ssmnReportsPR.Enabled = val;
+                    ssmnReportsSuiviPepi.Enabled = val;
+                    ssmnReportsIdentPepi.Enabled = val;
 
                     //Barre d'outil
                     tlbConnect.Enabled = !val;
                     tlbPrint.Enabled = val;
                     tlbDEntry.Enabled = val;
-                    tlbReports.Enabled = val;
-                    tlbDEntry.Enabled = val;
                     tlbEntryNursery.Enabled = val;
                     tlbEssence.Enabled = val;
                     tlbExpData.Enabled = val;
+
+                    stlbReportsTAR.Enabled = val;
+                    stlbReportsPR.Enabled = val;
+                    stlbReportsSuiviPepi.Enabled = val;
+                    stlbReportsIdentPepi.Enabled = val;
 
                     break;
 
@@ -81,16 +87,22 @@ namespace xEntry_Desktop
                     ssmnSynchroniseGUI.Enabled = val;
 
                     ssmnReportsTAR.Enabled = val;
+                    ssmnReportsPR.Enabled = val;
+                    ssmnReportsSuiviPepi.Enabled = val;
+                    ssmnReportsIdentPepi.Enabled = val;
 
                     //Barre d'outil
                     tlbConnect.Enabled = !val;
                     tlbPrint.Enabled = val;
                     tlbDEntry.Enabled = val;
-                    tlbReports.Enabled = val;
-                    tlbDEntry.Enabled = val;
                     tlbEntryNursery.Enabled = val;
                     tlbEssence.Enabled = val;
                     tlbExpData.Enabled = val;
+
+                    stlbReportsTAR.Enabled = val;
+                    stlbReportsPR.Enabled = val;
+                    stlbReportsSuiviPepi.Enabled = val;
+                    stlbReportsIdentPepi.Enabled = val;
 
                     break;
 
@@ -112,16 +124,22 @@ namespace xEntry_Desktop
                     ssmnSynchroniseGUI.Enabled = !val;
 
                     ssmnReportsTAR.Enabled = val;
+                    ssmnReportsPR.Enabled = val;
+                    ssmnReportsSuiviPepi.Enabled = val;
+                    ssmnReportsIdentPepi.Enabled = val;
 
                     //Barre d'outil
                     tlbConnect.Enabled = !val;
                     tlbPrint.Enabled = val;
-                    tlbDEntry.Enabled = val;
-                    tlbReports.Enabled = val;
                     tlbDEntry.Enabled = !val;
                     tlbEntryNursery.Enabled = !val;
                     tlbEssence.Enabled = !val;
                     tlbExpData.Enabled = !val;
+
+                    stlbReportsTAR.Enabled = val;
+                    stlbReportsPR.Enabled = val;
+                    stlbReportsSuiviPepi.Enabled = val;
+                    stlbReportsIdentPepi.Enabled = val;
 
                     break;
 
@@ -142,16 +160,22 @@ namespace xEntry_Desktop
                     ssmnSynchroniseGUI.Enabled = val;
 
                     ssmnReportsTAR.Enabled = val;
+                    ssmnReportsPR.Enabled = val;
+                    ssmnReportsSuiviPepi.Enabled = val;
+                    ssmnReportsIdentPepi.Enabled = val;
 
                     //Barre d'outil
                     tlbConnect.Enabled = !val;
                     tlbPrint.Enabled = val;
                     tlbDEntry.Enabled = val;
-                    tlbReports.Enabled = val;
-                    tlbDEntry.Enabled = val;
                     tlbEntryNursery.Enabled = val;
                     tlbEssence.Enabled = val;
                     tlbExpData.Enabled = val;
+
+                    stlbReportsTAR.Enabled = val;
+                    stlbReportsPR.Enabled = val;
+                    stlbReportsSuiviPepi.Enabled = val;
+                    stlbReportsIdentPepi.Enabled = val;
 
                     break;
             }
@@ -306,6 +330,62 @@ namespace xEntry_Desktop
             frmxConn frm = new frmxConn();
             frm.Mainform = this;
             frm.ShowDialog();
+        }
+
+        private void ssmnReportsPR_Click(object sender, EventArgs e)
+        {
+            frmReportPR frm = new frmReportPR();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void ssmnReportsSuiviPepi_Click(object sender, EventArgs e)
+        {
+            frmReportSuiviPepiniere frm = new frmReportSuiviPepiniere();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void ssmnReportsIdentPepi_Click(object sender, EventArgs e)
+        {
+            frmReportIdentPepiniere frm = new frmReportIdentPepiniere();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void stlbReportsTAR_Click(object sender, EventArgs e)
+        {
+            frmReportTAR frm = new frmReportTAR();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void stlbReportsPR_Click(object sender, EventArgs e)
+        {
+            frmReportPR frm = new frmReportPR();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void stlbReportsSuiviPepi_Click(object sender, EventArgs e)
+        {
+            frmReportSuiviPepiniere frm = new frmReportSuiviPepiniere();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+        private void stlbReportsIdentPepi_Click(object sender, EventArgs e)
+        {
+            frmReportIdentPepiniere frm = new frmReportIdentPepiniere();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
         }
 
         private void identificationToolStripMenuItem_Click(object sender, EventArgs e)

@@ -44,6 +44,7 @@ G:\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Data\bin\Debug
 \\Mac\Home\Documents\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Data\obj\Debug\xEntry_Data.dll
 \\Mac\Home\Documents\Database\Ghost.Coders\xEntry_SourceFiles\xEntry_wwfedrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
+D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.config
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.pdb
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\ManageConnexion.dll
@@ -55,4 +56,3 @@ D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.pdb
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
 D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
-D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.config

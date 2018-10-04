@@ -36,7 +36,7 @@
     <SuiteName>xEntry</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>xEntry.html</WebPage>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -133,6 +133,24 @@
     <Compile Include="frmNursery.Designer.cs">
       <DependentUpon>frmNursery.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportPR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportPR.Designer.cs">
+      <DependentUpon>frmReportPR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportSuiviPepiniere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportSuiviPepiniere.Designer.cs">
+      <DependentUpon>frmReportSuiviPepiniere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportIdentPepiniere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportIdentPepiniere.Designer.cs">
+      <DependentUpon>frmReportIdentPepiniere.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportTAR.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,10 +183,58 @@
     <Compile Include="frmUtilisateur.Designer.cs">
       <DependentUpon>frmUtilisateur.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rapports\LstEssencePlante_Saison_Assoc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstEssencePlante_Saison_Assoc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstIdentPepiniere.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstIdentPepiniere.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlantationPR_NbrVisite_Agent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlantationPR_NbrVisite_Agent.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlanteurPRAssocBailleur.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlanteurPRAssocBailleur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlanteurPRSaison_Bailleur.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlanteurPRSaison_Bailleur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Rapports\LstPlanteurTAR_Saison_Territoire.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LstPlanteurTAR_Saison_Territoire.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepiQteSemee_PlancheRepiq.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepiQteSemee_PlancheRepiq.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepi_Agent_Saison.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepi_Agent_Saison.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepi_QteSeme_Provenance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepi_QteSeme_Provenance.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="EntryTar.resx">
@@ -183,6 +249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNursery.resx">
       <DependentUpon>frmNursery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportPR.resx">
+      <DependentUpon>frmReportPR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportSuiviPepiniere.resx">
+      <DependentUpon>frmReportSuiviPepiniere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportIdentPepiniere.resx">
+      <DependentUpon>frmReportIdentPepiniere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReportTAR.resx">
       <DependentUpon>frmReportTAR.cs</DependentUpon>
@@ -210,9 +285,41 @@
     <EmbeddedResource Include="frmUtilisateur.resx">
       <DependentUpon>frmUtilisateur.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstEssencePlante_Saison_Assoc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstEssencePlante_Saison_Assoc.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstIdentPepiniere.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstIdentPepiniere.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlantationPR_NbrVisite_Agent.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlantationPR_NbrVisite_Agent.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlanteurPRAssocBailleur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlanteurPRAssocBailleur.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlanteurPRSaison_Bailleur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlanteurPRSaison_Bailleur.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rapports\LstPlanteurTAR_Saison_Territoire.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LstPlanteurTAR_Saison_Territoire.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepiQteSemee_PlancheRepiq.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepiQteSemee_PlancheRepiq.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepi_Agent_Saison.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepi_Agent_Saison.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepi_QteSeme_Provenance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepi_QteSeme_Provenance.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
