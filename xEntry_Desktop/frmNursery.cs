@@ -26,6 +26,8 @@ namespace xEntry_Desktop
         private clstbl_germoir_fiche_suivi_pepi germoirid = new clstbl_germoir_fiche_suivi_pepi();
         private clstbl_plant_repiq_fiche_suivi_pepi repiquageid = new clstbl_plant_repiq_fiche_suivi_pepi();
         private bool blnModifie = false;
+        private bool blnModifie1 = false;
+        private bool blnModifie2 = false;
 
 
         public mdiMainForm getMdiMainForm()
@@ -234,12 +236,12 @@ namespace xEntry_Desktop
             try
             {
                 BindingListGermoir();
-               // blnModifie = true;
+                blnModifie1 = true;
              //   bdDelete.Enabled = true;
             }
             catch (Exception)
             {
-              //  blnModifie = false;
+               blnModifie1 = false;
              //   bdDelete.Enabled = false;
             }
         }
@@ -322,18 +324,184 @@ namespace xEntry_Desktop
                 MessageBox.Show("Echec de la suppression, " + ex.Message, "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        #region _SUIVI PEPINIERE - REPIQUAGE_
+
+        //Permet de lier le BindingSource aux champs du formulaire
+        private void BindingClsRepiquage()
+        {
+
+            SetBindingControls(txtuuidSuiviPepi, "Text", repiquageid, "Uuid");
+            SetBindingControls(txtRepiquageEssence, "Text", repiquageid, "planches_repiquage_essence");
+            SetBindingControls(txtRepiquageEssenceAutre, "Text", repiquageid, "planches_repiquage_essence_autre");
+            SetBindingControls(txtPlantulesEncoreRepiques, "Text", repiquageid, "plantules_encore_repiques");
+            SetBindingControls(txtPlantulesDejaEvacues, "Text", repiquageid, "plantules_deja_evacues");
+            SetBindingControls(txtQteObservees, "Text", repiquageid, "qte_observee");
+            SetBindingControls(txtTailleMoyenne, "Text", repiquageid, "taille_moyenne");
+            SetBindingControls(txtNbrefeuilles, "Text", repiquageid, "nbre_feuille_moyenne");
+            SetBindingControls(txtPlancheRepiquage, "Text", repiquageid, "planches_repiquage_count");
+            SetBindingControls(txtdateRepiquage, "Text", repiquageid, "date_repiquage");
+            SetBindingControls(txtObservationRepiquage, "Text", repiquageid, "observations");
+            //SetBindingControls(txtQlteSemis, "Text", repiquageid, "qualite_semis");
+            //SetBindingControls(txtDateRecolte, "Text", repiquageid, "synchronized_on");
+        }
+        private void BindingListRepiquage()
+        {
+
+            SetBindingControls(txtuuidSuiviPepi, "Text", _binRepiqsrc, "Uuid");
+            SetBindingControls(txtRepiquageEssence, "Text", _binRepiqsrc, "planches_repiquage_essence");
+            SetBindingControls(txtRepiquageEssenceAutre, "Text", _binRepiqsrc, "planches_repiquage_essence_autre");
+            SetBindingControls(txtPlantulesEncoreRepiques, "Text", _binRepiqsrc, "plantules_encore_repiques");
+            SetBindingControls(txtPlantulesDejaEvacues, "Text", _binRepiqsrc, "plantules_deja_evacues");
+            SetBindingControls(txtQteObservees, "Text", _binRepiqsrc, "qte_observee");
+            SetBindingControls(txtTailleMoyenne, "Text", _binRepiqsrc, "taille_moyenne");
+            SetBindingControls(txtNbrefeuilles, "Text", _binRepiqsrc, "nbre_feuille_moyenne");
+            SetBindingControls(txtPlancheRepiquage, "Text", _binRepiqsrc, "planches_repiquage_count");
+            SetBindingControls(txtdateRepiquage, "Text", _binRepiqsrc, "date_repiquage");
+            SetBindingControls(txtObservationRepiquage, "Text", _binRepiqsrc, "observations");
+        }
+
+        private void dtgvRepiquage_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                BindingListRepiquage();
+                blnModifie2 = true;
+                btnDelrepiquage.Enabled = true;
+            }
+            catch (Exception)
+            {
+                blnModifie2 = false;
+                btnDelrepiquage.Enabled = false;
+            }
+        }
+
+        #endregion
+
+        private void btnUpdateG_Click(object sender, EventArgs e)
+        {
+            int record = ficheid.update((DataRowView)
+               _binsrc.Current);
+            MessageBox.Show("Modification éffectuée : " + record + " Modifié", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSaveG_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!blnModifie1)
+                {
+                    int record = germoirid.inserts();
+                    MessageBox.Show("Enregistrement éffectué : " + record + " Affecté", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    DoUpdateGermoir();
+                }
+
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Echec de la mise à jour, " + ex.Message, "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        public void DoUpdateGermoir()
+        {
+            int record = germoirid.update((DataRowView)
+                _binGermoirsrc.Current);
+            MessageBox.Show("Modification éffectuée : " + record + " Modifié", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSaveRepiq_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!blnModifie2)
+                {
+                    int record = repiquageid.inserts();
+                    MessageBox.Show("Enregistrement éffectué : " + record + " Affecté", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    DoUpdateRepiquage();
+                }
+
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Echec de la mise à jour, " + ex.Message, "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        public void DoUpdateRepiquage()
+        {
+            int record = repiquageid.update((DataRowView)
+                _binRepiqsrc.Current);
+            MessageBox.Show("Modification éffectuée : " + record + " Modifié", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+        private void btnDelG_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (blnModifie1)
+                {
+                    DialogResult dr = MessageBox.Show("Voulez-vous supprimer cet enrgistrement ?", "Suppression enregistrement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    int record = 0;
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        record = germoirid.delete((DataRowView)_binGermoirsrc.Current);
+                        MessageBox.Show("Suppression éffectuée : " + record + " Supprimé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        MessageBox.Show("Aucune suppression éffectuée : " + record + " Supprimé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Echec de la suppression, " + ex.Message, "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnDelrepiquage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (blnModifie2)
+                {
+                    DialogResult dr = MessageBox.Show("Voulez-vous supprimer cet enrgistrement ?", "Suppression enregistrement", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    int record = 0;
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        record = repiquageid.delete((DataRowView)_binRepiqsrc.Current);
+                        MessageBox.Show("Suppression éffectuée : " + record + " Supprimé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        MessageBox.Show("Aucune suppression éffectuée : " + record + " Supprimé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Echec de la suppression, " + ex.Message, "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
    
 
 
-
-        private void tbIdentification_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtuuidSuiviPepi_TextChanged(object sender, EventArgs e)
-        {
-         
-        }
+       
     }
 }

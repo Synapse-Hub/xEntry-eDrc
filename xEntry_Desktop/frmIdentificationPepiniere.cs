@@ -9,8 +9,11 @@ namespace xEntry_Desktop
     public partial class frmIdentificationPepiniere : Form
     {
         private BindingSource bdsrc = new BindingSource();
+        private BindingSource grpc_bdsrc = new BindingSource();
         private clstbl_fiche_ident_pepi ficheid = new clstbl_fiche_ident_pepi();
+        private clstbl_grp_c_fiche_ident_pepi grp_c_id = new clstbl_grp_c_fiche_ident_pepi();
         private bool blnModifie = false;
+        private bool blnModifie1 = false;
 
         public frmIdentificationPepiniere()
         {
@@ -99,6 +102,24 @@ namespace xEntry_Desktop
             SetBindingControls(txtDateSynchronise, "Text", ficheid, "Synchronized_on");
         }
 
+        private void Binding_grp_c_Cls()
+        {
+            SetBindingControls(txtCount, "Text", grp_c_id, "count");
+            SetBindingControls(txtDimensionA, "Text", grp_c_id, "dimension_planche_a");
+            SetBindingControls(txtDimensionB, "Text", grp_c_id, "dimension_planche_b");
+            SetBindingControls(txtCapacitePlanche, "Text", grp_c_id, "capacite_planche");
+            SetBindingControls(txtCapaciteTotalePlanche, "Text", grp_c_id, "capacite_totale_planche");
+        }
+
+        private void Binding_grp_c_List()
+        {
+            SetBindingControls(txtCount, "Text", grpc_bdsrc, "count");
+            SetBindingControls(txtDimensionA, "Text", grpc_bdsrc, "dimension_planche_a");
+            SetBindingControls(txtDimensionB, "Text", grpc_bdsrc, "dimension_planche_b");
+            SetBindingControls(txtCapacitePlanche, "Text", grpc_bdsrc, "capacite_planche");
+            SetBindingControls(txtCapaciteTotalePlanche, "Text", grpc_bdsrc, "capacite_totale_planche");
+        }
+
         //Permet de lier le BindingSource a la source de donnee comme DataGridView
         private void BindingList()
         {
@@ -136,6 +157,7 @@ namespace xEntry_Desktop
             {
                 RefreshData();
                 dgv.DataSource = bdsrc;
+                dtgGrpc.DataSource = grpc_bdsrc;
             }
             catch (Exception)
             {
@@ -147,8 +169,10 @@ namespace xEntry_Desktop
         {
             //Chargement de la source des donnes BindingSource) en utilisant un DataTable
             bdsrc.DataSource = clsMetier.GetInstance().getAllClstbl_fiche_ident_pepi();
+            grpc_bdsrc.DataSource = clsMetier.GetInstance().getAllClstbl_grp_c_fiche_ident_pepi();
 
             bdNav.BindingSource = bdsrc;
+            bdGrpc.BindingSource = grpc_bdsrc;
 
             if (bdsrc.Count == 0)
             {
@@ -228,6 +252,12 @@ namespace xEntry_Desktop
             //clsMetier.tbPhoto.Add(clsDoTraitement.GetInstance().ImageToString64(pbPhoto.Image));
 
             int record = ficheid.update((DataRowView)bdsrc.Current);
+            MessageBox.Show("Modification éffectuée : " + record + " Modifié", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public void DoUpdate_Grp_c()
+        {
+            int record = grp_c_id.update((DataRowView)grpc_bdsrc.Current);
             MessageBox.Show("Modification éffectuée : " + record + " Modifié", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -359,5 +389,56 @@ namespace xEntry_Desktop
                 MessageBox.Show("Erreur de chargement de la photo + " + ex.Message, "Sélection photo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void btnSaveGrpc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!blnModifie1)
+                {
+                    int record = grp_c_id.inserts();
+                    MessageBox.Show("Enregistrement éffectué : " + record + " Affecté", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    DoUpdate_Grp_c();
+                }
+
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Echec de la mise à jour, " + ex.Message, "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }  
+        }
+
+        private void btnUpdGrpc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgvGermoir_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Binding_grp_c_List();       
+                blnModifie1 = true;
+               // bdDelete.Enabled = true;
+
+            }
+            catch (Exception)
+            {
+                blnModifie1 = false;
+              //  bdDelete.Enabled = false;
+            }
+        }
+
+      
+
+
+
+
+
+
     }
 }
