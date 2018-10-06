@@ -2,7 +2,11 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Microsoft.Office.Interop;
 using xEntry_Data;
+using System.IO;
+using System.Text;
+using System.Collections.Generic;
 
 namespace xEntry_Desktop
 {
@@ -685,6 +689,115 @@ namespace xEntry_Desktop
             }
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
+            //sfd.FileName = "export.xlsx";
+            //if (sfd.ShowDialog() == DialogResult.OK)
+            //{
+            //    //ToCsV(dataGridView1, @"c:\export.xls");
+            //    ToCsV(dtgvTAR, sfd.FileName); // Here dataGridview1 is your grid view name
+            //}
+
+            ExportToExcel();
+        }
+
+
+        #region Exportation vers Excel
+
+        private void ExportToExcel()
+        {
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
+
+            try
+            {
+
+                worksheet = workbook.ActiveSheet; // pour que cela marche il faut ajouter la reference Microsoft.CSharp
+
+                worksheet.Name = "ExportedFromDatGrid";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (int i = 0; i < dtgvTAR.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < dtgvTAR.Columns.Count; j++)
+                    {
+                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
+                        if (cellRowIndex == 1)
+                        {
+                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Columns[j].HeaderText;
+                        }
+                        else
+                        {
+                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Rows[i].Cells[j].Value.ToString();
+                        }
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 2;
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    workbook.SaveAs(saveDialog.FileName);
+                    MessageBox.Show("Export Successful");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
+
+        }
+
+        private void ToCsV(DataGridView dGV, string filename)
+        {
+            string stOutput = "";
+            // Export titles:
+            string sHeaders = "";
+
+            for (int j = 0; j < dGV.Columns.Count; j++)
+                sHeaders = sHeaders.ToString() + Convert.ToString(dGV.Columns[j].HeaderText) + "\t";
+            stOutput += sHeaders + "\r\n";
+            // Export data.
+            for (int i = 0; i < dGV.RowCount - 1; i++)
+            {
+                string stLine = "";
+                for (int j = 0; j < dGV.Rows[i].Cells.Count; j++)
+                    stLine = stLine.ToString() + Convert.ToString(dGV.Rows[i].Cells[j].Value) + "\t";
+                stOutput += stLine + "\r\n";
+            }
+            Encoding utf16 = Encoding.GetEncoding(1254);
+            byte[] output = utf16.GetBytes(stOutput);
+            FileStream fs = new FileStream(filename, FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(output, 0, output.Length); //write the encoded file
+            bw.Flush();
+            bw.Close();
+            fs.Close();
+        }  
+
+
+        #endregion
+
+      
        
 
        
