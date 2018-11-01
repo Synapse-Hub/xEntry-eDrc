@@ -196,5 +196,10 @@ namespace xEntry_Desktop
                     break;
             }
         }
+
+        private void crvReport_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
