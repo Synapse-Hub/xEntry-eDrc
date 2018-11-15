@@ -691,16 +691,16 @@ namespace xEntry_Desktop
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog sfd = new SaveFileDialog();
-            //sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
-            //sfd.FileName = "export.xlsx";
-            //if (sfd.ShowDialog() == DialogResult.OK)
-            //{
-            //    //ToCsV(dataGridView1, @"c:\export.xls");
-            //    ToCsV(dtgvTAR, sfd.FileName); // Here dataGridview1 is your grid view name
-            //}
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
+            sfd.FileName = "export_Tar.xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+               // ToCsV(dataGridView1, @"c:\export.xls");
+                ToCsV(dtgvTAR, sfd.FileName); // Here dataGridview1 is your grid view name
+            }
 
-            ExportToExcel();
+          //  ExportToExcel();
         }
 
 

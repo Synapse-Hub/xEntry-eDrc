@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using xEntry_Data;
+using System.IO;
+using System.Text;
+using System.Collections.Generic;
 
 namespace xEntry_Desktop
 {
@@ -498,6 +501,61 @@ namespace xEntry_Desktop
                 MessageBox.Show("Echec de la suppression, " + ex.Message, "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void RepiToExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
+            sfd.FileName = "export_Repiquage.xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                // ToCsV(dataGridView1, @"c:\export.xls");
+                ToCsV(dtgvRepiquage, sfd.FileName); // Here dataGridview1 is your grid view name
+            }
+
+        }
+
+        private void germoirToExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel Documents (*.xlsx)|*.xlsx";
+            sfd.FileName = "export_germoir.xlsx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                // ToCsV(dataGridView1, @"c:\export.xls");
+                ToCsV(dtgvGermoir, sfd.FileName); // Here dataGridview1 is your grid view name
+            }
+        }  
+
+
+        private void ToCsV(DataGridView dGV, string filename)
+        {
+            string stOutput = "";
+            // Export titles:
+            string sHeaders = "";
+
+            for (int j = 0; j < dGV.Columns.Count; j++)
+                sHeaders = sHeaders.ToString() + Convert.ToString(dGV.Columns[j].HeaderText) + "\t";
+            stOutput += sHeaders + "\r\n";
+            // Export data.
+            for (int i = 0; i < dGV.RowCount - 1; i++)
+            {
+                string stLine = "";
+                for (int j = 0; j < dGV.Rows[i].Cells.Count; j++)
+                    stLine = stLine.ToString() + Convert.ToString(dGV.Rows[i].Cells[j].Value) + "\t";
+                stOutput += stLine + "\r\n";
+            }
+            Encoding utf16 = Encoding.GetEncoding(1254);
+            byte[] output = utf16.GetBytes(stOutput);
+            FileStream fs = new FileStream(filename, FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(output, 0, output.Length); //write the encoded file
+            bw.Flush();
+            bw.Close();
+            fs.Close();
+        }
+
+      
 
    
 

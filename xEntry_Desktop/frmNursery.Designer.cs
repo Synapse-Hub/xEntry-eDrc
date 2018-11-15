@@ -49,7 +49,7 @@
             this.btnDelG = new System.Windows.Forms.ToolStripButton();
             this.btnUpdateG = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton21 = new System.Windows.Forms.ToolStripButton();
+            this.germoirToExcel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton22 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
@@ -91,7 +91,7 @@
             this.btnDelrepiquage = new System.Windows.Forms.ToolStripButton();
             this.btnUpdateRepiq = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.RepiToExcel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -338,7 +338,7 @@
             this.btnDelG,
             this.btnUpdateG,
             this.toolStripSeparator16,
-            this.toolStripButton21,
+            this.germoirToExcel,
             this.toolStripSeparator17,
             this.toolStripButton22,
             this.toolStripSeparator18});
@@ -456,14 +456,15 @@
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(6, 39);
             // 
-            // toolStripButton21
+            // germoirToExcel
             // 
-            this.toolStripButton21.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton21.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton21.Image")));
-            this.toolStripButton21.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton21.Name = "toolStripButton21";
-            this.toolStripButton21.Size = new System.Drawing.Size(24, 36);
-            this.toolStripButton21.Text = "Export to Excel";
+            this.germoirToExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.germoirToExcel.Image = ((System.Drawing.Image)(resources.GetObject("germoirToExcel.Image")));
+            this.germoirToExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.germoirToExcel.Name = "germoirToExcel";
+            this.germoirToExcel.Size = new System.Drawing.Size(24, 36);
+            this.germoirToExcel.Text = "Export to Excel";
+            this.germoirToExcel.Click += new System.EventHandler(this.germoirToExcel_Click);
             // 
             // toolStripSeparator17
             // 
@@ -746,7 +747,7 @@
             this.btnDelrepiquage,
             this.btnUpdateRepiq,
             this.toolStripSeparator8,
-            this.toolStripButton12,
+            this.RepiToExcel,
             this.toolStripSeparator11,
             this.toolStripButton13,
             this.toolStripSeparator12});
@@ -863,14 +864,15 @@
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(6, 39);
             // 
-            // toolStripButton12
+            // RepiToExcel
             // 
-            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
-            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(24, 36);
-            this.toolStripButton12.Text = "Export to Excel";
+            this.RepiToExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RepiToExcel.Image = ((System.Drawing.Image)(resources.GetObject("RepiToExcel.Image")));
+            this.RepiToExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RepiToExcel.Name = "RepiToExcel";
+            this.RepiToExcel.Size = new System.Drawing.Size(24, 36);
+            this.RepiToExcel.Text = "Export to Excel";
+            this.RepiToExcel.Click += new System.EventHandler(this.RepiToExcel_Click);
             // 
             // toolStripSeparator11
             // 
@@ -2101,7 +2103,7 @@
         private System.Windows.Forms.ToolStripButton btnDelrepiquage;
         private System.Windows.Forms.ToolStripButton btnUpdateRepiq;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripButton toolStripButton12;
+        private System.Windows.Forms.ToolStripButton RepiToExcel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton toolStripButton13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
@@ -2119,7 +2121,7 @@
         private System.Windows.Forms.ToolStripButton btnDelG;
         private System.Windows.Forms.ToolStripButton btnUpdateG;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
-        private System.Windows.Forms.ToolStripButton toolStripButton21;
+        private System.Windows.Forms.ToolStripButton germoirToExcel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripButton toolStripButton22;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
