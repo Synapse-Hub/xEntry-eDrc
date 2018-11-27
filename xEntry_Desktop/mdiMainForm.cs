@@ -403,5 +403,13 @@ namespace xEntry_Desktop
             frm.Icon = this.Icon;
             frm.Show();
         }
+
+        private void btnShowMap_Click(object sender, EventArgs e)
+        {
+            ViewGeoCoordinate frm = new ViewGeoCoordinate();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
     }
 }
