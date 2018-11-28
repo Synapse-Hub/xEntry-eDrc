@@ -130,14 +130,18 @@ namespace xEntry_Desktop
                 //  if (i < dtTable.Rows.Count) locations += ",\n";
                 if (i < clsMetier.GetInstance().getAllClstbl_geopoint().Rows.Count) locations += ",\n";
             }
+
+            // google.load(""visualization"", ""1"", {packages:[""map""]});
+            // google.setOnLoadCallback(drawChart);
             string html =
             @"<html>
   <head>
 
- <script async defer src=""https://maps.googleapis.com/maps/api/js?key=AIzaSyCRjUarEe1myM54p0uOUIKk1udIbXmbmaE&callback=initMap""> </script>
+ <script type=""text/javascript"" src=""https://www.gstatic.com/charts/loader.js""></script>
     <script type=""text/javascript"">
-      google.load(""visualization"", ""1"", {packages:[""map""]});
-      google.setOnLoadCallback(drawChart);
+       google.charts.load('current', { 'packages': ['map'] });
+        google.charts.setOnLoadCallback(drawChart);
+        
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Lat', 'Long', 'Name'],DBLOCATIONS 
@@ -145,6 +149,16 @@ namespace xEntry_Desktop
 
         var map = new google.visualization.Map(document.getElementById('map_div'));
         map.draw(data, {showTip: true});
+
+        var options = {
+              showTooltip: true,
+              showInfoWindow: true
+            };
+
+            var map = new google.visualization.Map(document.getElementById('chart_div'));
+
+            map.draw(data, options);
+
       }
 
     </script>

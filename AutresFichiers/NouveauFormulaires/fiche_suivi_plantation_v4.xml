@@ -1,0 +1,2989 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Fiche de suivi plantation (v4)</h:title>
+    <model>
+      <instance>
+        <fiche_suivi_plantation_v4 id="fiche_suivi_plantation_v4" version="20150626">
+          <start/>
+          <end/>
+          <deviceid/>
+          <grp_a>
+            <date/>
+            <nom_agent/>
+          </grp_a>
+          <saison/>
+          <association/>
+          <association_autre/>
+          <bailleur/>
+          <n_visite/>
+          <contreverification/>
+          <n_visite_2/>
+          <n_visite_3/>
+          <visite_calculate/>
+          <grp_b>
+            <n_plantation/>
+            <n_bloc/>
+          </grp_b>
+          <grp_w>
+            <noms_planteur/>
+            <nom/>
+            <post_nom/>
+            <prenom/>
+          </grp_w>
+          <planteur_presence/>
+          <changement_surface/>
+          <grp_c>
+            <coordonnees_note/>
+            <photo_fiche/>
+            <titre_trace_gps/>
+          </grp_c>
+          <grp_d>
+            <superficie/>
+            <superficie_non_plantee/>
+          </grp_d>
+          <inventaire_note/>
+          <rpt_a jr:template="">
+            <photo_inventaire/>
+          </rpt_a>
+          <grp_u>
+            <grp_e>
+              <periode_debut/>
+              <period_debut_annee/>
+              <periode_fin/>
+              <period_fin_annee/>
+            </grp_e>
+            <essence_principale/>
+            <essence_principale_autre/>
+            <melanges/>
+            <rpt_b jr:template="">
+              <autre_essence/>
+              <autre_essence_autre/>
+              <autre_essence_pourcentage/>
+            </rpt_b>
+            <autre_essence_count/>
+            <autre_essence_warning/>
+            <grp_f>
+              <pente_note/>
+              <pente_1/>
+              <pente_2/>
+              <pente_3/>
+              <pente_4/>
+            </grp_f>
+            <encartement_type/>
+          </grp_u>
+          <grp_h>
+            <encartement_dim_1/>
+            <encartement_dim_2/>
+          </grp_h>
+          <alignement/>
+          <causes/>
+          <piquets/>
+          <pourcentage_insuffisants/>
+          <eucalyptus_deau/>
+          <grp_v>
+            <grp_i>
+              <n_vides/>
+              <n_zero_demi_metre/>
+              <n_demi_un_metre/>
+              <n_un_deux_metre/>
+              <n_deux_plus_metre/>
+            </grp_i>
+            <grp_m>
+              <p_zero_demi_metre_calc/>
+              <p_demi_un_metre_calc/>
+              <p_un_deux_metre_calc/>
+              <p_deux_plus_metre_calc/>
+              <p_zero_demi_metre/>
+              <p_demi_un_metre/>
+              <p_un_deux_metre/>
+              <p_deux_plus_metre/>
+            </grp_m>
+            <grp_j>
+              <degats_calc/>
+              <degats/>
+              <type_degats/>
+            </grp_j>
+            <grp_l>
+              <n_vaches/>
+              <n_chevres/>
+              <n_rats/>
+              <n_termites/>
+              <n_elephants/>
+              <n_cultures_vivrieres/>
+              <n_erosion/>
+              <n_eboulement/>
+              <n_feu/>
+              <n_secheresse/>
+              <n_hommes/>
+              <n_plante_avec_sachets/>
+              <n_plante_trop_tard/>
+              <n_guerren/>
+            </grp_l>
+            <degats_total/>
+            <degats_warning/>
+            <regarnissage/>
+            <regarnissage_suffisant/>
+            <grp_k>
+              <entretien/>
+              <etat/>
+            </grp_k>
+            <grp_n>
+              <note_pas_payee_1_4/>
+              <note_pas_payee_2_3/>
+              <note_regarnissage_oui/>
+              <note_regarnissage_trop_tard/>
+              <note_entretien_insuffisant/>
+              <note_etat_mauvais/>
+            </grp_n>
+            <cultures_vivrieres/>
+            <grp_s>
+              <type_cultures_vivieres/>
+              <type_cultures_vivieres_autre/>
+              <grp_o>
+                <n_haricots/>
+                <n_manioc/>
+                <n_soja/>
+                <n_sorgho/>
+                <n_arachides/>
+                <n_patates_douces/>
+                <n_mais/>
+                <n_autres/>
+              </grp_o>
+              <type_cultures_total/>
+              <type_cultures_warning/>
+            </grp_s>
+            <canopee_fermee/>
+            <superficie_canopee_fermee/>
+            <croissance_arbres/>
+            <arbres_existants/>
+            <rpt_c jr:template="">
+              <hauteur_totale/>
+              <hauteur_tronc/>
+              <houppier_1/>
+              <houppier_2/>
+              <diametre/>
+            </rpt_c>
+            <grp_p>
+              <photo_1/>
+              <emplacement_1/>
+            </grp_p>
+            <grp_q>
+              <photo_2/>
+              <emplacement_2/>
+            </grp_q>
+            <localisation/>
+            <grp_r>
+              <commentaire_wwf/>
+              <commentaire_planteur/>
+              <commentaire_association/>
+            </grp_r>
+          </grp_v>
+          <eucalyptus_deau_non/>
+          <corrige/>
+          <instance_name/>
+          <meta>
+            <instanceID/>
+            <instanceName/>
+          </meta>
+        </fiche_suivi_plantation_v4>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/fiche_suivi_plantation_v4/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/fiche_suivi_plantation_v4/end" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/fiche_suivi_plantation_v4/deviceid" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_a/date" required="true()" type="date"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_a/nom_agent" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/saison" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/association" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/association_autre" relevant="selected( /fiche_suivi_plantation_v4/association ,'autre')" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/bailleur" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/n_visite" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/contreverification" relevant="selected( /fiche_suivi_plantation_v4/n_visite ,'4')" type="select1"/>
+      <bind calculate="if(selected( /fiche_suivi_plantation_v4/n_visite ,'2') or selected( /fiche_suivi_plantation_v4/contreverification ,'2'),'y','n')" nodeset="/fiche_suivi_plantation_v4/n_visite_2" type="string"/>
+      <bind calculate="if(selected( /fiche_suivi_plantation_v4/n_visite ,'3') or selected( /fiche_suivi_plantation_v4/contreverification ,'3'),'y','n')" nodeset="/fiche_suivi_plantation_v4/n_visite_3" type="string"/>
+      <bind calculate="if(( /fiche_suivi_plantation_v4/n_visite_2 ='y' or  /fiche_suivi_plantation_v4/n_visite_3 ='y'),'2_3','1_4')" nodeset="/fiche_suivi_plantation_v4/visite_calculate" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_b/n_plantation" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_b/n_bloc" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_w/noms_planteur" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_w/nom" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_w/post_nom" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_w/prenom" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/planteur_presence" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/changement_surface" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='2_3'" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_c" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4' or ( /fiche_suivi_plantation_v4/visite_calculate ='2_3' and selected( /fiche_suivi_plantation_v4/changement_surface ,'oui'))"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_c/coordonnees_note" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_c/photo_fiche" required="true()" type="binary"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_c/titre_trace_gps" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_d" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4' or ( /fiche_suivi_plantation_v4/visite_calculate ='2_3' and selected( /fiche_suivi_plantation_v4/changement_surface ,'oui'))"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_d/superficie" required="true()" type="decimal"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_d/superficie_non_plantee" type="decimal"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/inventaire_note" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/rpt_a/photo_inventaire" required="true()" type="binary"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4'"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_e/periode_debut" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_e/period_debut_annee" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_e/periode_fin" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_e/period_fin_annee" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/essence_principale" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/essence_principale_autre" relevant="selected( /fiche_suivi_plantation_v4/grp_u/essence_principale ,'autre')" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/melanges" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/rpt_b" relevant="selected( /fiche_suivi_plantation_v4/grp_u/melanges ,'oui')" required="true()"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence_autre" relevant="selected( /fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence ,'autre')" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence_pourcentage" required="true()" type="select1"/>
+      <bind calculate="count( /fiche_suivi_plantation_v4/grp_u/rpt_b )" nodeset="/fiche_suivi_plantation_v4/grp_u/autre_essence_count" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/autre_essence_warning" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_u/melanges ,'oui') and  /fiche_suivi_plantation_v4/grp_u/autre_essence_count  &lt; 1" required="selected( /fiche_suivi_plantation_v4/grp_u/melanges ,'oui') and  /fiche_suivi_plantation_v4/grp_u/autre_essence_count  &lt; 1" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_note" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_1" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_2" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_3" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_4" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_u/encartement_type" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_h/encartement_dim_1" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_h/encartement_dim_2" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/alignement" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4'" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/causes" relevant="selected( /fiche_suivi_plantation_v4/grp_u/encartement_type , 'irregulier') or selected( /fiche_suivi_plantation_v4/alignement , 'insuffisant')" required="true()" type="select"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/piquets" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4'" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/pourcentage_insuffisants" relevant="selected( /fiche_suivi_plantation_v4/piquets , 'insuffisants')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/eucalyptus_deau" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v" relevant="selected( /fiche_suivi_plantation_v4/eucalyptus_deau ,'oui_ok')"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_i/n_vides" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre" required="true()" type="int"/>
+      <bind calculate="(if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre )) div (if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) * 100" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_zero_demi_metre_calc" type="string"/>
+      <bind calculate="(if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre )) div (if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) * 100" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_demi_un_metre_calc" type="string"/>
+      <bind calculate="(if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre )) div (if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) * 100" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_un_deux_metre_calc" type="string"/>
+      <bind calculate="(if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) div (if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) * 100" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_deux_plus_metre_calc" type="string"/>
+      <bind calculate="round( /fiche_suivi_plantation_v4/grp_v/grp_m/p_zero_demi_metre_calc ,1)" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_zero_demi_metre" readonly="true()" type="string"/>
+      <bind calculate="round( /fiche_suivi_plantation_v4/grp_v/grp_m/p_demi_un_metre_calc ,1)" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_demi_un_metre" readonly="true()" type="string"/>
+      <bind calculate="round( /fiche_suivi_plantation_v4/grp_v/grp_m/p_un_deux_metre_calc ,1)" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_un_deux_metre" readonly="true()" type="string"/>
+      <bind calculate="round( /fiche_suivi_plantation_v4/grp_v/grp_m/p_deux_plus_metre_calc ,1)" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_m/p_deux_plus_metre" readonly="true()" type="string"/>
+      <bind calculate="(if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_vides  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_vides )) div (if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_vides  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_vides ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre ) + if( /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre  = '','0', /fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre )) * 100" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_j/degats_calc" type="string"/>
+      <bind calculate="round( /fiche_suivi_plantation_v4/grp_v/grp_j/degats_calc ,1)" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_j/degats" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_j/type_degats" relevant=" /fiche_suivi_plantation_v4/grp_v/grp_j/degats_calc  &gt; 0" required="true()" type="select"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_vaches" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'vaches')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_chevres" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'chevres')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_rats" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'rats')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_termites" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'termites')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_elephants" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'elephants')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_cultures_vivrieres" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'cultures_vivrieres')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_erosion" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'erosion')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_eboulement" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'eboulement')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_feu" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'feu')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_secheresse" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'secheresse')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_hommes" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'hommes')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_avec_sachets" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'plante_avec_sachets')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_trop_tard" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'plante_trop_tard')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_l/n_guerren" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_j/type_degats ,'guerren')" required="true()" type="select1"/>
+      <bind calculate="if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_vaches  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_vaches ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_chevres  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_chevres ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_rats  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_rats ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_termites  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_termites ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_elephants  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_elephants ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_cultures_vivrieres  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_cultures_vivrieres ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_erosion  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_erosion ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_eboulement  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_eboulement ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_feu  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_feu ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_secheresse  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_secheresse ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_hommes  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_hommes ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_avec_sachets  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_avec_sachets ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_trop_tard  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_trop_tard ) + if( /fiche_suivi_plantation_v4/grp_v/grp_l/n_guerren  = '', '0',  /fiche_suivi_plantation_v4/grp_v/grp_l/n_guerren )" nodeset="/fiche_suivi_plantation_v4/grp_v/degats_total" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/degats_warning" readonly="true()" relevant=" /fiche_suivi_plantation_v4/grp_v/grp_j/degats_calc  &gt; 0 and  /fiche_suivi_plantation_v4/grp_v/degats_total  !=100" required=" /fiche_suivi_plantation_v4/grp_v/degats_total  != 100" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/regarnissage" required="true()" type="select1"/>
+      <bind calculate="round((100 div  /fiche_suivi_plantation_v4/grp_h/encartement_dim_1 ) * (100 div  /fiche_suivi_plantation_v4/grp_h/encartement_dim_2 ) * ( /fiche_suivi_plantation_v4/grp_v/grp_j/degats  div 100),0)" nodeset="/fiche_suivi_plantation_v4/grp_v/regarnissage_suffisant" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_v/regarnissage ,'oui')" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_k/entretien" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_k/etat" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n" relevant="not(selected( /fiche_suivi_plantation_v4/grp_v/regarnissage ,'non')) or selected( /fiche_suivi_plantation_v4/grp_v/grp_k/entretien ,'insuffisant') or selected( /fiche_suivi_plantation_v4/grp_v/grp_k/etat ,'mauvais')"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_pas_payee_1_4" readonly="true()" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4'" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_pas_payee_2_3" readonly="true()" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='2_3'" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_regarnissage_oui" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_v/regarnissage ,'oui')" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_regarnissage_trop_tard" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_v/regarnissage ,'trop_tard')" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_entretien_insuffisant" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_k/entretien ,'insuffisant')" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_n/note_etat_mauvais" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_k/etat ,'mauvais')" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/cultures_vivrieres" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s" relevant="selected( /fiche_suivi_plantation_v4/grp_v/cultures_vivrieres , 'oui')"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres" required="true()" type="select"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres_autre" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'autres')" required="true()" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_haricots" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'haricots')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_manioc" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'manioc')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_soja" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'soja')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_sorgho" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'sorgho')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_arachides" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'arachides')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_patates_douces" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'patates_douces')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_mais" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'mais')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_autres" relevant="selected( /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres ,'autres')" required="true()" type="select1"/>
+      <bind calculate="if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_haricots  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_haricots ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_manioc  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_manioc ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_soja  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_soja ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_sorgho  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_sorgho ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_arachides  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_arachides ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_patates_douces  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_patates_douces ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_mais  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_mais ) + if( /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_autres  = '','0',  /fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_autres )" nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_total" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_warning" readonly="true()" relevant=" /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_total  !=100" required=" /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_total  !=100" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/canopee_fermee" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/superficie_canopee_fermee" relevant="selected( /fiche_suivi_plantation_v4/grp_v/canopee_fermee ,'oui')" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/croissance_arbres" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/arbres_existants" relevant=" /fiche_suivi_plantation_v4/visite_calculate ='1_4'" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c" relevant="selected( /fiche_suivi_plantation_v4/grp_v/arbres_existants , 'oui')"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c/hauteur_totale" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c/hauteur_tronc" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c/houppier_1" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c/houppier_2" required="true()" type="int"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c/diametre" required="true()" type="select1"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_p/photo_1" required="true()" type="binary"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_p/emplacement_1" type="geopoint"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_q/photo_2" type="binary"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_q/emplacement_2" type="geopoint"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/localisation" type="geopoint"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_wwf" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_planteur" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_association" type="string"/>
+      <bind nodeset="/fiche_suivi_plantation_v4/eucalyptus_deau_non" readonly="true()" relevant="selected( /fiche_suivi_plantation_v4/eucalyptus_deau ,'non')" type="string"/>
+      <bind calculate="if(selected( /fiche_suivi_plantation_v4/eucalyptus_deau ,'non'), 'Fiche a corrige - ', '')" nodeset="/fiche_suivi_plantation_v4/corrige" type="string"/>
+      <bind calculate="concat( /fiche_suivi_plantation_v4/corrige , &quot;Suivi plantation/&quot;,  /fiche_suivi_plantation_v4/saison , &quot;/&quot;,  /fiche_suivi_plantation_v4/bailleur , &quot;/&quot;,  /fiche_suivi_plantation_v4/association , &quot;/&quot;,  /fiche_suivi_plantation_v4/n_visite , &quot;/&quot;,  /fiche_suivi_plantation_v4/grp_b/n_plantation , &quot;/&quot;,  /fiche_suivi_plantation_v4/grp_b/n_bloc , &quot;/&quot; ,  /fiche_suivi_plantation_v4/grp_w/nom , &quot;/&quot;,  /fiche_suivi_plantation_v4/grp_a/nom_agent , &quot;/&quot;,  /fiche_suivi_plantation_v4/grp_a/date )" nodeset="/fiche_suivi_plantation_v4/instance_name" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/fiche_suivi_plantation_v4/meta/instanceID" readonly="true()" type="string"/>
+      <bind calculate=" /fiche_suivi_plantation_v4/instance_name " nodeset="/fiche_suivi_plantation_v4/meta/instanceName" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_a">
+      <input appearance="no-calendar" ref="/fiche_suivi_plantation_v4/grp_a/date">
+        <label>Date</label>
+      </input>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_a/nom_agent">
+        <label>Nom agent de récolte</label>
+        <item>
+          <label>Archippe Sivaghanzana</label>
+          <value>archippe_sivaghanzana</value>
+        </item>
+        <item>
+          <label>Bienfait Ntamirwa</label>
+          <value>bienfait_ntamirwa</value>
+        </item>
+        <item>
+          <label>Didier Weston</label>
+          <value>didier_weston</value>
+        </item>
+        <item>
+          <label>Eloge Muhesi</label>
+          <value>eloge_muhesi</value>
+        </item>
+        <item>
+          <label>Ernest Ntumba</label>
+          <value>ernest_ntumba</value>
+        </item>
+        <item>
+          <label>Hicham Daoudi</label>
+          <value>hicham_daoudi</value>
+        </item>
+        <item>
+          <label>Nestor Vuambale</label>
+          <value>nestor_vuambale</value>
+        </item>
+        <item>
+          <label>Olivier Kalumuna</label>
+          <value>olivier_kalumuna</value>
+        </item>
+        <item>
+          <label>Paluku Vhosi</label>
+          <value>paluku_vhosi</value>
+        </item>
+        <item>
+          <label>Paluku Vururu</label>
+          <value>paluku_vururu</value>
+        </item>
+        <item>
+          <label>Pierre Vutwire</label>
+          <value>pierre_vutwire</value>
+        </item>
+        <item>
+          <label>Stephan Fama</label>
+          <value>stephan_fama</value>
+        </item>
+        <item>
+          <label>Yves Ikobo</label>
+          <value>yves_ikobo</value>
+        </item>
+      </select1>
+    </group>
+    <select1 ref="/fiche_suivi_plantation_v4/saison">
+      <label>Saison</label>
+      <item>
+        <label>2013-2</label>
+        <value>2013_2</value>
+      </item>
+      <item>
+        <label>2014-1</label>
+        <value>2014_1</value>
+      </item>
+      <item>
+        <label>2014-2</label>
+        <value>2014_2</value>
+      </item>
+      <item>
+        <label>2015-1</label>
+        <value>2015_1</value>
+      </item>
+      <item>
+        <label>2015-2</label>
+        <value>2015_2</value>
+      </item>
+      <item>
+        <label>2016-1</label>
+        <value>2016_1</value>
+      </item>
+      <item>
+        <label>2016-2</label>
+        <value>2016_2</value>
+      </item>
+      <item>
+        <label>2017-1</label>
+        <value>2017_1</value>
+      </item>
+      <item>
+        <label>2017-2</label>
+        <value>2017_2</value>
+      </item>
+      <item>
+        <label>2018-1</label>
+        <value>2018_1</value>
+      </item>
+      <item>
+        <label>2018-2</label>
+        <value>2018_2</value>
+      </item>
+      <item>
+        <label>2019-1</label>
+        <value>2019_1</value>
+      </item>
+      <item>
+        <label>2019-2</label>
+        <value>2019_2</value>
+      </item>
+      <item>
+        <label>2020-1</label>
+        <value>2020_1</value>
+      </item>
+      <item>
+        <label>2020-2</label>
+        <value>2020_2</value>
+      </item>
+      <item>
+        <label>2021-1</label>
+        <value>2021_1</value>
+      </item>
+      <item>
+        <label>2021-2</label>
+        <value>2021_2</value>
+      </item>
+      <item>
+        <label>2022-1</label>
+        <value>2022_1</value>
+      </item>
+      <item>
+        <label>2022-2</label>
+        <value>2022_2</value>
+      </item>
+      <item>
+        <label>2023-1</label>
+        <value>2023_1</value>
+      </item>
+      <item>
+        <label>2023-2</label>
+        <value>2023_2</value>
+      </item>
+      <item>
+        <label>2024-1</label>
+        <value>2024_1</value>
+      </item>
+      <item>
+        <label>2024-2</label>
+        <value>2024_2</value>
+      </item>
+      <item>
+        <label>2025-1</label>
+        <value>2025_1</value>
+      </item>
+      <item>
+        <label>2025-2</label>
+        <value>2025_2</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/association">
+      <label>Nom association/grand planteur d’appui</label>
+      <item>
+        <label>ACDAPE</label>
+        <value>acdape</value>
+      </item>
+      <item>
+        <label>ACLP</label>
+        <value>aclp</value>
+      </item>
+      <item>
+        <label>ACPDI</label>
+        <value>acpdi</value>
+      </item>
+      <item>
+        <label>ACUCOBA</label>
+        <value>acucoba</value>
+      </item>
+      <item>
+        <label>ADCN</label>
+        <value>adcn</value>
+      </item>
+      <item>
+        <label>ADDC</label>
+        <value>addc</value>
+      </item>
+      <item>
+        <label>ADEPE</label>
+        <value>adepe</value>
+      </item>
+      <item>
+        <label>ADICO</label>
+        <value>adico</value>
+      </item>
+      <item>
+        <label>AJACAR</label>
+        <value>ajacar</value>
+      </item>
+      <item>
+        <label>AJCD</label>
+        <value>ajcd</value>
+      </item>
+      <item>
+        <label>ALOPRED</label>
+        <value>alopred</value>
+      </item>
+      <item>
+        <label>APABK</label>
+        <value>apabk</value>
+      </item>
+      <item>
+        <label>APLORERU</label>
+        <value>aploreru</value>
+      </item>
+      <item>
+        <label>APO</label>
+        <value>apo</value>
+      </item>
+      <item>
+        <label>APRPE</label>
+        <value>aprpe</value>
+      </item>
+      <item>
+        <label>ASODI</label>
+        <value>asodi</value>
+      </item>
+      <item>
+        <label>ASRE</label>
+        <value>asre</value>
+      </item>
+      <item>
+        <label>CADEP</label>
+        <value>cadep</value>
+      </item>
+      <item>
+        <label>CADMIR</label>
+        <value>cadmir</value>
+      </item>
+      <item>
+        <label>CAF</label>
+        <value>caf</value>
+      </item>
+      <item>
+        <label>CECUPROSODEI</label>
+        <value>cecuprosodei</value>
+      </item>
+      <item>
+        <label>CENED</label>
+        <value>cened</value>
+      </item>
+      <item>
+        <label>CEPAL</label>
+        <value>cepal</value>
+      </item>
+      <item>
+        <label>CICEKI</label>
+        <value>ciceki</value>
+      </item>
+      <item>
+        <label>CIPSOPA</label>
+        <value>cipsopa</value>
+      </item>
+      <item>
+        <label>COFODI</label>
+        <value>cofodi</value>
+      </item>
+      <item>
+        <label>CTFC</label>
+        <value>ctfc</value>
+      </item>
+      <item>
+        <label>ESF</label>
+        <value>esf</value>
+      </item>
+      <item>
+        <label>FACF</label>
+        <value>facf</value>
+      </item>
+      <item>
+        <label>FOD</label>
+        <value>fod</value>
+      </item>
+      <item>
+        <label>JEAN</label>
+        <value>jean</value>
+      </item>
+      <item>
+        <label>LAGRABEN</label>
+        <value>lagraben</value>
+      </item>
+      <item>
+        <label>LCDP</label>
+        <value>lcdp</value>
+      </item>
+      <item>
+        <label>MCP</label>
+        <value>mcp</value>
+      </item>
+      <item>
+        <label>MISERE SORS</label>
+        <value>misere_sors</value>
+      </item>
+      <item>
+        <label>MUMALUKU</label>
+        <value>mumaluku</value>
+      </item>
+      <item>
+        <label>ONBU</label>
+        <value>onbu</value>
+      </item>
+      <item>
+        <label>ONDE</label>
+        <value>onde</value>
+      </item>
+      <item>
+        <label>OPEGL</label>
+        <value>opegl</value>
+      </item>
+      <item>
+        <label>OPERL</label>
+        <value>operl</value>
+      </item>
+      <item>
+        <label>PAEDE</label>
+        <value>paede</value>
+      </item>
+      <item>
+        <label>PDL</label>
+        <value>pdl</value>
+      </item>
+      <item>
+        <label>PIED</label>
+        <value>pied</value>
+      </item>
+      <item>
+        <label>PLAV</label>
+        <value>plav</value>
+      </item>
+      <item>
+        <label>RAPNAV</label>
+        <value>rapnav</value>
+      </item>
+      <item>
+        <label>REC</label>
+        <value>rec</value>
+      </item>
+      <item>
+        <label>REID</label>
+        <value>reid</value>
+      </item>
+      <item>
+        <label>SADD</label>
+        <value>sadd</value>
+      </item>
+      <item>
+        <label>SADEPROVE</label>
+        <value>sadeprove</value>
+      </item>
+      <item>
+        <label>SOLID</label>
+        <value>solid</value>
+      </item>
+      <item>
+        <label>SYDIP</label>
+        <value>sydip</value>
+      </item>
+      <item>
+        <label>TSHABIRIMU ACTION</label>
+        <value>tshabirimu_action</value>
+      </item>
+      <item>
+        <label>VIFED</label>
+        <value>vifed</value>
+      </item>
+      <item>
+        <label>YMEGL</label>
+        <value>ymegl</value>
+      </item>
+      <item>
+        <label>Autre</label>
+        <value>autre</value>
+      </item>
+    </select1>
+    <input ref="/fiche_suivi_plantation_v4/association_autre">
+      <label>Autre association/grand planteur d’appui</label>
+    </input>
+    <select1 ref="/fiche_suivi_plantation_v4/bailleur">
+      <label>Bailleur</label>
+      <item>
+        <label>CBFF</label>
+        <value>cbff</value>
+      </item>
+      <item>
+        <label>CIFOR</label>
+        <value>cifor</value>
+      </item>
+      <item>
+        <label>SIDA</label>
+        <value>sida</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/n_visite">
+      <label>N° de visite</label>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>Contrevérification</label>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/contreverification">
+      <label>Contrevérification visite</label>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_b">
+      <select1 ref="/fiche_suivi_plantation_v4/grp_b/n_plantation">
+        <label>N° de plantation</label>
+        <item>
+          <label>1</label>
+          <value>1</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>5</label>
+          <value>5</value>
+        </item>
+        <item>
+          <label>6</label>
+          <value>6</value>
+        </item>
+        <item>
+          <label>7</label>
+          <value>7</value>
+        </item>
+        <item>
+          <label>8</label>
+          <value>8</value>
+        </item>
+        <item>
+          <label>9</label>
+          <value>9</value>
+        </item>
+        <item>
+          <label>10</label>
+          <value>10</value>
+        </item>
+      </select1>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_b/n_bloc">
+        <label>Bloc N°</label>
+        <item>
+          <label>1/1</label>
+          <value>1_1</value>
+        </item>
+        <item>
+          <label>1/2</label>
+          <value>1_2</value>
+        </item>
+        <item>
+          <label>2/2</label>
+          <value>2_2</value>
+        </item>
+        <item>
+          <label>1/3</label>
+          <value>1_3</value>
+        </item>
+        <item>
+          <label>2/3</label>
+          <value>2_3</value>
+        </item>
+        <item>
+          <label>3/3</label>
+          <value>3_3</value>
+        </item>
+        <item>
+          <label>1/4</label>
+          <value>1_4</value>
+        </item>
+        <item>
+          <label>2/4</label>
+          <value>2_4</value>
+        </item>
+        <item>
+          <label>3/4</label>
+          <value>3_4</value>
+        </item>
+        <item>
+          <label>4/4</label>
+          <value>4_4</value>
+        </item>
+      </select1>
+    </group>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_w">
+      <input ref="/fiche_suivi_plantation_v4/grp_w/noms_planteur">
+        <label>Noms planteur</label>
+        <hint>orthographe: carte ID!</hint>
+      </input>
+      <input ref="/fiche_suivi_plantation_v4/grp_w/nom">
+        <label>Nom</label>
+      </input>
+      <input ref="/fiche_suivi_plantation_v4/grp_w/post_nom">
+        <label>Post Nom</label>
+      </input>
+      <input ref="/fiche_suivi_plantation_v4/grp_w/prenom">
+        <label>Prénom</label>
+      </input>
+    </group>
+    <select1 ref="/fiche_suivi_plantation_v4/planteur_presence">
+      <label>Présence planteur lors de la visite</label>
+      <item>
+        <label>Oui</label>
+        <value>oui</value>
+      </item>
+      <item>
+        <label>Non</label>
+        <value>non</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/changement_surface">
+      <label>La superficie, a-t-elle changée?</label>
+      <item>
+        <label>Oui</label>
+        <value>oui</value>
+      </item>
+      <item>
+        <label>Non</label>
+        <value>non</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_c">
+      <input ref="/fiche_suivi_plantation_v4/grp_c/coordonnees_note">
+        <label>Coordonnées de la plantation:
+
+* Faire le tracé avec GPS. Prendre un waypoint à chaque coin.
+* Prendre plusieurs pentes quand le terrain présente plusieurs formes (clinomètre).
+* Corriger la superficie de chaque partie ayant une pente forte.</label>
+      </input>
+      <upload mediatype="image/*" ref="/fiche_suivi_plantation_v4/grp_c/photo_fiche">
+        <label>Photo de la fiche</label>
+        <hint>croquis et coordonnée</hint>
+      </upload>
+      <input ref="/fiche_suivi_plantation_v4/grp_c/titre_trace_gps">
+        <label>Titrer le tracé de GPS</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_d">
+      <input ref="/fiche_suivi_plantation_v4/grp_d/superficie">
+        <label>Superficie réalisée</label>
+        <hint>ha</hint>
+      </input>
+      <input ref="/fiche_suivi_plantation_v4/grp_d/superficie_non_plantee">
+        <label>(Estimation) superficie non plantée</label>
+        <hint>ha</hint>
+      </input>
+    </group>
+    <input ref="/fiche_suivi_plantation_v4/inventaire_note">
+      <label>L’inventaire
+
+* Pour l’inventaire, le choix des lignes est aléatoire, mais les lignes doivent être le plus représentatives possible.
+* Les informations observées et récoltées lors de l’inventaire, doivent être bien captées pour la suite du remplissage de la fiche.</label>
+    </input>
+    <group ref="/fiche_suivi_plantation_v4/rpt_a">
+      <label>Photo</label>
+      <repeat nodeset="/fiche_suivi_plantation_v4/rpt_a">
+        <upload mediatype="image/*" ref="/fiche_suivi_plantation_v4/rpt_a/photo_inventaire">
+          <label>Photo(s) de fiche(s) de l’inventaire</label>
+        </upload>
+      </repeat>
+    </group>
+    <group ref="/fiche_suivi_plantation_v4/grp_u">
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_u/grp_e">
+        <select1 ref="/fiche_suivi_plantation_v4/grp_u/grp_e/periode_debut">
+          <label>Période plantation début</label>
+          <item>
+            <label>Janvier</label>
+            <value>janvier</value>
+          </item>
+          <item>
+            <label>Février</label>
+            <value>fevrier</value>
+          </item>
+          <item>
+            <label>Mars</label>
+            <value>mars</value>
+          </item>
+          <item>
+            <label>Avril</label>
+            <value>avril</value>
+          </item>
+          <item>
+            <label>Mai</label>
+            <value>mai</value>
+          </item>
+          <item>
+            <label>Juin</label>
+            <value>juin</value>
+          </item>
+          <item>
+            <label>Juillet</label>
+            <value>juillet</value>
+          </item>
+          <item>
+            <label>Août</label>
+            <value>aout</value>
+          </item>
+          <item>
+            <label>Septembre</label>
+            <value>septembre</value>
+          </item>
+          <item>
+            <label>Octobre</label>
+            <value>octobre</value>
+          </item>
+          <item>
+            <label>Novembre</label>
+            <value>novembre</value>
+          </item>
+          <item>
+            <label>Décembre</label>
+            <value>decembre</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_u/grp_e/period_debut_annee">
+          <label>Période plantation début année</label>
+          <item>
+            <label>2013</label>
+            <value>2013</value>
+          </item>
+          <item>
+            <label>2014</label>
+            <value>2014</value>
+          </item>
+          <item>
+            <label>2015</label>
+            <value>2015</value>
+          </item>
+          <item>
+            <label>2016</label>
+            <value>2016</value>
+          </item>
+          <item>
+            <label>2017</label>
+            <value>2017</value>
+          </item>
+          <item>
+            <label>2018</label>
+            <value>2018</value>
+          </item>
+          <item>
+            <label>2019</label>
+            <value>2019</value>
+          </item>
+          <item>
+            <label>2020</label>
+            <value>2020</value>
+          </item>
+          <item>
+            <label>2021</label>
+            <value>2021</value>
+          </item>
+          <item>
+            <label>2022</label>
+            <value>2022</value>
+          </item>
+          <item>
+            <label>2023</label>
+            <value>2023</value>
+          </item>
+          <item>
+            <label>2024</label>
+            <value>2024</value>
+          </item>
+          <item>
+            <label>2025</label>
+            <value>2025</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_u/grp_e/periode_fin">
+          <label>Période plantation fin</label>
+          <item>
+            <label>Janvier</label>
+            <value>janvier</value>
+          </item>
+          <item>
+            <label>Février</label>
+            <value>fevrier</value>
+          </item>
+          <item>
+            <label>Mars</label>
+            <value>mars</value>
+          </item>
+          <item>
+            <label>Avril</label>
+            <value>avril</value>
+          </item>
+          <item>
+            <label>Mai</label>
+            <value>mai</value>
+          </item>
+          <item>
+            <label>Juin</label>
+            <value>juin</value>
+          </item>
+          <item>
+            <label>Juillet</label>
+            <value>juillet</value>
+          </item>
+          <item>
+            <label>Août</label>
+            <value>aout</value>
+          </item>
+          <item>
+            <label>Septembre</label>
+            <value>septembre</value>
+          </item>
+          <item>
+            <label>Octobre</label>
+            <value>octobre</value>
+          </item>
+          <item>
+            <label>Novembre</label>
+            <value>novembre</value>
+          </item>
+          <item>
+            <label>Décembre</label>
+            <value>decembre</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_u/grp_e/period_fin_annee">
+          <label>Période plantation fin année</label>
+          <item>
+            <label>2013</label>
+            <value>2013</value>
+          </item>
+          <item>
+            <label>2014</label>
+            <value>2014</value>
+          </item>
+          <item>
+            <label>2015</label>
+            <value>2015</value>
+          </item>
+          <item>
+            <label>2016</label>
+            <value>2016</value>
+          </item>
+          <item>
+            <label>2017</label>
+            <value>2017</value>
+          </item>
+          <item>
+            <label>2018</label>
+            <value>2018</value>
+          </item>
+          <item>
+            <label>2019</label>
+            <value>2019</value>
+          </item>
+          <item>
+            <label>2020</label>
+            <value>2020</value>
+          </item>
+          <item>
+            <label>2021</label>
+            <value>2021</value>
+          </item>
+          <item>
+            <label>2022</label>
+            <value>2022</value>
+          </item>
+          <item>
+            <label>2023</label>
+            <value>2023</value>
+          </item>
+          <item>
+            <label>2024</label>
+            <value>2024</value>
+          </item>
+          <item>
+            <label>2025</label>
+            <value>2025</value>
+          </item>
+        </select1>
+      </group>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_u/essence_principale">
+        <label>Essence principale plantée</label>
+        <item>
+          <label>Eucalyptus saligna</label>
+          <value>eucalyptus_saligna</value>
+        </item>
+        <item>
+          <label>Eucalyptus maidenii</label>
+          <value>eucalyptus_maidenii</value>
+        </item>
+        <item>
+          <label>Eucalytptus camaldulensis</label>
+          <value>eucalytptus_camaldulensis</value>
+        </item>
+        <item>
+          <label>Grevillea robusta</label>
+          <value>grevillea_robusta</value>
+        </item>
+        <item>
+          <label>Acacia mearnsii</label>
+          <value>acacia_mearnsii</value>
+        </item>
+        <item>
+          <label>Cedrela serrata</label>
+          <value>cedrela_serrata</value>
+        </item>
+        <item>
+          <label>Senna siamea</label>
+          <value>senna_siamea</value>
+        </item>
+        <item>
+          <label>Autre</label>
+          <value>autre</value>
+        </item>
+      </select1>
+      <input ref="/fiche_suivi_plantation_v4/grp_u/essence_principale_autre">
+        <label>Autre essence principale plantée</label>
+      </input>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_u/melanges">
+        <label>Mélanges avec autres essences</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+      </select1>
+      <group ref="/fiche_suivi_plantation_v4/grp_u/rpt_b">
+        <label>Autre essence mélangée</label>
+        <repeat nodeset="/fiche_suivi_plantation_v4/grp_u/rpt_b">
+          <select1 ref="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence">
+            <label>Autre essence mélangée</label>
+            <item>
+              <label>Eucalyptus saligna</label>
+              <value>eucalyptus_saligna</value>
+            </item>
+            <item>
+              <label>Eucalyptus maidenii</label>
+              <value>eucalyptus_maidenii</value>
+            </item>
+            <item>
+              <label>Eucalytptus camaldulensis</label>
+              <value>eucalytptus_camaldulensis</value>
+            </item>
+            <item>
+              <label>Grevillea robusta</label>
+              <value>grevillea_robusta</value>
+            </item>
+            <item>
+              <label>Acacia mearnsii</label>
+              <value>acacia_mearnsii</value>
+            </item>
+            <item>
+              <label>Cedrela serrata</label>
+              <value>cedrela_serrata</value>
+            </item>
+            <item>
+              <label>Senna siamea</label>
+              <value>senna_siamea</value>
+            </item>
+            <item>
+              <label>Autre</label>
+              <value>autre</value>
+            </item>
+          </select1>
+          <input ref="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence_autre">
+            <label>Autre</label>
+          </input>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_u/rpt_b/autre_essence_pourcentage">
+            <label>Pourcentage autre essence mélangée</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+        </repeat>
+      </group>
+      <input ref="/fiche_suivi_plantation_v4/grp_u/autre_essence_warning">
+        <label>Autre essence (currently <output value=" /fiche_suivi_plantation_v4/grp_u/autre_essence_count "/>) has to be greater than 1. Please go back and correct the previous values.</label>
+      </input>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_u/grp_f">
+        <input ref="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_note">
+          <label>Pentes 2 à 4 seulement si plusieurs zones de pente très différentes</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_1">
+          <label>Pente 1</label>
+          <hint>°</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_2">
+          <label>Pente 2</label>
+          <hint>°</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_3">
+          <label>Pente 3</label>
+          <hint>°</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_u/grp_f/pente_4">
+          <label>Pente 4</label>
+          <hint>°</hint>
+        </input>
+      </group>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_u/encartement_type">
+        <label>Écartement</label>
+        <item>
+          <label>Régulier</label>
+          <value>regulier</value>
+        </item>
+        <item>
+          <label>Irrégulier</label>
+          <value>irregulier</value>
+        </item>
+      </select1>
+    </group>
+    <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_h">
+      <select1 ref="/fiche_suivi_plantation_v4/grp_h/encartement_dim_1">
+        <label>Écartement dans la ligne</label>
+        <hint>m</hint>
+        <item>
+          <label>0,5</label>
+          <value>0.5</value>
+        </item>
+        <item>
+          <label>1</label>
+          <value>1</value>
+        </item>
+        <item>
+          <label>1,5</label>
+          <value>1.5</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>2,5</label>
+          <value>2.5</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>3,5</label>
+          <value>3.5</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>4,5</label>
+          <value>4.5</value>
+        </item>
+        <item>
+          <label>5</label>
+          <value>5</value>
+        </item>
+      </select1>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_h/encartement_dim_2">
+        <label>Écartement entre les lignes</label>
+        <hint>m</hint>
+        <item>
+          <label>0,5</label>
+          <value>0.5</value>
+        </item>
+        <item>
+          <label>1</label>
+          <value>1</value>
+        </item>
+        <item>
+          <label>1,5</label>
+          <value>1.5</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>2,5</label>
+          <value>2.5</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>3,5</label>
+          <value>3.5</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>4,5</label>
+          <value>4.5</value>
+        </item>
+        <item>
+          <label>5</label>
+          <value>5</value>
+        </item>
+      </select1>
+    </group>
+    <select1 ref="/fiche_suivi_plantation_v4/alignement">
+      <label>Alignements</label>
+      <item>
+        <label>OK</label>
+        <value>ok</value>
+      </item>
+      <item>
+        <label>Insuffisant</label>
+        <value>insuffisant</value>
+      </item>
+    </select1>
+    <select ref="/fiche_suivi_plantation_v4/causes">
+      <label>Causes</label>
+      <hint>Si Écartement &quot;irrégulier&quot; ou Alignement &quot;insuffisant&quot;</hint>
+      <item>
+        <label>Pente forte</label>
+        <value>pente_forte</value>
+      </item>
+      <item>
+        <label>Cultures</label>
+        <value>cultures</value>
+      </item>
+      <item>
+        <label>Pierres</label>
+        <value>pierres</value>
+      </item>
+      <item>
+        <label>Planteur</label>
+        <value>planteur</value>
+      </item>
+      <item>
+        <label>Zone humide</label>
+        <value>zone_humide</value>
+      </item>
+    </select>
+    <select1 ref="/fiche_suivi_plantation_v4/piquets">
+      <label>Piquets présents</label>
+      <item>
+        <label>Tous</label>
+        <value>tous</value>
+      </item>
+      <item>
+        <label>Insuffisants</label>
+        <value>insuffisants</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/pourcentage_insuffisants">
+      <label>Pourcentage insuffisants</label>
+      <hint>%</hint>
+      <item>
+        <label>0</label>
+        <value>0</value>
+      </item>
+      <item>
+        <label>10</label>
+        <value>10</value>
+      </item>
+      <item>
+        <label>20</label>
+        <value>20</value>
+      </item>
+      <item>
+        <label>30</label>
+        <value>30</value>
+      </item>
+      <item>
+        <label>40</label>
+        <value>40</value>
+      </item>
+      <item>
+        <label>50</label>
+        <value>50</value>
+      </item>
+      <item>
+        <label>60</label>
+        <value>60</value>
+      </item>
+      <item>
+        <label>70</label>
+        <value>70</value>
+      </item>
+      <item>
+        <label>80</label>
+        <value>80</value>
+      </item>
+      <item>
+        <label>90</label>
+        <value>90</value>
+      </item>
+      <item>
+        <label>100</label>
+        <value>100</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_suivi_plantation_v4/eucalyptus_deau">
+      <label>Eucalyptus &gt; 20 m cours d’eau ou sources</label>
+      <item>
+        <label>Oui, OK</label>
+        <value>oui_ok</value>
+      </item>
+      <item>
+        <label>Non</label>
+        <value>non</value>
+      </item>
+    </select1>
+    <group ref="/fiche_suivi_plantation_v4/grp_v">
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_i">
+        <label>Évaluation de l’inventaire</label>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_i/n_vides">
+          <label>Vides</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_i/n_zero_demi_metre">
+          <label>0 - 0,5 m</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_i/n_demi_un_metre">
+          <label>0,5 - 1 m</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_i/n_un_deux_metre">
+          <label>1 - 2 m</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_i/n_deux_plus_metre">
+          <label>&gt; 2 m</label>
+        </input>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_m">
+        <label>Hauteur actuelle des arbres</label>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_m/p_zero_demi_metre">
+          <label>0,5 m</label>
+          <hint>%</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_m/p_demi_un_metre">
+          <label>0,5 - 1 m</label>
+          <hint>%</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_m/p_un_deux_metre">
+          <label>1 - 2 m</label>
+          <hint>%</hint>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_m/p_deux_plus_metre">
+          <label>&gt; 2 m</label>
+          <hint>%</hint>
+        </input>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_j">
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_j/degats">
+          <label>Dégâts</label>
+          <hint>% plantation touchée</hint>
+        </input>
+        <select ref="/fiche_suivi_plantation_v4/grp_v/grp_j/type_degats">
+          <label>Type dégâts</label>
+          <item>
+            <label>Vaches</label>
+            <value>vaches</value>
+          </item>
+          <item>
+            <label>Chèvres</label>
+            <value>chevres</value>
+          </item>
+          <item>
+            <label>Rats</label>
+            <value>rats</value>
+          </item>
+          <item>
+            <label>Termites</label>
+            <value>termites</value>
+          </item>
+          <item>
+            <label>Éléphants</label>
+            <value>elephants</value>
+          </item>
+          <item>
+            <label>Cultures vivrières</label>
+            <value>cultures_vivrieres</value>
+          </item>
+          <item>
+            <label>Érosion</label>
+            <value>erosion</value>
+          </item>
+          <item>
+            <label>Éboulement</label>
+            <value>eboulement</value>
+          </item>
+          <item>
+            <label>Feu</label>
+            <value>feu</value>
+          </item>
+          <item>
+            <label>Sécheresse</label>
+            <value>secheresse</value>
+          </item>
+          <item>
+            <label>Hommes</label>
+            <value>hommes</value>
+          </item>
+          <item>
+            <label>Planté avec sachets</label>
+            <value>plante_avec_sachets</value>
+          </item>
+          <item>
+            <label>Planté trop tard</label>
+            <value>plante_trop_tard</value>
+          </item>
+          <item>
+            <label>Guerre</label>
+            <value>guerre</value>
+          </item>
+        </select>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_l">
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_vaches">
+          <label>Vaches</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_chevres">
+          <label>Chèvres</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_rats">
+          <label>Rats</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_termites">
+          <label>Termites</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_elephants">
+          <label>Éléphants</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_cultures_vivrieres">
+          <label>Cultures vivrières</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_erosion">
+          <label>Érosion</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_eboulement">
+          <label>Éboulement</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_feu">
+          <label>Feu</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_secheresse">
+          <label>Sécheresse</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_hommes">
+          <label>Hommes</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_avec_sachets">
+          <label>Planté avec sachets</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_plante_trop_tard">
+          <label>Planté trop tard</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_l/n_guerren">
+          <label>Guerre</label>
+          <hint>%</hint>
+          <item>
+            <label>0</label>
+            <value>0</value>
+          </item>
+          <item>
+            <label>10</label>
+            <value>10</value>
+          </item>
+          <item>
+            <label>20</label>
+            <value>20</value>
+          </item>
+          <item>
+            <label>30</label>
+            <value>30</value>
+          </item>
+          <item>
+            <label>40</label>
+            <value>40</value>
+          </item>
+          <item>
+            <label>50</label>
+            <value>50</value>
+          </item>
+          <item>
+            <label>60</label>
+            <value>60</value>
+          </item>
+          <item>
+            <label>70</label>
+            <value>70</value>
+          </item>
+          <item>
+            <label>80</label>
+            <value>80</value>
+          </item>
+          <item>
+            <label>90</label>
+            <value>90</value>
+          </item>
+          <item>
+            <label>100</label>
+            <value>100</value>
+          </item>
+        </select1>
+      </group>
+      <input ref="/fiche_suivi_plantation_v4/grp_v/degats_warning">
+        <label>Le total (présentement <output value=" /fiche_suivi_plantation_v4/grp_v/degats_total "/>) doit être égale à 100. Fait un retour et corriger les valeurs précedentes.</label>
+      </input>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/regarnissage">
+        <label>Regarnissage nécessaire?</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+        <item>
+          <label>Trop Tard</label>
+          <value>trop_tard</value>
+        </item>
+      </select1>
+      <input ref="/fiche_suivi_plantation_v4/grp_v/regarnissage_suffisant">
+        <label>plantules/ha nécessaires</label>
+      </input>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_k">
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_k/entretien">
+          <label>Entretien</label>
+          <item>
+            <label>Total</label>
+            <value>total</value>
+          </item>
+          <item>
+            <label>Suffisant</label>
+            <value>suffisant</value>
+          </item>
+          <item>
+            <label>Insuffisant</label>
+            <value>insuffisant</value>
+          </item>
+        </select1>
+        <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_k/etat">
+          <label>État plantation</label>
+          <item>
+            <label>Très bon</label>
+            <value>tres_bon</value>
+          </item>
+          <item>
+            <label>Bon</label>
+            <value>bon</value>
+          </item>
+          <item>
+            <label>Mauvais</label>
+            <value>mauvais</value>
+          </item>
+        </select1>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_n">
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_pas_payee_1_4">
+          <label>Corrections à faire, sinon pas de paiement de la 2ème tranche de planteur après la 2ème visite. Raisons:</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_pas_payee_2_3">
+          <label>Raisons de non payement de la 2ème tranche de planteur:</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_regarnissage_oui">
+          <label>Regarnissage nécessaire</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_regarnissage_trop_tard">
+          <label>Regarnissage trop tard</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_entretien_insuffisant">
+          <label>Entretien insuffisante</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_n/note_etat_mauvais">
+          <label>État plantation mauvais</label>
+        </input>
+      </group>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/cultures_vivrieres">
+        <label>Présence cultures vivrières</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+      </select1>
+      <group ref="/fiche_suivi_plantation_v4/grp_v/grp_s">
+        <select ref="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres">
+          <label>Type cultures vivrières</label>
+          <item>
+            <label>Haricots</label>
+            <value>haricots</value>
+          </item>
+          <item>
+            <label>Manioc</label>
+            <value>manioc</value>
+          </item>
+          <item>
+            <label>Soja</label>
+            <value>soja</value>
+          </item>
+          <item>
+            <label>Sorgho</label>
+            <value>sorgho</value>
+          </item>
+          <item>
+            <label>Arachides</label>
+            <value>arachides</value>
+          </item>
+          <item>
+            <label>Patates Douces</label>
+            <value>patates_douces</value>
+          </item>
+          <item>
+            <label>Maïs</label>
+            <value>mais</value>
+          </item>
+          <item>
+            <label>Autres</label>
+            <value>autres</value>
+          </item>
+        </select>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres_autre">
+          <label>Autre</label>
+        </input>
+        <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o">
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_haricots">
+            <label>Haricots</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_manioc">
+            <label>Manioc</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_soja">
+            <label>Soja</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_sorgho">
+            <label>Sorgho</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_arachides">
+            <label>Arachides</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_patates_douces">
+            <label>Patates Douces</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_mais">
+            <label>Maïs</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/grp_s/grp_o/n_autres">
+            <label>Autres (<output value=" /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_vivieres_autre "/>)</label>
+            <hint>%</hint>
+            <item>
+              <label>0</label>
+              <value>0</value>
+            </item>
+            <item>
+              <label>10</label>
+              <value>10</value>
+            </item>
+            <item>
+              <label>20</label>
+              <value>20</value>
+            </item>
+            <item>
+              <label>30</label>
+              <value>30</value>
+            </item>
+            <item>
+              <label>40</label>
+              <value>40</value>
+            </item>
+            <item>
+              <label>50</label>
+              <value>50</value>
+            </item>
+            <item>
+              <label>60</label>
+              <value>60</value>
+            </item>
+            <item>
+              <label>70</label>
+              <value>70</value>
+            </item>
+            <item>
+              <label>80</label>
+              <value>80</value>
+            </item>
+            <item>
+              <label>90</label>
+              <value>90</value>
+            </item>
+            <item>
+              <label>100</label>
+              <value>100</value>
+            </item>
+          </select1>
+        </group>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_warning">
+          <label>Le total (présentement <output value=" /fiche_suivi_plantation_v4/grp_v/grp_s/type_cultures_total "/>) doit être égale à 100. Fait un retour et corriger les valeurs précedentes.</label>
+        </input>
+      </group>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/canopee_fermee">
+        <label>Canopée fermée</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+      </select1>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/superficie_canopee_fermee">
+        <label>Canopée fermée sur superficie totale</label>
+        <hint>%</hint>
+        <item>
+          <label>0</label>
+          <value>0</value>
+        </item>
+        <item>
+          <label>10</label>
+          <value>10</value>
+        </item>
+        <item>
+          <label>20</label>
+          <value>20</value>
+        </item>
+        <item>
+          <label>30</label>
+          <value>30</value>
+        </item>
+        <item>
+          <label>40</label>
+          <value>40</value>
+        </item>
+        <item>
+          <label>50</label>
+          <value>50</value>
+        </item>
+        <item>
+          <label>60</label>
+          <value>60</value>
+        </item>
+        <item>
+          <label>70</label>
+          <value>70</value>
+        </item>
+        <item>
+          <label>80</label>
+          <value>80</value>
+        </item>
+        <item>
+          <label>90</label>
+          <value>90</value>
+        </item>
+        <item>
+          <label>100</label>
+          <value>100</value>
+        </item>
+      </select1>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/croissance_arbres">
+        <label>Croissance des arbres</label>
+        <item>
+          <label>Très bon</label>
+          <value>tres_bon</value>
+        </item>
+        <item>
+          <label>Bon</label>
+          <value>bon</value>
+        </item>
+        <item>
+          <label>Mauvais</label>
+          <value>mauvais</value>
+        </item>
+      </select1>
+      <select1 ref="/fiche_suivi_plantation_v4/grp_v/arbres_existants">
+        <label>Arbres déjà existants dans la plantation?</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+      </select1>
+      <group ref="/fiche_suivi_plantation_v4/grp_v/rpt_c">
+        <label>Arbre</label>
+        <repeat appearance="field-list" nodeset="/fiche_suivi_plantation_v4/grp_v/rpt_c">
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/rpt_c/hauteur_totale">
+            <label>Hauteur totale arbre</label>
+            <item>
+              <label>0-10 m</label>
+              <value>0_10m</value>
+            </item>
+            <item>
+              <label>10-20 m</label>
+              <value>10_20m</value>
+            </item>
+            <item>
+              <label>&gt; 20 m</label>
+              <value>gt_20m</value>
+            </item>
+          </select1>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/rpt_c/hauteur_tronc">
+            <label>Hauteur tronc</label>
+            <item>
+              <label>0-10 m</label>
+              <value>0_10m</value>
+            </item>
+            <item>
+              <label>10-20 m</label>
+              <value>10_20m</value>
+            </item>
+            <item>
+              <label>&gt; 20 m</label>
+              <value>gt_20m</value>
+            </item>
+          </select1>
+          <input ref="/fiche_suivi_plantation_v4/grp_v/rpt_c/houppier_1">
+            <label>Taille houppier mesure 1</label>
+            <hint>m</hint>
+          </input>
+          <input ref="/fiche_suivi_plantation_v4/grp_v/rpt_c/houppier_2">
+            <label>Taille houppier mesure 2</label>
+            <hint>m</hint>
+          </input>
+          <select1 ref="/fiche_suivi_plantation_v4/grp_v/rpt_c/diametre">
+            <label>Diametre (DHP)</label>
+            <item>
+              <label>0-10 cm</label>
+              <value>0_10cm</value>
+            </item>
+            <item>
+              <label>10-30 cm</label>
+              <value>10_30cm</value>
+            </item>
+            <item>
+              <label>&gt; 30 cm</label>
+              <value>gt_30cm</value>
+            </item>
+          </select1>
+        </repeat>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_p">
+        <upload mediatype="image/*" ref="/fiche_suivi_plantation_v4/grp_v/grp_p/photo_1">
+          <label>Photo 1 de la plantation (paysage)</label>
+        </upload>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_p/emplacement_1">
+          <label>Emplacement de Photo 1</label>
+          <hint>Les coordonnées géographiques peuvent être collectées seulement à l’extérieur.</hint>
+        </input>
+      </group>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_q">
+        <upload mediatype="image/*" ref="/fiche_suivi_plantation_v4/grp_v/grp_q/photo_2">
+          <label>Photo 2 de la plantation (les arbres)</label>
+        </upload>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_q/emplacement_2">
+          <label>Emplacement de Photo 2</label>
+          <hint>Les coordonnées géographiques peuvent être collectées seulement à l’extérieur.</hint>
+        </input>
+      </group>
+      <input ref="/fiche_suivi_plantation_v4/grp_v/localisation">
+        <label>Coordonnée géographique centre plantation</label>
+        <hint>Les coordonnées géographiques peuvent être collectées seulement à l’extérieur.</hint>
+      </input>
+      <group appearance="field-list" ref="/fiche_suivi_plantation_v4/grp_v/grp_r">
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_wwf">
+          <label>Commentaire WWF</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_planteur">
+          <label>Commentaire Planteur</label>
+        </input>
+        <input ref="/fiche_suivi_plantation_v4/grp_v/grp_r/commentaire_association">
+          <label>Commentaire Association</label>
+        </input>
+      </group>
+    </group>
+    <input ref="/fiche_suivi_plantation_v4/eucalyptus_deau_non">
+      <label>La plantation n’est pas valide. N’oubliez pas de décocher ‘Marquer le formulaire comme finalisé’ avant de ‘Sauvegarder et Sortir’. Apres correction de la plantation vous pouvez utiliser la même fiche qui se trouve dans ‘Editer un Formulaire Sauvegardé’.</label>
+    </input>
+  </h:body>
+</h:html>
