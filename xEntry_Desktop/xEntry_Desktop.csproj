@@ -259,12 +259,6 @@
       <DependentUpon>LstSuiviPepi_QteSeme_Provenance.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ViewGeoCoordinate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ViewGeoCoordinate.Designer.cs">
-      <DependentUpon>ViewGeoCoordinate.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="EntryTar.resx">
       <DependentUpon>EntryTar.cs</DependentUpon>
     </EmbeddedResource>
@@ -351,9 +345,6 @@
     <EmbeddedResource Include="Rapports\LstSuiviPepi_QteSeme_Provenance.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LstSuiviPepi_QteSeme_Provenance.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewGeoCoordinate.resx">
-      <DependentUpon>ViewGeoCoordinate.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
