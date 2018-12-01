@@ -280,6 +280,12 @@ namespace xEntry_Desktop
 
         private void mdiMainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            try
+            {
+                clsMetier.GetInstance().closeConnexion();
+            }
+            catch (Exception) { }
+
             Application.Exit();
         }
 

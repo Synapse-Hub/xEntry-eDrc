@@ -41,15 +41,15 @@ namespace xEntry_Desktop
             using (IDbCommand cmd = conn.CreateCommand())
             {
                 cmd.CommandText = query;
-                IDbDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
+                SqlDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
                 DataSet dataset = new DataSet();
-                adapter.Fill(dataset);
+                adapter.Fill(dataset, "lstTable");
 
                 switch (cboIndex)
                 {
                     case 0:
                         //Liste des pépinières identifiées
-                        Rapports.LstIdentPepiniere rpt = new Rapports.LstIdentPepiniere();
+                        Rapports.LstIdentPepiniere1 rpt = new Rapports.LstIdentPepiniere1();
                         rpt.SetDataSource(dataset.Tables["lstTable"]);
                         crvReport.ReportSource = rpt;
                         crvReport.Refresh();

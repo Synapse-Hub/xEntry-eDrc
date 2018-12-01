@@ -86,8 +86,7 @@
       <HintPath>..\xEntry_Data\ManageUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Office.Interop.Excel1">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Office.Tools.Excel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -197,10 +196,10 @@
       <DependentUpon>LstEssencePlante_Saison_Assoc.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Rapports\LstIdentPepiniere.cs">
+    <Compile Include="Rapports\LstIdentPepiniere1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LstIdentPepiniere.rpt</DependentUpon>
+      <DependentUpon>LstIdentPepiniere1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Rapports\LstPlantationPR_NbrVisite_Agent.cs">
@@ -297,9 +296,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LstEssencePlante_Saison_Assoc.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Rapports\LstIdentPepiniere.rpt">
+    <EmbeddedResource Include="Rapports\LstIdentPepiniere1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>LstIdentPepiniere.cs</LastGenOutput>
+      <LastGenOutput>LstIdentPepiniere1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Rapports\LstPlantationPR_NbrVisite_Agent.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -353,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="2422.ico" />
+    <Content Include="img\logoTest.png" />
     <None Include="img\delete4.png" />
     <None Include="img\delete3.png" />
     <None Include="img\delete2.png" />
@@ -407,7 +407,9 @@
       <Name>xEntry_Utilities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
