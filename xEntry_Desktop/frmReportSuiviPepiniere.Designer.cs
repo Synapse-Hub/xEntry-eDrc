@@ -56,8 +56,9 @@
             this.panel1.Controls.Add(this.cmdView);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1260, 70);
+            this.panel1.Size = new System.Drawing.Size(2578, 133);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
@@ -74,18 +75,21 @@
             this.groupBox1.Controls.Add(this.cboItems);
             this.groupBox1.Controls.Add(this.cboSaison);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 3);
+            this.groupBox1.Location = new System.Drawing.Point(12, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1070, 58);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Size = new System.Drawing.Size(2140, 112);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(624, 12);
+            this.label6.Location = new System.Drawing.Point(1248, 23);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(128, 25);
             this.label6.TabIndex = 12;
             this.label6.Text = "Qte semée :";
             // 
@@ -95,17 +99,19 @@
             this.cboQteSemee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboQteSemee.DropDownWidth = 150;
             this.cboQteSemee.FormattingEnabled = true;
-            this.cboQteSemee.Location = new System.Drawing.Point(626, 29);
+            this.cboQteSemee.Location = new System.Drawing.Point(1252, 56);
+            this.cboQteSemee.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboQteSemee.Name = "cboQteSemee";
-            this.cboQteSemee.Size = new System.Drawing.Size(135, 21);
+            this.cboQteSemee.Size = new System.Drawing.Size(266, 33);
             this.cboQteSemee.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(916, 12);
+            this.label5.Location = new System.Drawing.Point(1832, 23);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 13);
+            this.label5.Size = new System.Drawing.Size(204, 25);
             this.label5.TabIndex = 10;
             this.label5.Text = "Planche repiquage :";
             // 
@@ -115,17 +121,19 @@
             this.cboPlancheRepiquage.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPlancheRepiquage.DropDownWidth = 150;
             this.cboPlancheRepiquage.FormattingEnabled = true;
-            this.cboPlancheRepiquage.Location = new System.Drawing.Point(918, 29);
+            this.cboPlancheRepiquage.Location = new System.Drawing.Point(1836, 56);
+            this.cboPlancheRepiquage.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboPlancheRepiquage.Name = "cboPlancheRepiquage";
-            this.cboPlancheRepiquage.Size = new System.Drawing.Size(144, 21);
+            this.cboPlancheRepiquage.Size = new System.Drawing.Size(284, 33);
             this.cboPlancheRepiquage.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(765, 12);
+            this.label4.Location = new System.Drawing.Point(1530, 23);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 13);
+            this.label4.Size = new System.Drawing.Size(214, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Lieu de provenance :";
             // 
@@ -135,17 +143,19 @@
             this.cboLieuProvenance.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboLieuProvenance.DropDownWidth = 150;
             this.cboLieuProvenance.FormattingEnabled = true;
-            this.cboLieuProvenance.Location = new System.Drawing.Point(767, 29);
+            this.cboLieuProvenance.Location = new System.Drawing.Point(1534, 56);
+            this.cboLieuProvenance.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboLieuProvenance.Name = "cboLieuProvenance";
-            this.cboLieuProvenance.Size = new System.Drawing.Size(144, 21);
+            this.cboLieuProvenance.Size = new System.Drawing.Size(284, 33);
             this.cboLieuProvenance.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(474, 12);
+            this.label3.Location = new System.Drawing.Point(948, 23);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(80, 25);
             this.label3.TabIndex = 6;
             this.label3.Text = "Agent :";
             // 
@@ -155,17 +165,19 @@
             this.cboAgent.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboAgent.DropDownWidth = 150;
             this.cboAgent.FormattingEnabled = true;
-            this.cboAgent.Location = new System.Drawing.Point(476, 29);
+            this.cboAgent.Location = new System.Drawing.Point(952, 56);
+            this.cboAgent.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboAgent.Name = "cboAgent";
-            this.cboAgent.Size = new System.Drawing.Size(144, 21);
+            this.cboAgent.Size = new System.Drawing.Size(284, 33);
             this.cboAgent.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(337, 12);
+            this.label2.Location = new System.Drawing.Point(674, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(90, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Saison :";
             // 
@@ -175,9 +187,10 @@
             this.cboItems.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboItems.DropDownWidth = 400;
             this.cboItems.FormattingEnabled = true;
-            this.cboItems.Location = new System.Drawing.Point(6, 29);
+            this.cboItems.Location = new System.Drawing.Point(12, 56);
+            this.cboItems.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboItems.Name = "cboItems";
-            this.cboItems.Size = new System.Drawing.Size(327, 21);
+            this.cboItems.Size = new System.Drawing.Size(650, 33);
             this.cboItems.TabIndex = 0;
             this.cboItems.SelectedIndexChanged += new System.EventHandler(this.cboItems_SelectedIndexChanged);
             // 
@@ -187,17 +200,19 @@
             this.cboSaison.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSaison.DropDownWidth = 150;
             this.cboSaison.FormattingEnabled = true;
-            this.cboSaison.Location = new System.Drawing.Point(340, 29);
+            this.cboSaison.Location = new System.Drawing.Point(680, 56);
+            this.cboSaison.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboSaison.Name = "cboSaison";
-            this.cboSaison.Size = new System.Drawing.Size(130, 21);
+            this.cboSaison.Size = new System.Drawing.Size(256, 33);
             this.cboSaison.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 12);
+            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 13);
+            this.label1.Size = new System.Drawing.Size(318, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Selection élément pour rapport :";
             // 
@@ -208,9 +223,10 @@
             this.cmdView.BackColor = System.Drawing.Color.SeaShell;
             this.cmdView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdView.ForeColor = System.Drawing.Color.DarkRed;
-            this.cmdView.Location = new System.Drawing.Point(1083, 24);
+            this.cmdView.Location = new System.Drawing.Point(2166, 46);
+            this.cmdView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cmdView.Name = "cmdView";
-            this.cmdView.Size = new System.Drawing.Size(167, 22);
+            this.cmdView.Size = new System.Drawing.Size(394, 42);
             this.cmdView.TabIndex = 6;
             this.cmdView.Text = "Afficher";
             this.cmdView.UseVisualStyleBackColor = false;
@@ -222,19 +238,22 @@
             this.crvReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crvReport.Cursor = System.Windows.Forms.Cursors.Default;
             this.crvReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crvReport.Location = new System.Drawing.Point(0, 70);
+            this.crvReport.Location = new System.Drawing.Point(0, 133);
+            this.crvReport.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.crvReport.Name = "crvReport";
-            this.crvReport.Size = new System.Drawing.Size(1260, 311);
+            this.crvReport.Size = new System.Drawing.Size(2578, 934);
             this.crvReport.TabIndex = 1;
+            this.crvReport.ToolPanelWidth = 400;
             this.crvReport.Load += new System.EventHandler(this.crvReport_Load);
             // 
             // frmReportSuiviPepiniere
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1260, 381);
+            this.ClientSize = new System.Drawing.Size(2578, 1067);
             this.Controls.Add(this.crvReport);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmReportSuiviPepiniere";
             this.Text = "Rapport pour Suivie pépinière";
             this.Load += new System.EventHandler(this.frmReportTAR_Load);

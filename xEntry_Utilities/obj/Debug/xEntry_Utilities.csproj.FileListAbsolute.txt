@@ -22,8 +22,3 @@ D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache

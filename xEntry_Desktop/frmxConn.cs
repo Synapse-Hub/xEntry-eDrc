@@ -60,8 +60,7 @@ namespace xEntry_Desktop
             {
                 //Si le fichier des parametres de la BD ne contient rien on y mets des  parametres par defaut qu'on pourra modifier after
                 //Le nom correct du serveur doit être change s'il arrive que vous devez utiliser une autre machine
-                //connection.Serveur = @"MICHELOFD23\SQLSERVMICHELO";
-                connection.Serveur = @"JOSAM";
+                connection.Serveur = @"MICHELOFD23\SQLSERVMICHELO";
                 //connection.Serveur = @"WWF_SERVER12\SQLSERVWWFE18";
                 connection.DB = "xEntryGlobalDb";
                 connection.User = txtnomuser.Text;

@@ -9,7 +9,7 @@ using xEntry_Utilities;
 
 namespace xEntry_Data
 {
-    public sealed class clsMetier:IDisposable
+    public class clsMetier
     {
         const string DirectoryUtilLog = "Log"; //***Les variables globales***
         private static string _ConnectionString, _host, _db, _user, _pwd;
@@ -196,9 +196,7 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT *  FROM tbl_fiche_menage WHERE id=@id";
-                    cmd.Parameters.Add(getParameter(cmd, "@id", DbType.Int32, 4, intid));
-
+                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_menage WHERE id={0}", intid);
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -262,7 +260,7 @@ namespace xEntry_Data
                     sql += "  OR   camps LIKE '%" + criteria + "%'";
                     sql += "  OR   localisation LIKE '%" + criteria + "%'";
                     sql += "  OR   rpt_gps LIKE '%" + criteria + "%'";
-                    cmd.CommandText = sql;
+                    cmd.CommandText = string.Format(sql);
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_menage.Load(dr);
@@ -6582,13 +6580,6 @@ namespace xEntry_Data
                 ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec retrait des droits à l'utilisateur, veuillez réessayez ultérieurement : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
                 throw new Exception(exc.Message);
             }
-        }
-
-        public void Dispose()
-        {
-            if(conn.State != ConnectionState.Closed)
-                conn.Close();
-            conn.Dispose();
         }
         #endregion
     } //***fin class 

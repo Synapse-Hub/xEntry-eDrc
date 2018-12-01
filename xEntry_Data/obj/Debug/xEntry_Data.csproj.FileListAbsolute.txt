@@ -68,15 +68,3 @@ D:\DOC\GitHub\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.config
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\ManageConnexion.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\ManageUtilities.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\MySql.Data.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\Npgsql.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.pdb
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
-D:\SYNAPSEHUB\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
