@@ -797,6 +797,11 @@ namespace xEntry_Desktop
 
         #endregion
 
+        private void dtgvTAR_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
       
        
 

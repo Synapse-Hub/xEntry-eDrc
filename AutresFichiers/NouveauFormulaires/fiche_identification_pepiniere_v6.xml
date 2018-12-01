@@ -1,0 +1,2440 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Fiche identification pepiniere (v6)</h:title>
+    <model>
+      <itext>
+        <translation default="true()" lang="default">
+          <text id="static_instance-saisons-24">
+            <value>2025-2</value>
+          </text>
+          <text id="static_instance-saisons-22">
+            <value>2024-2</value>
+          </text>
+          <text id="static_instance-saisons-23">
+            <value>2025-1</value>
+          </text>
+          <text id="static_instance-saisons-20">
+            <value>2023-2</value>
+          </text>
+          <text id="static_instance-saisons-21">
+            <value>2024-1</value>
+          </text>
+          <text id="static_instance-groupments-38">
+            <value>Itala</value>
+          </text>
+          <text id="static_instance-groupments-10">
+            <value>Batangi-Mbau</value>
+          </text>
+          <text id="static_instance-groupments-11">
+            <value>Baniangala</value>
+          </text>
+          <text id="static_instance-groupments-26">
+            <value>Bapukara</value>
+          </text>
+          <text id="static_instance-bailleurs-3">
+            <value>SIDA</value>
+          </text>
+          <text id="static_instance-1_20-18">
+            <value>19</value>
+          </text>
+          <text id="static_instance-associations-48">
+            <value>SADEPROVE</value>
+          </text>
+          <text id="static_instance-groupments-46">
+            <value>Ufamando I</value>
+          </text>
+          <text id="static_instance-groupments-18">
+            <value>Watalinga</value>
+          </text>
+          <text id="static_instance-groupments-19">
+            <value>Goma</value>
+          </text>
+          <text id="static_instance-1_20-15">
+            <value>16</value>
+          </text>
+          <text id="static_instance-oui_non-0">
+            <value>Oui</value>
+          </text>
+          <text id="static_instance-oui_non-1">
+            <value>Non</value>
+          </text>
+          <text id="static_instance-groupments-12">
+            <value>Basongora</value>
+          </text>
+          <text id="static_instance-groupments-13">
+            <value>Bolema</value>
+          </text>
+          <text id="static_instance-groupments-14">
+            <value>Buliki</value>
+          </text>
+          <text id="static_instance-groupments-15">
+            <value>Malambo</value>
+          </text>
+          <text id="static_instance-groupments-16">
+            <value>Bahumu</value>
+          </text>
+          <text id="static_instance-groupments-17">
+            <value>Bawisa</value>
+          </text>
+          <text id="static_instance-agents-0">
+            <value>Archippe Sivaghanzana</value>
+          </text>
+          <text id="static_instance-agents-1">
+            <value>Bienfait Ntamirwa</value>
+          </text>
+          <text id="static_instance-agents-2">
+            <value>Didier Weston</value>
+          </text>
+          <text id="static_instance-agents-3">
+            <value>Eloge Muhesi</value>
+          </text>
+          <text id="static_instance-agents-4">
+            <value>Nestor Vuambale</value>
+          </text>
+          <text id="static_instance-agents-5">
+            <value>Olivier Kalumuna</value>
+          </text>
+          <text id="static_instance-agents-6">
+            <value>Paluku Vhosi</value>
+          </text>
+          <text id="static_instance-groupments-80">
+            <value>Mutanda</value>
+          </text>
+          <text id="static_instance-agents-8">
+            <value>Pierre Vutwire</value>
+          </text>
+          <text id="static_instance-1_20-10">
+            <value>11</value>
+          </text>
+          <text id="static_instance-agents-7">
+            <value>Paluku Vururu</value>
+          </text>
+          <text id="static_instance-1_20-11">
+            <value>12</value>
+          </text>
+          <text id="static_instance-1_20-12">
+            <value>13</value>
+          </text>
+          <text id="static_instance-saisons-3">
+            <value>2015-1</value>
+          </text>
+          <text id="static_instance-1_20-13">
+            <value>14</value>
+          </text>
+          <text id="static_instance-saisons-2">
+            <value>2014-2</value>
+          </text>
+          <text id="static_instance-groupments-32">
+            <value>Buyora</value>
+          </text>
+          <text id="static_instance-groupments-69">
+            <value>Bukoma</value>
+          </text>
+          <text id="static_instance-groupments-68">
+            <value>Bugari</value>
+          </text>
+          <text id="static_instance-territoires-0">
+            <value>Beni</value>
+          </text>
+          <text id="static_instance-groupments-65">
+            <value>Mudja</value>
+          </text>
+          <text id="static_instance-groupments-64">
+            <value>Monigi</value>
+          </text>
+          <text id="static_instance-groupments-67">
+            <value>Binza</value>
+          </text>
+          <text id="static_instance-groupments-66">
+            <value>Rusayu</value>
+          </text>
+          <text id="static_instance-groupments-61">
+            <value>Buvira</value>
+          </text>
+          <text id="static_instance-groupments-60">
+            <value>Buhumba</value>
+          </text>
+          <text id="static_instance-groupments-63">
+            <value>Kibumba</value>
+          </text>
+          <text id="static_instance-groupments-62">
+            <value>Kibati</value>
+          </text>
+          <text id="static_instance-territoires-2">
+            <value>Lubero</value>
+          </text>
+          <text id="static_instance-territoires-5">
+            <value>Rutshuru</value>
+          </text>
+          <text id="static_instance-territoires-4">
+            <value>Nyirangongo</value>
+          </text>
+          <text id="static_instance-groupments-78">
+            <value>Kanyabayonga</value>
+          </text>
+          <text id="static_instance-groupments-79">
+            <value>Kihondo</value>
+          </text>
+          <text id="static_instance-associations-49">
+            <value>SOLID</value>
+          </text>
+          <text id="static_instance-saisons-9">
+            <value>2018-1</value>
+          </text>
+          <text id="static_instance-groupments-1">
+            <value>Isale-Bulambo</value>
+          </text>
+          <text id="static_instance-associations-45">
+            <value>REC</value>
+          </text>
+          <text id="static_instance-associations-44">
+            <value>RAPNAV</value>
+          </text>
+          <text id="static_instance-associations-47">
+            <value>SADD</value>
+          </text>
+          <text id="static_instance-associations-46">
+            <value>REID</value>
+          </text>
+          <text id="static_instance-associations-41">
+            <value>PDL</value>
+          </text>
+          <text id="static_instance-associations-40">
+            <value>PAEDE</value>
+          </text>
+          <text id="static_instance-associations-43">
+            <value>PLAV</value>
+          </text>
+          <text id="static_instance-associations-42">
+            <value>PIED</value>
+          </text>
+          <text id="static_instance-saisons-17">
+            <value>2022-1</value>
+          </text>
+          <text id="static_instance-saisons-16">
+            <value>2021-2</value>
+          </text>
+          <text id="static_instance-saisons-15">
+            <value>2021-1</value>
+          </text>
+          <text id="static_instance-saisons-14">
+            <value>2020-2</value>
+          </text>
+          <text id="static_instance-saisons-13">
+            <value>2020-1</value>
+          </text>
+          <text id="static_instance-saisons-12">
+            <value>2019-2</value>
+          </text>
+          <text id="static_instance-saisons-11">
+            <value>2019-1</value>
+          </text>
+          <text id="static_instance-saisons-10">
+            <value>2018-2</value>
+          </text>
+          <text id="static_instance-groupments-76">
+            <value>Bukombo</value>
+          </text>
+          <text id="static_instance-groupments-77">
+            <value>Itongo</value>
+          </text>
+          <text id="static_instance-groupments-74">
+            <value>Bambo</value>
+          </text>
+          <text id="static_instance-groupments-75">
+            <value>Bishusha</value>
+          </text>
+          <text id="static_instance-groupments-72">
+            <value>Jomba</value>
+          </text>
+          <text id="static_instance-groupments-73">
+            <value>Kisigari</value>
+          </text>
+          <text id="static_instance-saisons-19">
+            <value>2023-1</value>
+          </text>
+          <text id="static_instance-saisons-18">
+            <value>2022-2</value>
+          </text>
+          <text id="static_instance-groupments-70">
+            <value>Busanza</value>
+          </text>
+          <text id="static_instance-1_20-8">
+            <value>9</value>
+          </text>
+          <text id="static_instance-1_20-9">
+            <value>10</value>
+          </text>
+          <text id="static_instance-1_20-6">
+            <value>7</value>
+          </text>
+          <text id="static_instance-1_20-7">
+            <value>8</value>
+          </text>
+          <text id="static_instance-1_20-4">
+            <value>5</value>
+          </text>
+          <text id="static_instance-groupments-71">
+            <value>Bweza</value>
+          </text>
+          <text id="static_instance-1_20-2">
+            <value>3</value>
+          </text>
+          <text id="static_instance-1_20-3">
+            <value>4</value>
+          </text>
+          <text id="static_instance-1_20-0">
+            <value>1</value>
+          </text>
+          <text id="static_instance-1_20-1">
+            <value>2</value>
+          </text>
+          <text id="static_instance-1_20-16">
+            <value>17</value>
+          </text>
+          <text id="static_instance-groupments-8">
+            <value>Banande-Kainama</value>
+          </text>
+          <text id="static_instance-groupments-9">
+            <value>Baswagha-Madiwe</value>
+          </text>
+          <text id="static_instance-associations-52">
+            <value>VIFED</value>
+          </text>
+          <text id="static_instance-associations-53">
+            <value>YMEGL</value>
+          </text>
+          <text id="static_instance-associations-50">
+            <value>SYDIP</value>
+          </text>
+          <text id="static_instance-associations-51">
+            <value>TSHABIRIMU ACTION</value>
+          </text>
+          <text id="static_instance-groupments-6">
+            <value>Masiki-Vayana</value>
+          </text>
+          <text id="static_instance-groupments-7">
+            <value>Bambuba-Kisuli</value>
+          </text>
+          <text id="static_instance-associations-54">
+            <value>Autre</value>
+          </text>
+          <text id="static_instance-groupments-5">
+            <value>Masiki-Kalonge</value>
+          </text>
+          <text id="static_instance-bailleurs-4">
+            <value>Autre</value>
+          </text>
+          <text id="static_instance-groupments-21">
+            <value>Hutwe</value>
+          </text>
+          <text id="static_instance-groupments-49">
+            <value>Kambale</value>
+          </text>
+          <text id="static_instance-groupments-48">
+            <value>Bashali/Mokoto</value>
+          </text>
+          <text id="static_instance-bailleurs-0">
+            <value>CBFF</value>
+          </text>
+          <text id="static_instance-bailleurs-1">
+            <value>CIFOR</value>
+          </text>
+          <text id="static_instance-bailleurs-2">
+            <value>DGD</value>
+          </text>
+          <text id="static_instance-groupments-20">
+            <value>Buhimba</value>
+          </text>
+          <text id="static_instance-groupments-43">
+            <value>Muvunyi/Kibabi</value>
+          </text>
+          <text id="static_instance-groupments-42">
+            <value>Muvunyi/Karuba</value>
+          </text>
+          <text id="static_instance-groupments-41">
+            <value>Kamuronza</value>
+          </text>
+          <text id="static_instance-groupments-40">
+            <value>Musindi</value>
+          </text>
+          <text id="static_instance-groupments-47">
+            <value>Bashali/Kaembe</value>
+          </text>
+          <text id="static_instance-groupments-23">
+            <value>Tama</value>
+          </text>
+          <text id="static_instance-groupments-45">
+            <value>Muvunyi/Shanga</value>
+          </text>
+          <text id="static_instance-groupments-44">
+            <value>Muvunyi/Matanda</value>
+          </text>
+          <text id="static_instance-saisons-7">
+            <value>2017-1</value>
+          </text>
+          <text id="static_instance-saisons-6">
+            <value>2016-2</value>
+          </text>
+          <text id="static_instance-saisons-5">
+            <value>2016-1</value>
+          </text>
+          <text id="static_instance-saisons-4">
+            <value>2015-2</value>
+          </text>
+          <text id="static_instance-associations-8">
+            <value>AJACAR</value>
+          </text>
+          <text id="static_instance-associations-9">
+            <value>AJCD</value>
+          </text>
+          <text id="static_instance-saisons-1">
+            <value>2014-1</value>
+          </text>
+          <text id="static_instance-saisons-0">
+            <value>2013-2</value>
+          </text>
+          <text id="static_instance-associations-4">
+            <value>ADCN</value>
+          </text>
+          <text id="static_instance-associations-5">
+            <value>ADDC</value>
+          </text>
+          <text id="static_instance-associations-6">
+            <value>ADEPE</value>
+          </text>
+          <text id="static_instance-associations-7">
+            <value>ADICO</value>
+          </text>
+          <text id="static_instance-associations-0">
+            <value>ACDAPE</value>
+          </text>
+          <text id="static_instance-associations-1">
+            <value>ACLP</value>
+          </text>
+          <text id="static_instance-associations-2">
+            <value>ACPDI</value>
+          </text>
+          <text id="static_instance-associations-3">
+            <value>ACUCOBA</value>
+          </text>
+          <text id="static_instance-1_20-5">
+            <value>6</value>
+          </text>
+          <text id="static_instance-groupments-27">
+            <value>Batike</value>
+          </text>
+          <text id="static_instance-associations-29">
+            <value>FOD</value>
+          </text>
+          <text id="static_instance-associations-28">
+            <value>FACF</value>
+          </text>
+          <text id="static_instance-associations-27">
+            <value>ESF</value>
+          </text>
+          <text id="static_instance-associations-26">
+            <value>CTFC</value>
+          </text>
+          <text id="static_instance-associations-25">
+            <value>COFODI</value>
+          </text>
+          <text id="static_instance-associations-24">
+            <value>CIPSOPA</value>
+          </text>
+          <text id="static_instance-associations-23">
+            <value>CICEKI</value>
+          </text>
+          <text id="static_instance-associations-22">
+            <value>CEPAL</value>
+          </text>
+          <text id="static_instance-associations-21">
+            <value>CENED</value>
+          </text>
+          <text id="static_instance-associations-20">
+            <value>CECUPROSODEI</value>
+          </text>
+          <text id="static_instance-1_20-19">
+            <value>20</value>
+          </text>
+          <text id="static_instance-groupments-54">
+            <value>Ufamando II</value>
+          </text>
+          <text id="static_instance-groupments-55">
+            <value>Banyungu</value>
+          </text>
+          <text id="static_instance-groupments-56">
+            <value>Bapfuma</value>
+          </text>
+          <text id="static_instance-groupments-57">
+            <value>Biiri</value>
+          </text>
+          <text id="static_instance-groupments-50">
+            <value>Kibabi II</value>
+          </text>
+          <text id="static_instance-groupments-51">
+            <value>Luindi</value>
+          </text>
+          <text id="static_instance-groupments-52">
+            <value>Nyalipe</value>
+          </text>
+          <text id="static_instance-groupments-53">
+            <value>Nyamaboko II</value>
+          </text>
+          <text id="static_instance-groupments-58">
+            <value>Buabo</value>
+          </text>
+          <text id="static_instance-groupments-59">
+            <value>Nyamaboko I</value>
+          </text>
+          <text id="static_instance-associations-38">
+            <value>OPEGL</value>
+          </text>
+          <text id="static_instance-associations-39">
+            <value>OPERL</value>
+          </text>
+          <text id="static_instance-associations-34">
+            <value>MISERE SORS</value>
+          </text>
+          <text id="static_instance-associations-35">
+            <value>MUMALUKU</value>
+          </text>
+          <text id="static_instance-associations-36">
+            <value>ONBU</value>
+          </text>
+          <text id="static_instance-associations-37">
+            <value>ONDE</value>
+          </text>
+          <text id="static_instance-associations-30">
+            <value>JEAN</value>
+          </text>
+          <text id="static_instance-associations-31">
+            <value>LAGRABEN</value>
+          </text>
+          <text id="static_instance-associations-32">
+            <value>LCDP</value>
+          </text>
+          <text id="static_instance-associations-33">
+            <value>MCP</value>
+          </text>
+          <text id="static_instance-1_20-17">
+            <value>18</value>
+          </text>
+          <text id="static_instance-chefferies-6">
+            <value>Bapere</value>
+          </text>
+          <text id="static_instance-chefferies-7">
+            <value>Baswagha</value>
+          </text>
+          <text id="static_instance-chefferies-4">
+            <value>Goma</value>
+          </text>
+          <text id="static_instance-chefferies-5">
+            <value>Bamate</value>
+          </text>
+          <text id="static_instance-chefferies-2">
+            <value>Ruwenzori</value>
+          </text>
+          <text id="static_instance-chefferies-3">
+            <value>Watalinga</value>
+          </text>
+          <text id="static_instance-chefferies-0">
+            <value>Bashu</value>
+          </text>
+          <text id="static_instance-chefferies-1">
+            <value>Beni</value>
+          </text>
+          <text id="static_instance-groupments-29">
+            <value>Naredje</value>
+          </text>
+          <text id="static_instance-groupments-28">
+            <value>Batumba</value>
+          </text>
+          <text id="static_instance-1_20-14">
+            <value>15</value>
+          </text>
+          <text id="static_instance-chefferies-8">
+            <value>Batangi</value>
+          </text>
+          <text id="static_instance-chefferies-9">
+            <value>Bahunde</value>
+          </text>
+          <text id="static_instance-groupments-22">
+            <value>Luenge</value>
+          </text>
+          <text id="static_instance-territoires-1">
+            <value>Goma</value>
+          </text>
+          <text id="static_instance-chefferies-14">
+            <value>Bwisha</value>
+          </text>
+          <text id="static_instance-chefferies-15">
+            <value>Bwito</value>
+          </text>
+          <text id="static_instance-chefferies-10">
+            <value>Bashali</value>
+          </text>
+          <text id="static_instance-chefferies-11">
+            <value>Katoyi</value>
+          </text>
+          <text id="static_instance-chefferies-12">
+            <value>Osso-Banyangu</value>
+          </text>
+          <text id="static_instance-chefferies-13">
+            <value>Bakumu</value>
+          </text>
+          <text id="static_instance-saisons-8">
+            <value>2017-2</value>
+          </text>
+          <text id="static_instance-groupments-33">
+            <value>Luongo</value>
+          </text>
+          <text id="static_instance-groupments-30">
+            <value>Bukenie</value>
+          </text>
+          <text id="static_instance-groupments-31">
+            <value>Bulengya</value>
+          </text>
+          <text id="static_instance-groupments-36">
+            <value>Mwenie</value>
+          </text>
+          <text id="static_instance-groupments-37">
+            <value>Ngulo</value>
+          </text>
+          <text id="static_instance-groupments-34">
+            <value>Manzi</value>
+          </text>
+          <text id="static_instance-groupments-35">
+            <value>Muhola</value>
+          </text>
+          <text id="static_instance-groupments-25">
+            <value>Bapakombe</value>
+          </text>
+          <text id="static_instance-groupments-39">
+            <value>Mbulie</value>
+          </text>
+          <text id="static_instance-groupments-2">
+            <value>Isale-Kasongwere</value>
+          </text>
+          <text id="static_instance-groupments-3">
+            <value>Isale-Vuhovi</value>
+          </text>
+          <text id="static_instance-groupments-0">
+            <value>Bunyuka</value>
+          </text>
+          <text id="static_instance-associations-16">
+            <value>ASRE</value>
+          </text>
+          <text id="static_instance-associations-17">
+            <value>CADEP</value>
+          </text>
+          <text id="static_instance-associations-14">
+            <value>APRPE</value>
+          </text>
+          <text id="static_instance-associations-15">
+            <value>ASODI</value>
+          </text>
+          <text id="static_instance-associations-12">
+            <value>APLORERU</value>
+          </text>
+          <text id="static_instance-associations-13">
+            <value>APO</value>
+          </text>
+          <text id="static_instance-associations-10">
+            <value>ALOPRED</value>
+          </text>
+          <text id="static_instance-associations-11">
+            <value>APABK</value>
+          </text>
+          <text id="static_instance-groupments-24">
+            <value>Babika</value>
+          </text>
+          <text id="static_instance-associations-18">
+            <value>CADMIR</value>
+          </text>
+          <text id="static_instance-associations-19">
+            <value>CAF</value>
+          </text>
+          <text id="static_instance-territoires-3">
+            <value>Masisi</value>
+          </text>
+          <text id="static_instance-groupments-4">
+            <value>Malio</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <fiche_identification_pepiniere_v6 id="fiche_identification_pepiniere_v6">
+          <start/>
+          <end/>
+          <deviceid/>
+          <grp_a>
+            <datepep/>
+            <agent/>
+          </grp_a>
+          <saison/>
+          <association/>
+          <association_autre/>
+          <bailleur/>
+          <bailleur_autre/>
+          <idpe/>
+          <grp_b>
+            <nom_site/>
+            <village/>
+            <localite/>
+          </grp_b>
+          <territoire/>
+          <chefferie/>
+          <groupement/>
+          <identifiant/>
+          <date_installation_pepiniere>1999-1-1</date_installation_pepiniere>
+          <grp_c jr:template="">
+            <comptage/>
+            <dimension_planche_a/>
+            <dimension_planche_b/>
+            <capacite_planche/>
+          </grp_c>
+          <capacite_totale_planche/>
+          <grp_d>
+            <nb_pepinieristes/>
+            <nb_pepinieristes_formes/>
+            <contrat/>
+          </grp_d>
+          <combien_pepinieristes/>
+          <grp_e>
+            <localisation/>
+            <photo/>
+            <observations/>
+          </grp_e>
+          <instance_name/>
+          <meta>
+            <instanceID/>
+            <instanceName/>
+          </meta>
+        </fiche_identification_pepiniere_v6>
+      </instance>
+      <instance id="associations">
+        <root>
+          <item>
+            <itextId>static_instance-associations-0</itextId>
+            <name>acdape</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-1</itextId>
+            <name>aclp</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-2</itextId>
+            <name>acpdi</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-3</itextId>
+            <name>acucoba</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-4</itextId>
+            <name>adcn</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-5</itextId>
+            <name>addc</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-6</itextId>
+            <name>adepe</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-7</itextId>
+            <name>adico</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-8</itextId>
+            <name>ajacar</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-9</itextId>
+            <name>ajcd</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-10</itextId>
+            <name>alopred</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-11</itextId>
+            <name>apabk</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-12</itextId>
+            <name>aploreru</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-13</itextId>
+            <name>apo</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-14</itextId>
+            <name>aprpe</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-15</itextId>
+            <name>asodi</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-16</itextId>
+            <name>asre</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-17</itextId>
+            <name>cadep</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-18</itextId>
+            <name>cadmir</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-19</itextId>
+            <name>caf</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-20</itextId>
+            <name>cecuprosodei</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-21</itextId>
+            <name>cened</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-22</itextId>
+            <name>cepal</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-23</itextId>
+            <name>ciceki</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-24</itextId>
+            <name>cipsopa</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-25</itextId>
+            <name>cofodi</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-26</itextId>
+            <name>ctfc</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-27</itextId>
+            <name>esf</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-28</itextId>
+            <name>facf</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-29</itextId>
+            <name>fod</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-30</itextId>
+            <name>jean</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-31</itextId>
+            <name>lagraben</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-32</itextId>
+            <name>lcdp</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-33</itextId>
+            <name>mcp</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-34</itextId>
+            <name>misere_sors</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-35</itextId>
+            <name>mumaluku</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-36</itextId>
+            <name>onbu</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-37</itextId>
+            <name>onde</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-38</itextId>
+            <name>opegl</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-39</itextId>
+            <name>operl</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-40</itextId>
+            <name>paede</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-41</itextId>
+            <name>pdl</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-42</itextId>
+            <name>pied</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-43</itextId>
+            <name>plav</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-44</itextId>
+            <name>rapnav</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-45</itextId>
+            <name>rec</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-46</itextId>
+            <name>reid</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-47</itextId>
+            <name>sadd</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-48</itextId>
+            <name>sadeprove</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-49</itextId>
+            <name>solid</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-50</itextId>
+            <name>sydip</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-51</itextId>
+            <name>tshabirimu_action</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-52</itextId>
+            <name>vifed</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-53</itextId>
+            <name>ymegl</name>
+          </item>
+          <item>
+            <itextId>static_instance-associations-54</itextId>
+            <name>autre</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="chefferies">
+        <root>
+          <item>
+            <itextId>static_instance-chefferies-0</itextId>
+            <territoire>beni</territoire>
+            <name>bashu</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-1</itextId>
+            <territoire>beni</territoire>
+            <name>beni</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-2</itextId>
+            <territoire>beni</territoire>
+            <name>ruwenzori</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-3</itextId>
+            <territoire>beni</territoire>
+            <name>watalinga</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-4</itextId>
+            <territoire>goma</territoire>
+            <name>goma</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-5</itextId>
+            <territoire>lubero</territoire>
+            <name>bamate</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-6</itextId>
+            <territoire>lubero</territoire>
+            <name>bapere</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-7</itextId>
+            <territoire>lubero</territoire>
+            <name>baswagha</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-8</itextId>
+            <territoire>lubero</territoire>
+            <name>batangi</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-9</itextId>
+            <territoire>masisi</territoire>
+            <name>bahunde</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-10</itextId>
+            <territoire>masisi</territoire>
+            <name>bashali</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-11</itextId>
+            <territoire>masisi</territoire>
+            <name>katoyi</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-12</itextId>
+            <territoire>masisi</territoire>
+            <name>osso_banyangu</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-13</itextId>
+            <territoire>nyirangongo</territoire>
+            <name>bakumu</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-14</itextId>
+            <territoire>rutshuru</territoire>
+            <name>bwisha</name>
+          </item>
+          <item>
+            <itextId>static_instance-chefferies-15</itextId>
+            <territoire>rutshuru</territoire>
+            <name>bwito</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="oui_non">
+        <root>
+          <item>
+            <itextId>static_instance-oui_non-0</itextId>
+            <name>oui</name>
+          </item>
+          <item>
+            <itextId>static_instance-oui_non-1</itextId>
+            <name>non</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="saisons">
+        <root>
+          <item>
+            <itextId>static_instance-saisons-0</itextId>
+            <name>2013_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-1</itextId>
+            <name>2014_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-2</itextId>
+            <name>2014_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-3</itextId>
+            <name>2015_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-4</itextId>
+            <name>2015_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-5</itextId>
+            <name>2016_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-6</itextId>
+            <name>2016_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-7</itextId>
+            <name>2017_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-8</itextId>
+            <name>2017_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-9</itextId>
+            <name>2018_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-10</itextId>
+            <name>2018_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-11</itextId>
+            <name>2019_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-12</itextId>
+            <name>2019_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-13</itextId>
+            <name>2020_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-14</itextId>
+            <name>2020_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-15</itextId>
+            <name>2021_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-16</itextId>
+            <name>2021_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-17</itextId>
+            <name>2022_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-18</itextId>
+            <name>2022_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-19</itextId>
+            <name>2023_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-20</itextId>
+            <name>2023_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-21</itextId>
+            <name>2024_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-22</itextId>
+            <name>2024_2</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-23</itextId>
+            <name>2025_1</name>
+          </item>
+          <item>
+            <itextId>static_instance-saisons-24</itextId>
+            <name>2025_2</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="groupments">
+        <root>
+          <item>
+            <itextId>static_instance-groupments-0</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>bunyuka</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-1</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>isale_bulambo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-2</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>isale_kasongwere</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-3</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>isale_vuhovi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-4</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>malio</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-5</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>masiki_kalonge</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-6</itextId>
+            <territoire>beni</territoire>
+            <chefferie>bashu</chefferie>
+            <name>masiki_vayana</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-7</itextId>
+            <territoire>beni</territoire>
+            <chefferie>beni</chefferie>
+            <name>bambuba_kisuli</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-8</itextId>
+            <territoire>beni</territoire>
+            <chefferie>beni</chefferie>
+            <name>banande_kainama</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-9</itextId>
+            <territoire>beni</territoire>
+            <chefferie>beni</chefferie>
+            <name>baswagha_madiwe</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-10</itextId>
+            <territoire>beni</territoire>
+            <chefferie>beni</chefferie>
+            <name>batangi_mbau</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-11</itextId>
+            <territoire>beni</territoire>
+            <chefferie>ruwenzori</chefferie>
+            <name>baniangala</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-12</itextId>
+            <territoire>beni</territoire>
+            <chefferie>ruwenzori</chefferie>
+            <name>basongora</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-13</itextId>
+            <territoire>beni</territoire>
+            <chefferie>ruwenzori</chefferie>
+            <name>bolema</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-14</itextId>
+            <territoire>beni</territoire>
+            <chefferie>ruwenzori</chefferie>
+            <name>buliki</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-15</itextId>
+            <territoire>beni</territoire>
+            <chefferie>ruwenzori</chefferie>
+            <name>malambo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-16</itextId>
+            <territoire>beni</territoire>
+            <chefferie>watalinga</chefferie>
+            <name>bahumu</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-17</itextId>
+            <territoire>beni</territoire>
+            <chefferie>watalinga</chefferie>
+            <name>bawisa</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-18</itextId>
+            <territoire>beni</territoire>
+            <chefferie>watalinga</chefferie>
+            <name>watalinga</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-19</itextId>
+            <territoire>goma</territoire>
+            <chefferie>goma</chefferie>
+            <name>goma</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-20</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bamate</chefferie>
+            <name>buhimba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-21</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bamate</chefferie>
+            <name>hutwe</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-22</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bamate</chefferie>
+            <name>luenge</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-23</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bamate</chefferie>
+            <name>tama</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-24</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>babika</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-25</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>bapakombe</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-26</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>bapukara</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-27</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>batike</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-28</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>batumba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-29</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>bapere</chefferie>
+            <name>naredje</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-30</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>bukenie</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-31</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>bulengya</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-32</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>buyora</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-33</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>luongo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-34</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>manzi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-35</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>muhola</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-36</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>mwenie</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-37</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>baswagha</chefferie>
+            <name>ngulo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-38</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>batangi</chefferie>
+            <name>itala</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-39</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>batangi</chefferie>
+            <name>mbulie</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-40</itextId>
+            <territoire>lubero</territoire>
+            <chefferie>batangi</chefferie>
+            <name>musindi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-41</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>kamuronza</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-42</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>muvunyi_karuba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-43</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>muvunyi_kibabi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-44</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>muvunyi_matanda</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-45</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>muvunyi_shanga</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-46</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bahunde</chefferie>
+            <name>ufamando_i</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-47</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bashali</chefferie>
+            <name>bashali_kaembe</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-48</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>bashali</chefferie>
+            <name>bashali_mokoto</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-49</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>kambale</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-50</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>kibabi_ii</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-51</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>luindi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-52</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>nyalipe</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-53</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>nyamaboko_ii</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-54</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>katoyi</chefferie>
+            <name>ufamando_ii</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-55</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>osso_banyangu</chefferie>
+            <name>banyungu</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-56</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>osso_banyangu</chefferie>
+            <name>bapfuma</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-57</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>osso_banyangu</chefferie>
+            <name>biiri</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-58</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>osso_banyangu</chefferie>
+            <name>buabo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-59</itextId>
+            <territoire>masisi</territoire>
+            <chefferie>osso_banyangu</chefferie>
+            <name>nyamaboko_i</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-60</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>buhumba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-61</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>buvira</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-62</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>kibati</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-63</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>kibumba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-64</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>monigi</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-65</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>mudja</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-66</itextId>
+            <territoire>nyirangongo</territoire>
+            <chefferie>bakumu</chefferie>
+            <name>rusayu</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-67</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>binza</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-68</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>bugari</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-69</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>bukoma</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-70</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>busanza</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-71</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>bweza</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-72</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>jomba</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-73</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwisha</chefferie>
+            <name>kisigari</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-74</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>bambo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-75</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>bishusha</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-76</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>bukombo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-77</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>itongo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-78</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>kanyabayonga</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-79</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>kihondo</name>
+          </item>
+          <item>
+            <itextId>static_instance-groupments-80</itextId>
+            <territoire>rutshuru</territoire>
+            <chefferie>bwito</chefferie>
+            <name>mutanda</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="bailleurs">
+        <root>
+          <item>
+            <itextId>static_instance-bailleurs-0</itextId>
+            <name>cbff</name>
+          </item>
+          <item>
+            <itextId>static_instance-bailleurs-1</itextId>
+            <name>cifor</name>
+          </item>
+          <item>
+            <itextId>static_instance-bailleurs-2</itextId>
+            <name>dgd</name>
+          </item>
+          <item>
+            <itextId>static_instance-bailleurs-3</itextId>
+            <name>sida</name>
+          </item>
+          <item>
+            <itextId>static_instance-bailleurs-4</itextId>
+            <name>autre</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="territoires">
+        <root>
+          <item>
+            <itextId>static_instance-territoires-0</itextId>
+            <name>beni</name>
+          </item>
+          <item>
+            <itextId>static_instance-territoires-1</itextId>
+            <name>goma</name>
+          </item>
+          <item>
+            <itextId>static_instance-territoires-2</itextId>
+            <name>lubero</name>
+          </item>
+          <item>
+            <itextId>static_instance-territoires-3</itextId>
+            <name>masisi</name>
+          </item>
+          <item>
+            <itextId>static_instance-territoires-4</itextId>
+            <name>nyirangongo</name>
+          </item>
+          <item>
+            <itextId>static_instance-territoires-5</itextId>
+            <name>rutshuru</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="agents">
+        <root>
+          <item>
+            <itextId>static_instance-agents-0</itextId>
+            <name>archippe_sivaghanzana</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-1</itextId>
+            <name>bienfait_ntamirwa</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-2</itextId>
+            <name>didier_weston</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-3</itextId>
+            <name>eloge_muhesi</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-4</itextId>
+            <name>nestor_vuambale</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-5</itextId>
+            <name>olivier_kalumuna</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-6</itextId>
+            <name>paluku_vhosi</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-7</itextId>
+            <name>paluku_vururu</name>
+          </item>
+          <item>
+            <itextId>static_instance-agents-8</itextId>
+            <name>pierre_vutwire</name>
+          </item>
+        </root>
+      </instance>
+      <instance id="1_20">
+        <root>
+          <item>
+            <itextId>static_instance-1_20-0</itextId>
+            <name>1</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-1</itextId>
+            <name>2</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-2</itextId>
+            <name>3</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-3</itextId>
+            <name>4</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-4</itextId>
+            <name>5</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-5</itextId>
+            <name>6</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-6</itextId>
+            <name>7</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-7</itextId>
+            <name>8</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-8</itextId>
+            <name>9</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-9</itextId>
+            <name>10</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-10</itextId>
+            <name>11</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-11</itextId>
+            <name>12</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-12</itextId>
+            <name>13</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-13</itextId>
+            <name>14</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-14</itextId>
+            <name>15</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-15</itextId>
+            <name>16</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-16</itextId>
+            <name>17</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-17</itextId>
+            <name>18</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-18</itextId>
+            <name>19</name>
+          </item>
+          <item>
+            <itextId>static_instance-1_20-19</itextId>
+            <name>20</name>
+          </item>
+        </root>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/fiche_identification_pepiniere_v6/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/fiche_identification_pepiniere_v6/end" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/fiche_identification_pepiniere_v6/deviceid" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_a/datepep" required="true()" type="date"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_a/agent" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/saison" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/association" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/association_autre" relevant="selected( /fiche_identification_pepiniere_v6/association ,'autre')" required="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/bailleur" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/bailleur_autre" relevant="selected( /fiche_identification_pepiniere_v6/bailleur ,'autre')" required="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/idpe" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_b/nom_site" required="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_b/village" required="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_b/localite" required="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/territoire" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/chefferie" required="true()" type="select1"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/groupement" required="true()" type="select1"/>
+      <bind calculate="concat( /fiche_identification_pepiniere_v6/saison ,&quot;/&quot;, /fiche_identification_pepiniere_v6/association ,&quot;/&quot;, /fiche_identification_pepiniere_v6/grp_b/nom_site ,&quot;/&quot;, /fiche_identification_pepiniere_v6/idpe )" nodeset="/fiche_identification_pepiniere_v6/identifiant" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/date_installation_pepiniere" required="true()" type="date"/>
+      <bind calculate="position(..)" nodeset="/fiche_identification_pepiniere_v6/grp_c/comptage" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_c/dimension_planche_a" required="true()" type="int"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_c/dimension_planche_b" required="true()" type="int"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_c/capacite_planche" required="true()" type="int"/>
+      <bind calculate="sum( /fiche_identification_pepiniere_v6/grp_c/capacite_planche )" nodeset="/fiche_identification_pepiniere_v6/capacite_totale_planche" readonly="true()" type="string"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_d/nb_pepinieristes" required="true()" type="int"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_d/nb_pepinieristes_formes" required="true()" type="int"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_d/contrat" required="true()" type="select1"/>
+      <bind constraint=". &lt;=  /fiche_identification_pepiniere_v6/grp_d/nb_pepinieristes " nodeset="/fiche_identification_pepiniere_v6/combien_pepinieristes" relevant="selected( /fiche_identification_pepiniere_v6/grp_d/contrat ,'non')" type="int"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_e/localisation" type="geopoint"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_e/photo" type="binary"/>
+      <bind nodeset="/fiche_identification_pepiniere_v6/grp_e/observations" type="string"/>
+      <bind calculate="concat(&quot;idpepi/&quot;,  /fiche_identification_pepiniere_v6/saison , &quot;/&quot;,  /fiche_identification_pepiniere_v6/bailleur , &quot;/&quot;,  /fiche_identification_pepiniere_v6/association , &quot;/&quot;,  /fiche_identification_pepiniere_v6/grp_b/nom_site , &quot;/&quot;,  /fiche_identification_pepiniere_v6/idpe , &quot;/&quot;,  /fiche_identification_pepiniere_v6/grp_a/agent , &quot;/&quot;,  /fiche_identification_pepiniere_v6/grp_a/datepep )" nodeset="/fiche_identification_pepiniere_v6/instance_name" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/fiche_identification_pepiniere_v6/meta/instanceID" readonly="true()" type="string"/>
+      <bind calculate=" /fiche_identification_pepiniere_v6/instance_name " nodeset="/fiche_identification_pepiniere_v6/meta/instanceName" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="field-list" ref="/fiche_identification_pepiniere_v6/grp_a">
+      <input appearance="no-calendar" ref="/fiche_identification_pepiniere_v6/grp_a/datepep">
+        <label>Date</label>
+      </input>
+      <select1 ref="/fiche_identification_pepiniere_v6/grp_a/agent">
+        <label>Nom agent de récolte</label>
+        <item>
+          <label>Archippe Sivaghanzana</label>
+          <value>archippe_sivaghanzana</value>
+        </item>
+        <item>
+          <label>Bienfait Ntamirwa</label>
+          <value>bienfait_ntamirwa</value>
+        </item>
+        <item>
+          <label>Didier Weston</label>
+          <value>didier_weston</value>
+        </item>
+        <item>
+          <label>Eloge Muhesi</label>
+          <value>eloge_muhesi</value>
+        </item>
+        <item>
+          <label>Nestor Vuambale</label>
+          <value>nestor_vuambale</value>
+        </item>
+        <item>
+          <label>Olivier Kalumuna</label>
+          <value>olivier_kalumuna</value>
+        </item>
+        <item>
+          <label>Paluku Vhosi</label>
+          <value>paluku_vhosi</value>
+        </item>
+        <item>
+          <label>Paluku Vururu</label>
+          <value>paluku_vururu</value>
+        </item>
+        <item>
+          <label>Pierre Vutwire</label>
+          <value>pierre_vutwire</value>
+        </item>
+      </select1>
+    </group>
+    <select1 ref="/fiche_identification_pepiniere_v6/saison">
+      <label>Saison</label>
+      <item>
+        <label>2013-2</label>
+        <value>2013_2</value>
+      </item>
+      <item>
+        <label>2014-1</label>
+        <value>2014_1</value>
+      </item>
+      <item>
+        <label>2014-2</label>
+        <value>2014_2</value>
+      </item>
+      <item>
+        <label>2015-1</label>
+        <value>2015_1</value>
+      </item>
+      <item>
+        <label>2015-2</label>
+        <value>2015_2</value>
+      </item>
+      <item>
+        <label>2016-1</label>
+        <value>2016_1</value>
+      </item>
+      <item>
+        <label>2016-2</label>
+        <value>2016_2</value>
+      </item>
+      <item>
+        <label>2017-1</label>
+        <value>2017_1</value>
+      </item>
+      <item>
+        <label>2017-2</label>
+        <value>2017_2</value>
+      </item>
+      <item>
+        <label>2018-1</label>
+        <value>2018_1</value>
+      </item>
+      <item>
+        <label>2018-2</label>
+        <value>2018_2</value>
+      </item>
+      <item>
+        <label>2019-1</label>
+        <value>2019_1</value>
+      </item>
+      <item>
+        <label>2019-2</label>
+        <value>2019_2</value>
+      </item>
+      <item>
+        <label>2020-1</label>
+        <value>2020_1</value>
+      </item>
+      <item>
+        <label>2020-2</label>
+        <value>2020_2</value>
+      </item>
+      <item>
+        <label>2021-1</label>
+        <value>2021_1</value>
+      </item>
+      <item>
+        <label>2021-2</label>
+        <value>2021_2</value>
+      </item>
+      <item>
+        <label>2022-1</label>
+        <value>2022_1</value>
+      </item>
+      <item>
+        <label>2022-2</label>
+        <value>2022_2</value>
+      </item>
+      <item>
+        <label>2023-1</label>
+        <value>2023_1</value>
+      </item>
+      <item>
+        <label>2023-2</label>
+        <value>2023_2</value>
+      </item>
+      <item>
+        <label>2024-1</label>
+        <value>2024_1</value>
+      </item>
+      <item>
+        <label>2024-2</label>
+        <value>2024_2</value>
+      </item>
+      <item>
+        <label>2025-1</label>
+        <value>2025_1</value>
+      </item>
+      <item>
+        <label>2025-2</label>
+        <value>2025_2</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_identification_pepiniere_v6/association">
+      <label>Nom association/grand planteur d’appui</label>
+      <item>
+        <label>ACDAPE</label>
+        <value>acdape</value>
+      </item>
+      <item>
+        <label>ACLP</label>
+        <value>aclp</value>
+      </item>
+      <item>
+        <label>ACPDI</label>
+        <value>acpdi</value>
+      </item>
+      <item>
+        <label>ACUCOBA</label>
+        <value>acucoba</value>
+      </item>
+      <item>
+        <label>ADCN</label>
+        <value>adcn</value>
+      </item>
+      <item>
+        <label>ADDC</label>
+        <value>addc</value>
+      </item>
+      <item>
+        <label>ADEPE</label>
+        <value>adepe</value>
+      </item>
+      <item>
+        <label>ADICO</label>
+        <value>adico</value>
+      </item>
+      <item>
+        <label>AJACAR</label>
+        <value>ajacar</value>
+      </item>
+      <item>
+        <label>AJCD</label>
+        <value>ajcd</value>
+      </item>
+      <item>
+        <label>ALOPRED</label>
+        <value>alopred</value>
+      </item>
+      <item>
+        <label>APABK</label>
+        <value>apabk</value>
+      </item>
+      <item>
+        <label>APLORERU</label>
+        <value>aploreru</value>
+      </item>
+      <item>
+        <label>APO</label>
+        <value>apo</value>
+      </item>
+      <item>
+        <label>APRPE</label>
+        <value>aprpe</value>
+      </item>
+      <item>
+        <label>ASODI</label>
+        <value>asodi</value>
+      </item>
+      <item>
+        <label>ASRE</label>
+        <value>asre</value>
+      </item>
+      <item>
+        <label>CADEP</label>
+        <value>cadep</value>
+      </item>
+      <item>
+        <label>CADMIR</label>
+        <value>cadmir</value>
+      </item>
+      <item>
+        <label>CAF</label>
+        <value>caf</value>
+      </item>
+      <item>
+        <label>CECUPROSODEI</label>
+        <value>cecuprosodei</value>
+      </item>
+      <item>
+        <label>CENED</label>
+        <value>cened</value>
+      </item>
+      <item>
+        <label>CEPAL</label>
+        <value>cepal</value>
+      </item>
+      <item>
+        <label>CICEKI</label>
+        <value>ciceki</value>
+      </item>
+      <item>
+        <label>CIPSOPA</label>
+        <value>cipsopa</value>
+      </item>
+      <item>
+        <label>COFODI</label>
+        <value>cofodi</value>
+      </item>
+      <item>
+        <label>CTFC</label>
+        <value>ctfc</value>
+      </item>
+      <item>
+        <label>ESF</label>
+        <value>esf</value>
+      </item>
+      <item>
+        <label>FACF</label>
+        <value>facf</value>
+      </item>
+      <item>
+        <label>FOD</label>
+        <value>fod</value>
+      </item>
+      <item>
+        <label>JEAN</label>
+        <value>jean</value>
+      </item>
+      <item>
+        <label>LAGRABEN</label>
+        <value>lagraben</value>
+      </item>
+      <item>
+        <label>LCDP</label>
+        <value>lcdp</value>
+      </item>
+      <item>
+        <label>MCP</label>
+        <value>mcp</value>
+      </item>
+      <item>
+        <label>MISERE SORS</label>
+        <value>misere_sors</value>
+      </item>
+      <item>
+        <label>MUMALUKU</label>
+        <value>mumaluku</value>
+      </item>
+      <item>
+        <label>ONBU</label>
+        <value>onbu</value>
+      </item>
+      <item>
+        <label>ONDE</label>
+        <value>onde</value>
+      </item>
+      <item>
+        <label>OPEGL</label>
+        <value>opegl</value>
+      </item>
+      <item>
+        <label>OPERL</label>
+        <value>operl</value>
+      </item>
+      <item>
+        <label>PAEDE</label>
+        <value>paede</value>
+      </item>
+      <item>
+        <label>PDL</label>
+        <value>pdl</value>
+      </item>
+      <item>
+        <label>PIED</label>
+        <value>pied</value>
+      </item>
+      <item>
+        <label>PLAV</label>
+        <value>plav</value>
+      </item>
+      <item>
+        <label>RAPNAV</label>
+        <value>rapnav</value>
+      </item>
+      <item>
+        <label>REC</label>
+        <value>rec</value>
+      </item>
+      <item>
+        <label>REID</label>
+        <value>reid</value>
+      </item>
+      <item>
+        <label>SADD</label>
+        <value>sadd</value>
+      </item>
+      <item>
+        <label>SADEPROVE</label>
+        <value>sadeprove</value>
+      </item>
+      <item>
+        <label>SOLID</label>
+        <value>solid</value>
+      </item>
+      <item>
+        <label>SYDIP</label>
+        <value>sydip</value>
+      </item>
+      <item>
+        <label>TSHABIRIMU ACTION</label>
+        <value>tshabirimu_action</value>
+      </item>
+      <item>
+        <label>VIFED</label>
+        <value>vifed</value>
+      </item>
+      <item>
+        <label>YMEGL</label>
+        <value>ymegl</value>
+      </item>
+      <item>
+        <label>Autre</label>
+        <value>autre</value>
+      </item>
+    </select1>
+    <input ref="/fiche_identification_pepiniere_v6/association_autre">
+      <label>Autre association/grand planteur d’appui</label>
+    </input>
+    <select1 ref="/fiche_identification_pepiniere_v6/bailleur">
+      <label>Bailleur</label>
+      <item>
+        <label>CBFF</label>
+        <value>cbff</value>
+      </item>
+      <item>
+        <label>CIFOR</label>
+        <value>cifor</value>
+      </item>
+      <item>
+        <label>DGD</label>
+        <value>dgd</value>
+      </item>
+      <item>
+        <label>SIDA</label>
+        <value>sida</value>
+      </item>
+      <item>
+        <label>Autre</label>
+        <value>autre</value>
+      </item>
+    </select1>
+    <input ref="/fiche_identification_pepiniere_v6/bailleur_autre">
+      <label>Autre bailleur</label>
+    </input>
+    <select1 ref="/fiche_identification_pepiniere_v6/idpe">
+      <label>N° de pépinière</label>
+      <item>
+        <label>1</label>
+        <value>1</value>
+      </item>
+      <item>
+        <label>2</label>
+        <value>2</value>
+      </item>
+      <item>
+        <label>3</label>
+        <value>3</value>
+      </item>
+      <item>
+        <label>4</label>
+        <value>4</value>
+      </item>
+      <item>
+        <label>5</label>
+        <value>5</value>
+      </item>
+      <item>
+        <label>6</label>
+        <value>6</value>
+      </item>
+      <item>
+        <label>7</label>
+        <value>7</value>
+      </item>
+      <item>
+        <label>8</label>
+        <value>8</value>
+      </item>
+      <item>
+        <label>9</label>
+        <value>9</value>
+      </item>
+      <item>
+        <label>10</label>
+        <value>10</value>
+      </item>
+      <item>
+        <label>11</label>
+        <value>11</value>
+      </item>
+      <item>
+        <label>12</label>
+        <value>12</value>
+      </item>
+      <item>
+        <label>13</label>
+        <value>13</value>
+      </item>
+      <item>
+        <label>14</label>
+        <value>14</value>
+      </item>
+      <item>
+        <label>15</label>
+        <value>15</value>
+      </item>
+      <item>
+        <label>16</label>
+        <value>16</value>
+      </item>
+      <item>
+        <label>17</label>
+        <value>17</value>
+      </item>
+      <item>
+        <label>18</label>
+        <value>18</value>
+      </item>
+      <item>
+        <label>19</label>
+        <value>19</value>
+      </item>
+      <item>
+        <label>20</label>
+        <value>20</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/fiche_identification_pepiniere_v6/grp_b">
+      <input ref="/fiche_identification_pepiniere_v6/grp_b/nom_site">
+        <label>Nom du site de la pépinière</label>
+      </input>
+      <input ref="/fiche_identification_pepiniere_v6/grp_b/village">
+        <label>Village</label>
+      </input>
+      <input ref="/fiche_identification_pepiniere_v6/grp_b/localite">
+        <label>Localité</label>
+      </input>
+    </group>
+    <select1 ref="/fiche_identification_pepiniere_v6/territoire">
+      <label>Territoire</label>
+      <item>
+        <label>Beni</label>
+        <value>beni</value>
+      </item>
+      <item>
+        <label>Goma</label>
+        <value>goma</value>
+      </item>
+      <item>
+        <label>Lubero</label>
+        <value>lubero</value>
+      </item>
+      <item>
+        <label>Masisi</label>
+        <value>masisi</value>
+      </item>
+      <item>
+        <label>Nyirangongo</label>
+        <value>nyirangongo</value>
+      </item>
+      <item>
+        <label>Rutshuru</label>
+        <value>rutshuru</value>
+      </item>
+    </select1>
+    <select1 ref="/fiche_identification_pepiniere_v6/chefferie">
+      <label>Chefferie</label>
+      <itemset nodeset="instance('chefferies')/root/item[territoire= /fiche_identification_pepiniere_v6/territoire ]">
+        <value ref="name"/>
+        <label ref="jr:itext(itextId)"/>
+      </itemset>
+    </select1>
+    <select1 ref="/fiche_identification_pepiniere_v6/groupement">
+      <label>Groupement</label>
+      <itemset nodeset="instance('groupments')/root/item[territoire= /fiche_identification_pepiniere_v6/territoire  and chefferie= /fiche_identification_pepiniere_v6/chefferie ]">
+        <value ref="name"/>
+        <label ref="jr:itext(itextId)"/>
+      </itemset>
+    </select1>
+    <input ref="/fiche_identification_pepiniere_v6/identifiant">
+      <label>Identifiant pépinière</label>
+    </input>
+    <input appearance="no-calendar" ref="/fiche_identification_pepiniere_v6/date_installation_pepiniere">
+      <label>Date d’installation de la pépinière</label>
+    </input>
+    <group ref="/fiche_identification_pepiniere_v6/grp_c">
+      <label>Planche</label>
+      <repeat appearance="field-list" nodeset="/fiche_identification_pepiniere_v6/grp_c">
+        <input ref="/fiche_identification_pepiniere_v6/grp_c/dimension_planche_a">
+          <label>Dimension planche <output value=" /fiche_identification_pepiniere_v6/grp_c/comptage "/> (L)</label>
+          <hint>(m)</hint>
+        </input>
+        <input ref="/fiche_identification_pepiniere_v6/grp_c/dimension_planche_b">
+          <label>Dimension planche <output value=" /fiche_identification_pepiniere_v6/grp_c/comptage "/> (l)</label>
+          <hint>(m)</hint>
+        </input>
+        <input ref="/fiche_identification_pepiniere_v6/grp_c/capacite_planche">
+          <label>Capacité de la planche <output value=" /fiche_identification_pepiniere_v6/grp_c/comptage "/></label><hint>plantules</hint>
+        </input>
+      </repeat>
+    </group>
+    <input ref="/fiche_identification_pepiniere_v6/capacite_totale_planche">
+      <label>Capacité totale de la pépinière</label>
+      <hint>plantules</hint>
+    </input>
+    <group appearance="field-list" ref="/fiche_identification_pepiniere_v6/grp_d">
+      <label>Personnel</label>
+      <input ref="/fiche_identification_pepiniere_v6/grp_d/nb_pepinieristes">
+        <label>Nombre de pépiniéristes</label>
+      </input>
+      <input ref="/fiche_identification_pepiniere_v6/grp_d/nb_pepinieristes_formes">
+        <label>Nombre de pépiniéristes formés par WWF</label>
+      </input>
+      <select1 ref="/fiche_identification_pepiniere_v6/grp_d/contrat">
+        <label>Tous les pépiniéristes avec contrat?</label>
+        <item>
+          <label>Oui</label>
+          <value>oui</value>
+        </item>
+        <item>
+          <label>Non</label>
+          <value>non</value>
+        </item>
+      </select1>
+    </group>
+    <input ref="/fiche_identification_pepiniere_v6/combien_pepinieristes">
+      <label>Combien pépiniéristes sans contrat?</label>
+    </input>
+    <group appearance="field-list" ref="/fiche_identification_pepiniere_v6/grp_e">
+      <input ref="/fiche_identification_pepiniere_v6/grp_e/localisation">
+        <label>Localisation</label>
+        <hint>Les coordonnées géographiques peuvent être collectées seulement à l’extérieur.</hint>
+      </input>
+      <upload mediatype="image/*" ref="/fiche_identification_pepiniere_v6/grp_e/photo">
+        <label>Photo</label>
+      </upload>
+      <input ref="/fiche_identification_pepiniere_v6/grp_e/observations">
+        <label>Observations</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

@@ -52,6 +52,9 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.smnReports = new System.Windows.Forms.ToolStripMenuItem();
             this.ssmnReportsTAR = new System.Windows.Forms.ToolStripMenuItem();
+            this.ssmnReportsPR = new System.Windows.Forms.ToolStripMenuItem();
+            this.ssmnReportsSuiviPepi = new System.Windows.Forms.ToolStripMenuItem();
+            this.ssmnReportsIdentPepi = new System.Windows.Forms.ToolStripMenuItem();
             this.photoGpsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smnViewManage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,18 +78,17 @@
             this.tlbEssence = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tlbReports = new System.Windows.Forms.ToolStripSplitButton();
+            this.stlbReportsTAR = new System.Windows.Forms.ToolStripMenuItem();
+            this.stlbReportsPR = new System.Windows.Forms.ToolStripMenuItem();
+            this.stlbReportsSuiviPepi = new System.Windows.Forms.ToolStripMenuItem();
+            this.stlbReportsIdentPepi = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.statLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblInfoForm = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ssmnReportsPR = new System.Windows.Forms.ToolStripMenuItem();
-            this.ssmnReportsSuiviPepi = new System.Windows.Forms.ToolStripMenuItem();
-            this.ssmnReportsIdentPepi = new System.Windows.Forms.ToolStripMenuItem();
-            this.stlbReportsTAR = new System.Windows.Forms.ToolStripMenuItem();
-            this.stlbReportsPR = new System.Windows.Forms.ToolStripMenuItem();
-            this.stlbReportsSuiviPepi = new System.Windows.Forms.ToolStripMenuItem();
-            this.stlbReportsIdentPepi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnShowMap = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -104,7 +106,8 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(778, 24);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(12, 4, 0, 4);
+            this.menuStrip.Size = new System.Drawing.Size(1556, 46);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -118,7 +121,7 @@
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.fileMenu.Size = new System.Drawing.Size(54, 20);
+            this.fileMenu.Size = new System.Drawing.Size(97, 38);
             this.fileMenu.Text = "&Fichier";
             // 
             // smnConnect
@@ -127,20 +130,20 @@
             this.smnConnect.ImageTransparentColor = System.Drawing.Color.Black;
             this.smnConnect.Name = "smnConnect";
             this.smnConnect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
-            this.smnConnect.Size = new System.Drawing.Size(183, 22);
+            this.smnConnect.Size = new System.Drawing.Size(335, 38);
             this.smnConnect.Text = "Connexion";
             this.smnConnect.Click += new System.EventHandler(this.smnConnect_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(332, 6);
             // 
             // smnDisconnect
             // 
             this.smnDisconnect.Name = "smnDisconnect";
             this.smnDisconnect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.J)));
-            this.smnDisconnect.Size = new System.Drawing.Size(183, 22);
+            this.smnDisconnect.Size = new System.Drawing.Size(335, 38);
             this.smnDisconnect.Text = "Disconnexion";
             this.smnDisconnect.Click += new System.EventHandler(this.smnDisconnect_Click);
             // 
@@ -148,7 +151,7 @@
             // 
             this.smnExit.Name = "smnExit";
             this.smnExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.smnExit.Size = new System.Drawing.Size(183, 22);
+            this.smnExit.Size = new System.Drawing.Size(335, 38);
             this.smnExit.Text = "Q&uitter";
             this.smnExit.ToolTipText = "Fermer";
             this.smnExit.Click += new System.EventHandler(this.smnExit_Click);
@@ -163,7 +166,7 @@
             this.smnEssence});
             this.formStripMenuItem.Name = "formStripMenuItem";
             this.formStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.formStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.formStripMenuItem.Size = new System.Drawing.Size(130, 38);
             this.formStripMenuItem.Text = "Inter&faces";
             // 
             // smnDEntry
@@ -173,21 +176,21 @@
             this.mnuPR});
             this.smnDEntry.Image = ((System.Drawing.Image)(resources.GetObject("smnDEntry.Image")));
             this.smnDEntry.Name = "smnDEntry";
-            this.smnDEntry.Size = new System.Drawing.Size(248, 22);
+            this.smnDEntry.Size = new System.Drawing.Size(468, 38);
             this.smnDEntry.Text = "Entry TAR/PR";
             this.smnDEntry.Click += new System.EventHandler(this.smnDEntry_Click);
             // 
             // smn_tar
             // 
             this.smn_tar.Name = "smn_tar";
-            this.smn_tar.Size = new System.Drawing.Size(96, 22);
+            this.smn_tar.Size = new System.Drawing.Size(154, 38);
             this.smn_tar.Text = "TAR";
             this.smn_tar.Click += new System.EventHandler(this.smn_tar_Click);
             // 
             // mnuPR
             // 
             this.mnuPR.Name = "mnuPR";
-            this.mnuPR.Size = new System.Drawing.Size(96, 22);
+            this.mnuPR.Size = new System.Drawing.Size(154, 38);
             this.mnuPR.Text = "PR";
             this.mnuPR.Click += new System.EventHandler(this.mnuPR_Click);
             // 
@@ -198,42 +201,42 @@
             this.suiviToolStripMenuItem});
             this.smnEntryNursery.Image = ((System.Drawing.Image)(resources.GetObject("smnEntryNursery.Image")));
             this.smnEntryNursery.Name = "smnEntryNursery";
-            this.smnEntryNursery.Size = new System.Drawing.Size(248, 22);
+            this.smnEntryNursery.Size = new System.Drawing.Size(468, 38);
             this.smnEntryNursery.Text = "Entry PEPINIERE";
             this.smnEntryNursery.Click += new System.EventHandler(this.smnEntryNursery_Click);
             // 
             // identificationToolStripMenuItem
             // 
             this.identificationToolStripMenuItem.Name = "identificationToolStripMenuItem";
-            this.identificationToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.identificationToolStripMenuItem.Size = new System.Drawing.Size(254, 38);
             this.identificationToolStripMenuItem.Text = "Identification";
             this.identificationToolStripMenuItem.Click += new System.EventHandler(this.identificationToolStripMenuItem_Click);
             // 
             // suiviToolStripMenuItem
             // 
             this.suiviToolStripMenuItem.Name = "suiviToolStripMenuItem";
-            this.suiviToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.suiviToolStripMenuItem.Size = new System.Drawing.Size(254, 38);
             this.suiviToolStripMenuItem.Text = "Suivi";
             this.suiviToolStripMenuItem.Click += new System.EventHandler(this.suiviToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(245, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(465, 6);
             // 
             // smnExplData
             // 
             this.smnExplData.Image = ((System.Drawing.Image)(resources.GetObject("smnExplData.Image")));
             this.smnExplData.Name = "smnExplData";
             this.smnExplData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.smnExplData.Size = new System.Drawing.Size(248, 22);
+            this.smnExplData.Size = new System.Drawing.Size(468, 38);
             this.smnExplData.Text = "Exploitation des données";
             // 
             // smnEssence
             // 
             this.smnEssence.Image = ((System.Drawing.Image)(resources.GetObject("smnEssence.Image")));
             this.smnEssence.Name = "smnEssence";
-            this.smnEssence.Size = new System.Drawing.Size(248, 22);
+            this.smnEssence.Size = new System.Drawing.Size(468, 38);
             this.smnEssence.Text = "Essence";
             // 
             // viewMenu
@@ -242,10 +245,12 @@
             this.smnToolBar,
             this.smnStatusBar,
             this.toolStripSeparator6,
-            this.smnReports});
+            this.smnReports,
+            this.toolStripSeparator7,
+            this.btnShowMap});
             this.viewMenu.Name = "viewMenu";
             this.viewMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.viewMenu.Size = new System.Drawing.Size(70, 20);
+            this.viewMenu.Size = new System.Drawing.Size(128, 38);
             this.viewMenu.Text = "&Affichage";
             // 
             // smnToolBar
@@ -254,7 +259,7 @@
             this.smnToolBar.CheckOnClick = true;
             this.smnToolBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.smnToolBar.Name = "smnToolBar";
-            this.smnToolBar.Size = new System.Drawing.Size(156, 26);
+            this.smnToolBar.Size = new System.Drawing.Size(306, 38);
             this.smnToolBar.Text = "&Barre d\'outils";
             this.smnToolBar.Click += new System.EventHandler(this.smnToolBar_Click);
             // 
@@ -264,7 +269,7 @@
             this.smnStatusBar.CheckOnClick = true;
             this.smnStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.smnStatusBar.Name = "smnStatusBar";
-            this.smnStatusBar.Size = new System.Drawing.Size(156, 26);
+            this.smnStatusBar.Size = new System.Drawing.Size(306, 38);
             this.smnStatusBar.Text = "Barre d\'é&tat";
             this.smnStatusBar.ToolTipText = "View Status Bar";
             this.smnStatusBar.Click += new System.EventHandler(this.smnStatusBar_Click);
@@ -272,7 +277,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(153, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(303, 6);
             // 
             // smnReports
             // 
@@ -283,29 +288,50 @@
             this.ssmnReportsIdentPepi});
             this.smnReports.Image = ((System.Drawing.Image)(resources.GetObject("smnReports.Image")));
             this.smnReports.Name = "smnReports";
-            this.smnReports.Size = new System.Drawing.Size(156, 26);
+            this.smnReports.Size = new System.Drawing.Size(306, 38);
             this.smnReports.Text = "&Rapports";
             // 
             // ssmnReportsTAR
             // 
             this.ssmnReportsTAR.Name = "ssmnReportsTAR";
-            this.ssmnReportsTAR.Size = new System.Drawing.Size(246, 22);
+            this.ssmnReportsTAR.Size = new System.Drawing.Size(463, 38);
             this.ssmnReportsTAR.Text = "Rapports TAR";
             this.ssmnReportsTAR.Click += new System.EventHandler(this.ssmnReportsTAR_Click);
+            // 
+            // ssmnReportsPR
+            // 
+            this.ssmnReportsPR.Name = "ssmnReportsPR";
+            this.ssmnReportsPR.Size = new System.Drawing.Size(463, 38);
+            this.ssmnReportsPR.Text = "Rapports PR";
+            this.ssmnReportsPR.Click += new System.EventHandler(this.ssmnReportsPR_Click);
+            // 
+            // ssmnReportsSuiviPepi
+            // 
+            this.ssmnReportsSuiviPepi.Name = "ssmnReportsSuiviPepi";
+            this.ssmnReportsSuiviPepi.Size = new System.Drawing.Size(463, 38);
+            this.ssmnReportsSuiviPepi.Text = "Rapports Suivi pépinière";
+            this.ssmnReportsSuiviPepi.Click += new System.EventHandler(this.ssmnReportsSuiviPepi_Click);
+            // 
+            // ssmnReportsIdentPepi
+            // 
+            this.ssmnReportsIdentPepi.Name = "ssmnReportsIdentPepi";
+            this.ssmnReportsIdentPepi.Size = new System.Drawing.Size(463, 38);
+            this.ssmnReportsIdentPepi.Text = "Rapports Identification pépinière";
+            this.ssmnReportsIdentPepi.Click += new System.EventHandler(this.ssmnReportsIdentPepi_Click);
             // 
             // photoGpsToolStripMenuItem
             // 
             this.photoGpsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.smnViewManage});
             this.photoGpsToolStripMenuItem.Name = "photoGpsToolStripMenuItem";
-            this.photoGpsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.photoGpsToolStripMenuItem.Size = new System.Drawing.Size(169, 38);
             this.photoGpsToolStripMenuItem.Text = "Photo&Groupe";
             // 
             // smnViewManage
             // 
             this.smnViewManage.Image = ((System.Drawing.Image)(resources.GetObject("smnViewManage.Image")));
             this.smnViewManage.Name = "smnViewManage";
-            this.smnViewManage.Size = new System.Drawing.Size(163, 22);
+            this.smnViewManage.Size = new System.Drawing.Size(297, 38);
             this.smnViewManage.Text = "Gestion des V&ues";
             // 
             // toolsMenu
@@ -315,14 +341,14 @@
             this.smnSynchronise});
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.toolsMenu.Size = new System.Drawing.Size(50, 20);
+            this.toolsMenu.Size = new System.Drawing.Size(89, 38);
             this.toolsMenu.Text = "Outi&ls";
             // 
             // smnUserManage
             // 
             this.smnUserManage.Image = ((System.Drawing.Image)(resources.GetObject("smnUserManage.Image")));
             this.smnUserManage.Name = "smnUserManage";
-            this.smnUserManage.Size = new System.Drawing.Size(196, 22);
+            this.smnUserManage.Size = new System.Drawing.Size(363, 38);
             this.smnUserManage.Text = "Gestion des &Utilisateurs";
             this.smnUserManage.Click += new System.EventHandler(this.smnUserManage_Click);
             // 
@@ -333,14 +359,14 @@
             this.ssmnSynchroniseGUI});
             this.smnSynchronise.Image = ((System.Drawing.Image)(resources.GetObject("smnSynchronise.Image")));
             this.smnSynchronise.Name = "smnSynchronise";
-            this.smnSynchronise.Size = new System.Drawing.Size(196, 22);
+            this.smnSynchronise.Size = new System.Drawing.Size(363, 38);
             this.smnSynchronise.Text = "Synchronisation";
             // 
             // ssmnExecute
             // 
             this.ssmnExecute.Image = ((System.Drawing.Image)(resources.GetObject("ssmnExecute.Image")));
             this.ssmnExecute.Name = "ssmnExecute";
-            this.ssmnExecute.Size = new System.Drawing.Size(264, 22);
+            this.ssmnExecute.Size = new System.Drawing.Size(497, 38);
             this.ssmnExecute.Text = "Exécuter";
             this.ssmnExecute.Click += new System.EventHandler(this.ssmnExecute_Click);
             // 
@@ -348,7 +374,7 @@
             // 
             this.ssmnSynchroniseGUI.Image = ((System.Drawing.Image)(resources.GetObject("ssmnSynchroniseGUI.Image")));
             this.ssmnSynchroniseGUI.Name = "ssmnSynchroniseGUI";
-            this.ssmnSynchroniseGUI.Size = new System.Drawing.Size(264, 22);
+            this.ssmnSynchroniseGUI.Size = new System.Drawing.Size(497, 38);
             this.ssmnSynchroniseGUI.Text = "Synchronisation Interface Utilisateur";
             this.ssmnSynchroniseGUI.Click += new System.EventHandler(this.ssmnSynchroniseGUI_Click);
             // 
@@ -360,7 +386,7 @@
             this.smnAbout});
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.helpMenu.Size = new System.Drawing.Size(43, 20);
+            this.helpMenu.Size = new System.Drawing.Size(75, 38);
             this.helpMenu.Text = "A&ide";
             // 
             // smnContent
@@ -368,20 +394,20 @@
             this.smnContent.Image = ((System.Drawing.Image)(resources.GetObject("smnContent.Image")));
             this.smnContent.Name = "smnContent";
             this.smnContent.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.smnContent.Size = new System.Drawing.Size(166, 22);
+            this.smnContent.Size = new System.Drawing.Size(299, 38);
             this.smnContent.Text = "Co&ntenu";
             this.smnContent.Click += new System.EventHandler(this.smnContent_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(296, 6);
             // 
             // smnAbout
             // 
             this.smnAbout.Image = ((System.Drawing.Image)(resources.GetObject("smnAbout.Image")));
             this.smnAbout.Name = "smnAbout";
-            this.smnAbout.Size = new System.Drawing.Size(166, 22);
+            this.smnAbout.Size = new System.Drawing.Size(299, 38);
             this.smnAbout.Text = "&A Propos ... ...";
             this.smnAbout.Click += new System.EventHandler(this.smnAbout_Click);
             // 
@@ -400,9 +426,10 @@
             this.tlbEssence,
             this.toolStripSeparator4,
             this.tlbReports});
-            this.toolStrip.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip.Location = new System.Drawing.Point(0, 46);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(778, 27);
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip.Size = new System.Drawing.Size(1556, 27);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -502,8 +529,36 @@
             this.tlbReports.Image = ((System.Drawing.Image)(resources.GetObject("tlbReports.Image")));
             this.tlbReports.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbReports.Name = "tlbReports";
-            this.tlbReports.Size = new System.Drawing.Size(36, 24);
+            this.tlbReports.Size = new System.Drawing.Size(47, 24);
             this.tlbReports.ToolTipText = "Rapports";
+            // 
+            // stlbReportsTAR
+            // 
+            this.stlbReportsTAR.Name = "stlbReportsTAR";
+            this.stlbReportsTAR.Size = new System.Drawing.Size(463, 38);
+            this.stlbReportsTAR.Text = "Rapports TAR";
+            this.stlbReportsTAR.Click += new System.EventHandler(this.stlbReportsTAR_Click);
+            // 
+            // stlbReportsPR
+            // 
+            this.stlbReportsPR.Name = "stlbReportsPR";
+            this.stlbReportsPR.Size = new System.Drawing.Size(463, 38);
+            this.stlbReportsPR.Text = "Rapports PR";
+            this.stlbReportsPR.Click += new System.EventHandler(this.stlbReportsPR_Click);
+            // 
+            // stlbReportsSuiviPepi
+            // 
+            this.stlbReportsSuiviPepi.Name = "stlbReportsSuiviPepi";
+            this.stlbReportsSuiviPepi.Size = new System.Drawing.Size(463, 38);
+            this.stlbReportsSuiviPepi.Text = "Rapports Suivi pépinière";
+            this.stlbReportsSuiviPepi.Click += new System.EventHandler(this.stlbReportsSuiviPepi_Click);
+            // 
+            // stlbReportsIdentPepi
+            // 
+            this.stlbReportsIdentPepi.Name = "stlbReportsIdentPepi";
+            this.stlbReportsIdentPepi.Size = new System.Drawing.Size(463, 38);
+            this.stlbReportsIdentPepi.Text = "Rapports Identification pépinière";
+            this.stlbReportsIdentPepi.Click += new System.EventHandler(this.stlbReportsIdentPepi_Click);
             // 
             // statusStrip
             // 
@@ -512,93 +567,58 @@
             this.lblStatus,
             this.statLabel,
             this.lblInfoForm});
-            this.statusStrip.Location = new System.Drawing.Point(0, 431);
+            this.statusStrip.Location = new System.Drawing.Point(0, 834);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(778, 22);
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1556, 37);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(39, 17);
+            this.lblStatus.Size = new System.Drawing.Size(79, 32);
             this.lblStatus.Text = "Status";
             // 
             // statLabel
             // 
             this.statLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.statLabel.Name = "statLabel";
-            this.statLabel.Size = new System.Drawing.Size(17, 17);
+            this.statLabel.Size = new System.Drawing.Size(35, 32);
             this.statLabel.Text = "--";
             // 
             // lblInfoForm
             // 
             this.lblInfoForm.ForeColor = System.Drawing.Color.Red;
             this.lblInfoForm.Name = "lblInfoForm";
-            this.lblInfoForm.Size = new System.Drawing.Size(22, 17);
+            this.lblInfoForm.Size = new System.Drawing.Size(47, 32);
             this.lblInfoForm.Text = "el1";
             this.lblInfoForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ssmnReportsPR
+            // toolStripSeparator7
             // 
-            this.ssmnReportsPR.Name = "ssmnReportsPR";
-            this.ssmnReportsPR.Size = new System.Drawing.Size(246, 22);
-            this.ssmnReportsPR.Text = "Rapports PR";
-            this.ssmnReportsPR.Click += new System.EventHandler(this.ssmnReportsPR_Click);
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(303, 6);
             // 
-            // ssmnReportsSuiviPepi
+            // btnShowMap
             // 
-            this.ssmnReportsSuiviPepi.Name = "ssmnReportsSuiviPepi";
-            this.ssmnReportsSuiviPepi.Size = new System.Drawing.Size(246, 22);
-            this.ssmnReportsSuiviPepi.Text = "Rapports Suivi pépinière";
-            this.ssmnReportsSuiviPepi.Click += new System.EventHandler(this.ssmnReportsSuiviPepi_Click);
-            // 
-            // ssmnReportsIdentPepi
-            // 
-            this.ssmnReportsIdentPepi.Name = "ssmnReportsIdentPepi";
-            this.ssmnReportsIdentPepi.Size = new System.Drawing.Size(246, 22);
-            this.ssmnReportsIdentPepi.Text = "Rapports Identification pépinière";
-            this.ssmnReportsIdentPepi.Click += new System.EventHandler(this.ssmnReportsIdentPepi_Click);
-            // 
-            // stlbReportsTAR
-            // 
-            this.stlbReportsTAR.Name = "stlbReportsTAR";
-            this.stlbReportsTAR.Size = new System.Drawing.Size(246, 22);
-            this.stlbReportsTAR.Text = "Rapports TAR";
-            this.stlbReportsTAR.Click += new System.EventHandler(this.stlbReportsTAR_Click);
-            // 
-            // stlbReportsPR
-            // 
-            this.stlbReportsPR.Name = "stlbReportsPR";
-            this.stlbReportsPR.Size = new System.Drawing.Size(246, 22);
-            this.stlbReportsPR.Text = "Rapports PR";
-            this.stlbReportsPR.Click += new System.EventHandler(this.stlbReportsPR_Click);
-            // 
-            // stlbReportsSuiviPepi
-            // 
-            this.stlbReportsSuiviPepi.Name = "stlbReportsSuiviPepi";
-            this.stlbReportsSuiviPepi.Size = new System.Drawing.Size(246, 22);
-            this.stlbReportsSuiviPepi.Text = "Rapports Suivi pépinière";
-            this.stlbReportsSuiviPepi.Click += new System.EventHandler(this.stlbReportsSuiviPepi_Click);
-            // 
-            // stlbReportsIdentPepi
-            // 
-            this.stlbReportsIdentPepi.Name = "stlbReportsIdentPepi";
-            this.stlbReportsIdentPepi.Size = new System.Drawing.Size(246, 22);
-            this.stlbReportsIdentPepi.Text = "Rapports Identification pépinière";
-            this.stlbReportsIdentPepi.Click += new System.EventHandler(this.stlbReportsIdentPepi_Click);
+            this.btnShowMap.Name = "btnShowMap";
+            this.btnShowMap.Size = new System.Drawing.Size(306, 38);
+            this.btnShowMap.Text = "Coordonnees GPS";
+            this.btnShowMap.Click += new System.EventHandler(this.btnShowMap_Click);
             // 
             // mdiMainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 453);
+            this.ClientSize = new System.Drawing.Size(1556, 871);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "mdiMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "xEntry_Desktop : Gestion des données EcoMakala";
@@ -675,6 +695,8 @@
         private System.Windows.Forms.ToolStripMenuItem stlbReportsPR;
         private System.Windows.Forms.ToolStripMenuItem stlbReportsSuiviPepi;
         private System.Windows.Forms.ToolStripMenuItem stlbReportsIdentPepi;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem btnShowMap;
     }
 }
 

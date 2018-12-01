@@ -569,6 +569,7 @@
             this.dtgvTAR.Name = "dtgvTAR";
             this.dtgvTAR.Size = new System.Drawing.Size(2800, 523);
             this.dtgvTAR.TabIndex = 0;
+            this.dtgvTAR.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvTAR_CellContentClick);
             this.dtgvTAR.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             // 
             // panel1

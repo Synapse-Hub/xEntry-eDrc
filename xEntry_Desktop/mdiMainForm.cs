@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using xEntry_Data;
 
+
 namespace xEntry_Desktop
 {
     public partial class mdiMainForm : Form
@@ -403,5 +404,17 @@ namespace xEntry_Desktop
             frm.Icon = this.Icon;
             frm.Show();
         }
+
+        private void btnShowMap_Click(object sender, EventArgs e)
+        {
+            frmLinkGeolocation frm = new frmLinkGeolocation();
+            frm.MdiParent = this;
+            frm.Icon = this.Icon;
+            frm.Show();
+        }
+
+      
+
+
     }
 }
