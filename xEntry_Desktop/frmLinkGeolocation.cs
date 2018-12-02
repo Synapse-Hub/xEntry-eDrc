@@ -17,8 +17,6 @@ namespace xEntry_Desktop
     public partial class frmLinkGeolocation : Form
     {
 
-        public string myPrValue;
-
         BindingSource _binsrc = new BindingSource();
         private clstbl_geopoint fichegeo = new clstbl_geopoint();
         private bool blnModifie = false;
