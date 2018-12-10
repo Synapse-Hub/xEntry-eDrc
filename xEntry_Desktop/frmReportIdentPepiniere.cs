@@ -41,9 +41,9 @@ namespace xEntry_Desktop
             using (IDbCommand cmd = conn.CreateCommand())
             {
                 cmd.CommandText = query;
-                IDbDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
+                SqlDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
                 DataSet dataset = new DataSet();
-                adapter.Fill(dataset);
+                adapter.Fill(dataset, "lstTable");
 
                 switch (cboIndex)
                 {

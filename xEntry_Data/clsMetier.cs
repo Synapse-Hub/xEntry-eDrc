@@ -2791,9 +2791,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format(@"SELECT DISTINCT planches_repiquage_essence AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi
+                    cmd.CommandText = string.Format(@"SELECT DISTINCT planches_repiquage_essence AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi WHERE planches_repiquage_essence is not null
                     UNION
-                    SELECT DISTINCT plantules_encore_repiques AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi ");
+                    SELECT DISTINCT planches_repiquage_essence_autre AS planches_repiquage  FROM tbl_plant_repiq_fiche_suivi_pepi WHERE planches_repiquage_essence_autre is not null");
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using xEntry_Data;
-using System.Windows.Forms;
-using GMap.NET;
+﻿using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using System;
+using System.Data;
+using System.Windows.Forms;
+using xEntry_Data;
 
 namespace xEntry_Desktop
 {
@@ -117,8 +112,6 @@ namespace xEntry_Desktop
                 bdSave.Enabled = false;
                 bdDelete.Enabled = false;
             }
-
-
         }
 
 
@@ -131,7 +124,6 @@ namespace xEntry_Desktop
 
         private void BindingCls()
         {
-
             SetBindingControls(txtDescription, "Text", fichegeo, "uuid");
             SetBindingControls(txtLatitude, "Text", fichegeo, "latitude");
             SetBindingControls(txtLongitude, "Text", fichegeo, "longitude");

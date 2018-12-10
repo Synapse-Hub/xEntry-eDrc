@@ -22,3 +22,13 @@ D:\DOC\GitHub\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
 \\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
+D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
+D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb

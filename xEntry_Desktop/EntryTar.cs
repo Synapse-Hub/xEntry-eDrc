@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Windows.Forms;
-using Microsoft.Office.Interop;
-using xEntry_Data;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
+using System.Windows.Forms;
+using xEntry_Data;
 
 namespace xEntry_Desktop
 {

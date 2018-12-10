@@ -24,7 +24,7 @@ namespace xEntry_Desktop
                     if (rdLstPlanteur.Checked)
                     {
                         //par saison et par bailleur de fonds
-                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + '' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
+                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + ' ' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
                         tbl_fiche_pr.superficie as 'Hectares réalisé',tbl_fiche_pr.saison as 'Saison',tbl_fiche_pr.essence_principale as 'Essence principale',tbl_fiche_pr.essence_principale_autre as 'Autre essence',tbl_fiche_pr.ecartement_dim_1 as 'Ecartement 1',
                         tbl_fiche_pr.ecartement_dim_2 as 'Ecartement2',tbl_fiche_pr.regarnissage as 'Regarnissage',tbl_fiche_pr.entretien as 'Entretien',tbl_fiche_pr.etat as 'Etat plantation',tbl_fiche_pr.croissance_arbres as 'Croissance arbre',
                         tbl_fiche_pr.localisation as 'Coordonnées géographiques',tbl_fiche_pr.bailleur as 'Bailleur'
@@ -34,7 +34,7 @@ namespace xEntry_Desktop
                     else if (rdLstEssence.Checked)
                     {
                         //par saison et par association
-                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + '' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
+                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + ' ' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
                         tbl_fiche_pr.superficie as 'Hectares réalisé',tbl_fiche_pr.saison as 'Saison',tbl_fiche_pr.essence_principale as 'Essence principale',tbl_fiche_pr.essence_principale_autre as 'Autre essence',tbl_fiche_pr.ecartement_dim_1 as 'Ecartement 1',
                         tbl_fiche_pr.ecartement_dim_2 as 'Ecartement2',tbl_fiche_pr.regarnissage as 'Regarnissage',tbl_fiche_pr.entretien as 'Entretien',tbl_fiche_pr.etat as 'Etat plantation',tbl_fiche_pr.croissance_arbres as 'Croissance arbre',
                         tbl_fiche_pr.localisation as 'Coordonnées géographiques',tbl_fiche_pr.bailleur as 'Bailleur' 
@@ -44,12 +44,15 @@ namespace xEntry_Desktop
                     else if (rdLstPlantation.Checked)
                     {
                         //par nombre visites et par agent
-                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + '' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',tbl_fiche_pr.n_plantation as 'Nombre plantation',
+                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + ' ' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',tbl_fiche_pr.n_plantation as 'Nombre plantation',
                         tbl_fiche_pr.superficie as 'Hectares réalisé',tbl_fiche_pr.saison as 'Saison',tbl_fiche_pr.essence_principale as 'Essence principale',tbl_fiche_pr.ecartement_dim_1 as 'Ecartement 1',
                         tbl_fiche_pr.ecartement_dim_2 as 'Ecartement2',tbl_fiche_pr.regarnissage as 'Regarnissage',tbl_fiche_pr.entretien as 'Entretien',tbl_fiche_pr.etat as 'Etat plantation',tbl_fiche_pr.croissance_arbres as 'Croissance arbre',
-                        tbl_fiche_pr.localisation as 'Coordonnées géographiques', (select n_visite as n_visite from tbl_fiche_pr union select n_visite_2 as n_visite from tbl_fiche_pr union select n_viste_3 as n_visite from tbl_fiche_pr) as n_visite, tbl_fiche_pr.nom_agent as 'Agent' 
-                        from tbl_fiche_pr 
-                        where (tbl_fiche_pr.n_visite='{0}' or tbl_fiche_pr.n_visite_2='{1}' or tbl_fiche_pr.n_viste_3='{2}') and tbl_fiche_pr.nom_agent='{3}'", cboNbrVisite.SelectedValue, cboNbrVisite.SelectedValue, cboNbrVisite.SelectedValue, cboAgent.SelectedValue);
+                        tbl_fiche_pr.localisation as 'Coordonnées géographiques',tbl_fiche_pr.n_visite as 'Visites1',tbl_fiche_pr.n_visite_2 as 'Visites2',tbl_fiche_pr.n_viste_3 as 'Visites3', tbl_fiche_pr.nom_agent as 'Agent',
+                        SUM(CONVERT(int,tbl_fiche_pr.n_visite) + CONVERT(int,tbl_fiche_pr.n_visite_2) + CONVERT(int,tbl_fiche_pr.n_viste_3)) as somme_n_visite, tbl_fiche_pr.nom_agent as 'Nom agent' 
+                        from tbl_fiche_pr where (tbl_fiche_pr.n_visite='{0}' or tbl_fiche_pr.n_visite_2='{1}' or tbl_fiche_pr.n_viste_3='{2}') and tbl_fiche_pr.nom_agent='{3}'
+                        group by tbl_fiche_pr.uuid,tbl_fiche_pr.nom,tbl_fiche_pr.post_nom,tbl_fiche_pr.prenom,tbl_fiche_pr.association,tbl_fiche_pr.n_plantation,tbl_fiche_pr.superficie,tbl_fiche_pr.saison,tbl_fiche_pr.essence_principale,
+                        tbl_fiche_pr.ecartement_dim_1,tbl_fiche_pr.ecartement_dim_2,tbl_fiche_pr.regarnissage,tbl_fiche_pr.entretien,tbl_fiche_pr.etat,tbl_fiche_pr.croissance_arbres,tbl_fiche_pr.localisation,tbl_fiche_pr.nom_agent,tbl_fiche_pr.n_visite,
+                        tbl_fiche_pr.n_visite_2,tbl_fiche_pr.n_viste_3", cboNbrVisite.SelectedValue, cboNbrVisite.SelectedValue, cboNbrVisite.SelectedValue, cboAgent.SelectedValue);
                     }
 
                     break;
@@ -57,7 +60,7 @@ namespace xEntry_Desktop
                     if (rdLstPlanteur.Checked)
                     {
                         //par association et par bailleur de fonds
-                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + '' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
+                        query = string.Format(@"select tbl_fiche_pr.uuid as 'Identifiant unique',ISNULL(tbl_fiche_pr.nom,'') + ' ' + ISNULL(tbl_fiche_pr.post_nom,'') + ' ' + ISNULL(tbl_fiche_pr.prenom,'') AS 'Noms planteur',tbl_fiche_pr.association as 'Association',
                         tbl_fiche_pr.superficie as 'Hectares réalisé',tbl_fiche_pr.saison as 'Saison',tbl_fiche_pr.essence_principale as 'Essence principale',tbl_fiche_pr.essence_principale_autre as 'Autre essence',tbl_fiche_pr.ecartement_dim_1 as 'Ecartement 1',
                         tbl_fiche_pr.ecartement_dim_2 as 'Ecartement2',tbl_fiche_pr.regarnissage as 'Regarnissage',tbl_fiche_pr.entretien as 'Entretien',tbl_fiche_pr.etat as 'Etat plantation',tbl_fiche_pr.croissance_arbres as 'Croissance arbre',
                         tbl_fiche_pr.localisation as 'Coordonnées géographiques',tbl_fiche_pr.bailleur as 'Bailleur'
@@ -80,9 +83,9 @@ namespace xEntry_Desktop
             using (IDbCommand cmd = conn.CreateCommand())
             {
                 cmd.CommandText = query;
-                IDbDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
+                SqlDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
                 DataSet dataset = new DataSet();
-                adapter.Fill(dataset);
+                adapter.Fill(dataset, "lstTable");
 
                 switch (cboIndex)
                 {

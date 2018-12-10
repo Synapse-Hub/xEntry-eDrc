@@ -45,7 +45,7 @@ namespace xEntry_Desktop
                     inner join tbl_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_fiche_suivi_pepi.uuid
                     inner join tbl_germoir_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_germoir_fiche_suivi_pepi.uuid
                     inner join tbl_plant_repiq_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_plant_repiq_fiche_suivi_pepi.uuid
-                    where tbl_germoir_fiche_suivi_pepi.provenance='{0}'", cboLieuProvenance.SelectedValue);
+                    where tbl_germoir_fiche_suivi_pepi.provenance='{0}' and tbl_germoir_fiche_suivi_pepi.qte_semee={1}", cboLieuProvenance.SelectedValue, Convert.ToInt16(cboQteSemee.SelectedValue));
                     break;
                 case 2:
                     //Liste des pépinières par Qte semée et par planche repiquage
@@ -59,7 +59,7 @@ namespace xEntry_Desktop
                     inner join tbl_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_fiche_suivi_pepi.uuid
                     inner join tbl_germoir_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_germoir_fiche_suivi_pepi.uuid
                     inner join tbl_plant_repiq_fiche_suivi_pepi on tbl_fiche_ident_pepi.uuid=tbl_plant_repiq_fiche_suivi_pepi.uuid
-                    where tbl_plant_repiq_fiche_suivi_pepi.planches_repiquage_essence='{0}' or tbl_plant_repiq_fiche_suivi_pepi.planches_repiquage_essence_autre='{1}'", cboPlancheRepiquage.SelectedValue, cboPlancheRepiquage.SelectedValue);
+                    where (tbl_plant_repiq_fiche_suivi_pepi.planches_repiquage_essence='{0}' or tbl_plant_repiq_fiche_suivi_pepi.planches_repiquage_essence_autre='{1}')  and tbl_germoir_fiche_suivi_pepi.qte_semee={2}", cboPlancheRepiquage.SelectedValue, cboPlancheRepiquage.SelectedValue, Convert.ToInt16(cboQteSemee.SelectedValue));
                     break;
             }
             return query;
@@ -75,9 +75,9 @@ namespace xEntry_Desktop
             using (IDbCommand cmd = conn.CreateCommand())
             {
                 cmd.CommandText = query;
-                IDbDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
+                SqlDataAdapter adapter = new SqlDataAdapter((SqlCommand)cmd);
                 DataSet dataset = new DataSet();
-                adapter.Fill(dataset);
+                adapter.Fill(dataset, "lstTable");
 
                 switch (cboIndex)
                 {
@@ -99,9 +99,9 @@ namespace xEntry_Desktop
                         break;
                     case 2:
                         //Liste des pépinières par Qte semée et par planche repiquage
-                        Rapports.LstSuiviPepiQteSemee_PlancheRepiq rpt3 = new Rapports.LstSuiviPepiQteSemee_PlancheRepiq();
-                        rpt3.SetDataSource(dataset.Tables["lstTable"]);
-                        crvReport.ReportSource = rpt3;
+                        Rapports.LstSuiviPepiQteSemee_PlancheRepiq rpt2 = new Rapports.LstSuiviPepiQteSemee_PlancheRepiq();
+                        rpt2.SetDataSource(dataset.Tables["lstTable"]);
+                        crvReport.ReportSource = rpt2;
                         crvReport.Refresh();
                         dataset.Dispose();
                         break;
@@ -144,7 +144,7 @@ namespace xEntry_Desktop
                 cboSaison.DataSource = clsMetier.GetInstance().getAllClstbl_saison();
                 this.setMembersallcbo(cboSaison, "Saison", "Saison");
                 cboAgent.DataSource = clsMetier.GetInstance().getAllClstbl_agent();
-                this.setMembersallcbo(cboAgent, "Agent", "Id_agent");
+                this.setMembersallcbo(cboAgent, "Agent", "Agent");
                 cboQteSemee.DataSource = clsMetier.GetInstance().getAllClstbl_Qte_Semee_germoir_fiche_suivi_pepi();
                 this.setMembersallcbo(cboQteSemee, "qte_semee", "qte_semee");
                 cboLieuProvenance.DataSource = clsMetier.GetInstance().getAllClstbl_Lieu_Provenance_germoir_fiche_suivi_pepi();
@@ -195,11 +195,6 @@ namespace xEntry_Desktop
                     cboQteSemee.Enabled = true;
                     break;
             }
-        }
-
-        private void crvReport_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
