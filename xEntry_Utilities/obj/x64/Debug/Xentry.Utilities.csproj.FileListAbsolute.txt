@@ -1,0 +1,7 @@
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\x64\Debug\Xentry.Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\x64\Debug\Xentry.Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\x64\Debug\Xentry.Utilities.dll.CodeAnalysisLog.xml
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\x64\Debug\Xentry.Utilities.dll.lastcodeanalysissucceeded
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\x64\Debug\Xentry.Utilities.csprojResolveAssemblyReference.cache
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\x64\Debug\Xentry.Utilities.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\x64\Debug\Xentry.Utilities.pdb

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace xEntry_Desktop.Properties {
+namespace Xentry.Desktop.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace xEntry_Desktop.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("xEntry_Desktop.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Xentry.Desktop.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,16 @@ namespace xEntry_Desktop.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ajouter_vert_plus_icone_6579 {
+            get {
+                object obj = ResourceManager.GetObject("ajouter-vert-plus-icone-6579", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

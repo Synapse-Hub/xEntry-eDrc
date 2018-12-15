@@ -84,17 +84,5 @@ D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilitie
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.config
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.pdb
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\GMap.NET.Core.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\GMap.NET.WindowsForms.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\ManageConnexion.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\ManageUtilities.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\MySql.Data.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\Npgsql.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Utilities.pdb
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.csprojResolveAssemblyReference.cache
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Data\obj\Debug\xEntry_Data.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.CodeAnalysisLog.xml
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Data\bin\Debug\xEntry_Data.dll.lastcodeanalysissucceeded

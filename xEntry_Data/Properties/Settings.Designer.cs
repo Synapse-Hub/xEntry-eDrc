@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace xEntry_Data.Properties {
+namespace Xentry.Data.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -33,6 +33,54 @@ namespace xEntry_Data.Properties {
             }
             set {
                 this["strChaineConnexion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xEntry")]
+        public string MasterDirectory {
+            get {
+                return ((string)(this["MasterDirectory"]));
+            }
+            set {
+                this["MasterDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Log")]
+        public string DirectoryUtilLog {
+            get {
+                return ((string)(this["DirectoryUtilLog"]));
+            }
+            set {
+                this["DirectoryUtilLog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ConnectionString")]
+        public string DirectoryUtilConn {
+            get {
+                return ((string)(this["DirectoryUtilConn"]));
+            }
+            set {
+                this["DirectoryUtilConn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("UserSQLSever.txt")]
+        public string FileSQLServer {
+            get {
+                return ((string)(this["FileSQLServer"]));
+            }
+            set {
+                this["FileSQLServer"] = value;
             }
         }
     }

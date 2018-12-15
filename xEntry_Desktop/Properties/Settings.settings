@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Xentry.Desktop.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StringUserConnectedNameMDI" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="StringLogFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MasterDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xEntry</Value>
+    </Setting>
+    <Setting Name="DirectoryUtilLog" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Log</Value>
+    </Setting>
+    <Setting Name="DirectoryUtilConn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ConnectionString</Value>
+    </Setting>
+    <Setting Name="FileSQLServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UserSQLSever.txt</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

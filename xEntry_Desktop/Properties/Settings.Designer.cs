@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace xEntry_Desktop.Properties {
+namespace Xentry.Desktop.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,6 +20,83 @@ namespace xEntry_Desktop.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StringUserConnectedNameMDI {
+            get {
+                return ((string)(this["StringUserConnectedNameMDI"]));
+            }
+            set {
+                this["StringUserConnectedNameMDI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StringLogFile {
+            get {
+                return ((string)(this["StringLogFile"]));
+            }
+            set {
+                this["StringLogFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("xEntry")]
+        //Repertoire parent pour tous les fichiers de configuration | Celui correspondant au projet
+        public string MasterDirectory {
+            get {
+                return ((string)(this["MasterDirectory"]));
+            }
+            set {
+                this["MasterDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Log")]
+        //Repertoire principal pour tous les fichiers de Log
+        public string DirectoryUtilLog {
+            get {
+                return ((string)(this["DirectoryUtilLog"]));
+            }
+            set {
+                this["DirectoryUtilLog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ConnectionString")]
+
+        //Nom du repertoire qui contiendra la chaine de connexion a la BD
+        public string DirectoryUtilConn {
+            get {
+                return ((string)(this["DirectoryUtilConn"]));
+            }
+            set {
+                this["DirectoryUtilConn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("UserSQLSever.txt")]
+        //Nom du fichier qui contiendra la chaine de connexion connexion a la BD SQLServer
+        public string FileSQLServer {
+            get {
+                return ((string)(this["FileSQLServer"]));
+            }
+            set {
+                this["FileSQLServer"] = value;
             }
         }
     }

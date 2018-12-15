@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace xEntry_Utilities
+namespace Xentry.Utilities
 {
     public class clsDoTraitement
     {

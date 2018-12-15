@@ -1,0 +1,14 @@
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\bin\Debug\Xentry.Resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\bin\Debug\Xentry.Resources.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\bin\Debug\en-US\Xentry.Resources.resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\bin\Debug\fr-FR\Xentry.Resources.resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.Properties.Resources.resources
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.resources
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.en-US.resources
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.fr-FR.resources
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.csproj.GenerateResource.Cache
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\en-US\Xentry.Resources.resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\fr-FR\Xentry.Resources.resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.dll
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.csprojResolveAssemblyReference.cache

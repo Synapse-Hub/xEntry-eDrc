@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace xEntry_Desktop.Rapports {
+namespace Xentry.Desktop.Rapports {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace xEntry_Desktop.Rapports {
         
         public override string FullResourceName {
             get {
-                return "xEntry_Desktop.Rapports.LstIdentPepiniere.rpt";
+                return "Xentry.Desktop.Rapports.LstIdentPepiniere.rpt";
             }
             set {
                 // Do nothing
@@ -143,7 +143,8 @@ namespace xEntry_Desktop.Rapports {
                 // 
             }
         }
-        
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
             LstIdentPepiniere rpt = new LstIdentPepiniere();
             rpt.Site = this.Site;

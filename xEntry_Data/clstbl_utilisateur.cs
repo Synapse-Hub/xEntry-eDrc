@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace xEntry_Data
+namespace Xentry.Data
 {
     public class clstbl_utilisateur : clstbl_agent
     {
@@ -27,20 +27,16 @@ namespace xEntry_Data
         {
             return clsMetier.GetInstance().insertClstbl_utilisateur(this);
         }
-        public int update(clstbl_utilisateur varscls)
+        public new int update(DataRowView varscls)
         {
             return clsMetier.GetInstance().updateClstbl_utilisateur(varscls);
         }
 
-        public int delete(clstbl_utilisateur varscls)
+        public new int delete(DataRowView varscls)
         {
             return clsMetier.GetInstance().deleteClstbl_utilisateur(varscls);
         }
 
-        public int delete()
-        {
-            return clsMetier.GetInstance().deleteClstbl_utilisateur(this);
-        }
         //***Le constructeur par defaut***
         public clstbl_utilisateur()
         {

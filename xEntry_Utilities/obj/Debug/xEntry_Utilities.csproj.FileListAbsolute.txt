@@ -26,9 +26,6 @@ D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Uti
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll.CodeAnalysisLog.xml
+D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll.lastcodeanalysissucceeded
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\bin\Debug\xEntry_Utilities.pdb
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.csprojResolveAssemblyReference.cache
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.dll
-D:\DOC\GitHub\SYNAPSHUB_XEntry - CopieBCK\xEntry-eDrc\xEntry_Utilities\obj\Debug\xEntry_Utilities.pdb

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace xEntry_Data
+namespace Xentry.Data
 {
     public class clsConnexion : INotifyPropertyChanged, IDataErrorInfo
     {

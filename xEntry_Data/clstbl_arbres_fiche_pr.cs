@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace xEntry_Data
+namespace Xentry.Data
 {
     public class clstbl_arbres_fiche_pr
     {

@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{603633AE-3FB3-42AD-9EFC-9446779BCFCC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xentry.Desktop</RootNamespace>
+    <AssemblyName>Xentry.Desktop</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ApplicationIcon>2422.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>8d769d9a</NuGetPackageImportStamp>
+    <PublishUrl>\\Josam\shared_doc\TestProject\xEntry\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en-US</TargetCulture>
+    <ProductName>xEntry Application</ProductName>
+    <PublisherName>SynapsHub</PublisherName>
+    <SuiteName>xEntry</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>xEntry.html</WebPage>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>40A17CD51D4DBB61A82EB0961041F4E4C6A6E05D</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>xEntry_Desktop_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>XEntryDesktopKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Xentry.Desktop.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="GMap.NET.Core">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.5\lib\net40\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms">
+      <HintPath>..\packages\GMap.NET.WindowsForms.1.7.5\lib\net40\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="ManageUtilities, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\CODES\ProjetUltraManage\ManageUtilities\bin\Release\ManageUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Excel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\stdole.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormEntryTar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEntryTar.Designer.cs">
+      <DependentUpon>FormEntryTar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formflash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formflash.Designer.cs">
+      <DependentUpon>Formflash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIdentificationPepiniere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIdentificationPepiniere.Designer.cs">
+      <DependentUpon>FormIdentificationPepiniere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLinkGeolocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLinkGeolocation.Designer.cs">
+      <DependentUpon>FormLinkGeolocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNursery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNursery.Designer.cs">
+      <DependentUpon>FormNursery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportPr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportPr.Designer.cs">
+      <DependentUpon>FormReportPr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportSuiviPepiniere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportSuiviPepiniere.Designer.cs">
+      <DependentUpon>FormReportSuiviPepiniere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportIdentPepiniere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportIdentPepiniere.Designer.cs">
+      <DependentUpon>FormReportIdentPepiniere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportTar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportTar.Designer.cs">
+      <DependentUpon>FormReportTar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConn.Designer.cs">
+      <DependentUpon>FormConn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MdiMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiMainForm.Designer.cs">
+      <DependentUpon>MdiMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPlantationrealise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPlantationrealise.Designer.cs">
+      <DependentUpon>FormPlantationrealise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormUtilisateur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtilisateur.Designer.cs">
+      <DependentUpon>FormUtilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rapports\LstEssencePlanteSaisonAssoc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstEssencePlanteSaisonAssoc.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstIdentPepiniere.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstIdentPepiniere.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlantationPrNbrVisiteAgent1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlantationPrNbrVisiteAgent.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlanteurPrAssocBailleur1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlanteurPrAssocBailleur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlanteurPrSaisonBailleur1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlanteurPrSaisonBailleur.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstPlanteurTarSaisonTerritoire1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstPlanteurTarSaisonTerritoire.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepiQteSemeePlancheRepiq.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepiQteSemeePlancheRepiq.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepiAgentSaison.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepiAgentSaison.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Rapports\LstSuiviPepiQteSemeProvenance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LstSuiviPepiQteSemeProvenance.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XentryDesktopCustomException.cs" />
+    <EmbeddedResource Include="FormEntryTar.resx">
+      <DependentUpon>FormEntryTar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formflash.resx">
+      <DependentUpon>Formflash.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIdentificationPepiniere.resx">
+      <DependentUpon>FormIdentificationPepiniere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLinkGeolocation.resx">
+      <DependentUpon>FormLinkGeolocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNursery.resx">
+      <DependentUpon>FormNursery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportPr.resx">
+      <DependentUpon>FormReportPr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportSuiviPepiniere.resx">
+      <DependentUpon>FormReportSuiviPepiniere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportIdentPepiniere.resx">
+      <DependentUpon>FormReportIdentPepiniere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportTar.resx">
+      <DependentUpon>FormReportTar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConn.resx">
+      <DependentUpon>FormConn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MdiMainForm.resx">
+      <DependentUpon>MdiMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPlantationrealise.resx">
+      <DependentUpon>FormPlantationrealise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="FormUtilisateur.resx">
+      <DependentUpon>FormUtilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstEssencePlanteSaisonAssoc.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstEssencePlanteSaisonAssoc.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstIdentPepiniere.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstIdentPepiniere.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlantationPrNbrVisiteAgent.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlantationPrNbrVisiteAgent1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlanteurPrAssocBailleur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlanteurPrAssocBailleur1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlanteurPrSaisonBailleur.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlanteurPrSaisonBailleur1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstPlanteurTarSaisonTerritoire.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstPlanteurTarSaisonTerritoire1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepiQteSemeePlancheRepiq.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepiQteSemeePlancheRepiq.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepiAgentSaison.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepiAgentSaison.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rapports\LstSuiviPepiQteSemeProvenance.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LstSuiviPepiQteSemeProvenance.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="XEntryDesktopKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="2422.ico" />
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <None Include="img\ico\ajouter-vert-plus-icone-6579.ico" />
+    <Content Include="img\Logo_WWF.jpg" />
+    <None Include="img\delete4.png" />
+    <None Include="img\delete3.png" />
+    <None Include="img\delete2.png" />
+    <None Include="img\delete1.png" />
+    <None Include="img\DeleteImage.png" />
+    <None Include="img\delete.png" />
+    <None Include="img\Synchronise1.png" />
+    <None Include="img\Refresh.png" />
+    <None Include="img\Update.PNG" />
+    <None Include="img\disk.png" />
+    <None Include="Resources\img_home_player_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.ReportViewer.12.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Report Viewer 2014 Runtime</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x64">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SQLSysClrTypes.12.0.x86">
+      <Visible>False</Visible>
+      <ProductName>Microsoft® System CLR Types for SQL Server® 2014 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="SAP.CrystalReports14.NET.2.0">
+      <Visible>False</Visible>
+      <ProductName>SAP Crystal Reports Runtime Engine for .NET Framework</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xentry.Resources\Xentry.Resources.csproj">
+      <Project>{74df11a0-9906-46b5-a213-91ad039b3859}</Project>
+      <Name>Xentry.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xEntry_Data\Xentry.Data.csproj">
+      <Project>{c9e7fd33-ac1f-40b3-b8ca-ea70f467b4c9}</Project>
+      <Name>Xentry.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xEntry_Utilities\Xentry.Utilities.csproj">
+      <Project>{75515ee3-83dc-4d3c-a8ea-6148c02ee767}</Project>
+      <Name>Xentry.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

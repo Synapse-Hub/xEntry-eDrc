@@ -1,9 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="xEntry_Data.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Xentry.Data.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="strChaineConnexion" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=Serveur;Persist Security Info=True; Initial Catalog=xEntryGlobalDb;User ID=user; Password=password</Value>
+    </Setting>
+    <Setting Name="MasterDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xEntry</Value>
+    </Setting>
+    <Setting Name="DirectoryUtilLog" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Log</Value>
+    </Setting>
+    <Setting Name="DirectoryUtilConn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ConnectionString</Value>
+    </Setting>
+    <Setting Name="FileSQLServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UserSQLSever.txt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

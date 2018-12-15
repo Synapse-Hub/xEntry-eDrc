@@ -4,14 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using xEntry_Utilities;
+using Xentry.Utilities;
 
 
-namespace xEntry_Data
+namespace Xentry.Data
 {
-    public class clsMetier
+    public class clsMetier : IDisposable
     {
-        const string DirectoryUtilLog = "Log"; //***Les variables globales***
+        //***Les variables globales***
         private static string _ConnectionString, _host, _db, _user, _pwd;
         private static clsMetier Fact;
         private SqlConnection conn;
@@ -24,7 +24,7 @@ namespace xEntry_Data
                 Fact = new clsMetier();
             return Fact;
         }
-        private object getParameter(IDbCommand cmd, string name, DbType type, int size, object value)
+        public object getParameter(IDbCommand cmd, string name, DbType type, int size, object value)
         {
             IDbDataParameter param = cmd.CreateParameter();
             param.Size = size;
@@ -64,7 +64,7 @@ namespace xEntry_Data
             }
 
             //On garde la chaine de connexion pour utilisation avec les reports
-            xEntry_Data.Properties.Settings.Default.strChaineConnexion = sch;
+            Properties.Settings.Default.strChaineConnexion = sch;
             conn = new SqlConnection(sch);
         }
         public void Initialize(string host, string db, string user, string pwd)
@@ -92,9 +92,9 @@ namespace xEntry_Data
             {
                 bl = false;
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Etat de la connexion à la BD sans paramètre : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Etat de la connexion à la BD sans paramètre : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return bl;
         }
@@ -117,9 +117,9 @@ namespace xEntry_Data
                 sch = string.Format("server={0}; database={1};id user={2}; pwd={3}", _host, _db, _user, _pwd);
                 bl = false;
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Etat connexion à la BD avec paramètre : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Etat connexion à la BD avec paramètre : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return bl;
         }
@@ -151,9 +151,8 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Récupération de toutes les bases de Données SQLServer : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Récupération de toutes les bases de Données SQLServer : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return lst;
         }
@@ -180,9 +179,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Récupération de toutes les bases de Données SQLServer : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Récupération de toutes les bases de Données SQLServer : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return bd;
         }
@@ -196,12 +195,13 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_menage WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_fiche_menage WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
                         {
-
                             if (!dr["id"].ToString().Trim().Equals("")) varclstbl_fiche_menage.Id = int.Parse(dr["id"].ToString());
                             varclstbl_fiche_menage.Uuid = dr["uuid"].ToString();
                             varclstbl_fiche_menage.Deviceid = dr["deviceid"].ToString();
@@ -229,9 +229,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_fiche_menage;
         }
@@ -244,23 +244,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_fiche_menage  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   questionnaire_id LIKE '%" + criteria + "%'";
-                    sql += "  OR   name LIKE '%" + criteria + "%'";
-                    sql += "  OR   id_menage LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom_menage LIKE '%" + criteria + "%'";
-                    sql += "  OR   deuxio_representant LIKE '%" + criteria + "%'";
-                    sql += "  OR   village_menage LIKE '%" + criteria + "%'";
-                    sql += "  OR   province LIKE '%" + criteria + "%'";
-                    sql += "  OR   groupement LIKE '%" + criteria + "%'";
-                    sql += "  OR   territoire LIKE '%" + criteria + "%'";
-                    sql += "  OR   zs LIKE '%" + criteria + "%'";
-                    sql += "  OR   camps LIKE '%" + criteria + "%'";
-                    sql += "  OR   localisation LIKE '%" + criteria + "%'";
-                    sql += "  OR   rpt_gps LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_fiche_menage_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_menage.Load(dr);
@@ -271,9 +258,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_menage;
         }
@@ -297,9 +284,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_menage;
         }
@@ -353,9 +340,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -395,9 +382,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -419,9 +406,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -436,7 +423,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_localisation_poly WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_localisation_poly WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -454,9 +443,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_localisation_poly;
         }
@@ -469,11 +458,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_localisation_poly  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   name_point LIKE '%" + criteria + "%'";
-                    sql += "  OR   localisation_poly LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_localisation_poly_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_localisation_poly.Load(dr);
@@ -484,9 +472,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_localisation_poly;
         }
@@ -510,9 +498,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_localisation_poly;
         }
@@ -539,9 +527,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -566,9 +554,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -590,9 +578,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_localisation_poly' avec la classe 'clstbl_localisation_poly' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -607,7 +595,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_pr WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_fiche_pr WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -727,9 +717,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_fiche_pr;
         }
@@ -742,86 +732,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_fiche_pr  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom_agent LIKE '%" + criteria + "%'";
-                    sql += "  OR   saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   association LIKE '%" + criteria + "%'";
-                    sql += "  OR   association_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_visite LIKE '%" + criteria + "%'";
-                    sql += "  OR   contreverification LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_plantation LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_bloc LIKE '%" + criteria + "%'";
-                    sql += "  OR   noms_planteur LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom LIKE '%" + criteria + "%'";
-                    sql += "  OR   post_nom LIKE '%" + criteria + "%'";
-                    sql += "  OR   prenom LIKE '%" + criteria + "%'";
-                    sql += "  OR   sexes LIKE '%" + criteria + "%'";
-                    sql += "  OR   planteur_present LIKE '%" + criteria + "%'";
-                    sql += "  OR   changement_surface LIKE '%" + criteria + "%'";
-                    sql += "  OR   titre_trace_gps LIKE '%" + criteria + "%'";
-                    sql += "  OR   periode_debut LIKE '%" + criteria + "%'";
-                    sql += "  OR   preiode_debut_annee LIKE '%" + criteria + "%'";
-                    sql += "  OR   periode_fin LIKE '%" + criteria + "%'";
-                    sql += "  OR   period_fin_annee LIKE '%" + criteria + "%'";
-                    sql += "  OR   essence_principale LIKE '%" + criteria + "%'";
-                    sql += "  OR   essence_principale_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   melanges LIKE '%" + criteria + "%'";
-                    sql += "  OR   rpt_b LIKE '%" + criteria + "%'";
-                    sql += "  OR   encartement_type LIKE '%" + criteria + "%'";
-                    sql += "  OR   ecartement_dim_1 LIKE '%" + criteria + "%'";
-                    sql += "  OR   ecartement_dim_2 LIKE '%" + criteria + "%'";
-                    sql += "  OR   alignement LIKE '%" + criteria + "%'";
-                    sql += "  OR   causes LIKE '%" + criteria + "%'";
-                    sql += "  OR   piquets LIKE '%" + criteria + "%'";
-                    sql += "  OR   pourcentage_insuffisants LIKE '%" + criteria + "%'";
-                    sql += "  OR   eucalyptus_deau LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_degats LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_vaches LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_chevres LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_rats LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_termites LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_elephants LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_cultures_vivrieres LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_erosion LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_eboulement LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_feu LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_secheresse LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_hommes LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_plante_avec_sachets LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_plante_trop_tard LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_guerren LIKE '%" + criteria + "%'";
-                    sql += "  OR   regarnissage LIKE '%" + criteria + "%'";
-                    sql += "  OR   regarnissage_suffisant LIKE '%" + criteria + "%'";
-                    sql += "  OR   entretien LIKE '%" + criteria + "%'";
-                    sql += "  OR   etat LIKE '%" + criteria + "%'";
-                    sql += "  OR   cultures_vivrieres LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_cultures_vivieres LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_cultures_vivieres_autr LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_haricots LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_manioc LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_soja LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_sorgho LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_arachides LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_patates_douces LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_mais LIKE '%" + criteria + "%'";
-                    sql += "  OR   n_autres LIKE '%" + criteria + "%'";
-                    sql += "  OR   canopee_fermee LIKE '%" + criteria + "%'";
-                    sql += "  OR   croissance_arbres LIKE '%" + criteria + "%'";
-                    sql += "  OR   arbres_existants LIKE '%" + criteria + "%'";
-                    sql += "  OR   rpt_c LIKE '%" + criteria + "%'";
-                    sql += "  OR   emplacement LIKE '%" + criteria + "%'";
-                    sql += "  OR   photo_2 LIKE '%" + criteria + "%'";
-                    sql += "  OR   emplacement_2 LIKE '%" + criteria + "%'";
-                    sql += "  OR   localisation LIKE '%" + criteria + "%'";
-                    sql += "  OR   commentaire_wwf LIKE '%" + criteria + "%'";
-                    sql += "  OR   commentaire_planteur LIKE '%" + criteria + "%'";
-                    sql += "  OR   commentaire_association LIKE '%" + criteria + "%'";
-                    sql += "  OR   eucalyptus_deau_non LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_fiche_pr_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_pr.Load(dr);
@@ -832,9 +746,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_pr;
         }
@@ -858,9 +772,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_pr;
         }
@@ -888,9 +802,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_pr;
         }
@@ -1119,9 +1033,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1248,9 +1162,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1272,9 +1186,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_pr' avec la classe 'clstbl_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1289,7 +1203,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_autre_essence_mel_fiche_pr WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_autre_essence_mel_fiche_pr WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -1310,9 +1226,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_autre_essence_mel_fiche_pr;
         }
@@ -1325,11 +1241,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_autre_essence_mel_fiche_pr  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_essence LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_essence_autre LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_autre_essence_mel_fiche_pr_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_autre_essence_mel_fiche_pr.Load(dr);
@@ -1340,9 +1255,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_autre_essence_mel_fiche_pr;
         }
@@ -1366,9 +1281,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_autre_essence_mel_fiche_pr;
         }
@@ -1400,9 +1315,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1430,9 +1345,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1454,9 +1369,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_autre_essence_mel_fiche_pr' avec la classe 'clstbl_autre_essence_mel_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1471,7 +1386,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_arbres_fiche_pr WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_arbres_fiche_pr WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -1493,9 +1410,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_arbres_fiche_pr;
         }
@@ -1508,9 +1425,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_arbres_fiche_pr  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_arbres_fiche_pr_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_arbres_fiche_pr.Load(dr);
@@ -1521,9 +1439,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_arbres_fiche_pr;
         }
@@ -1547,9 +1465,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_arbres_fiche_pr;
         }
@@ -1583,9 +1501,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1614,9 +1532,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1638,9 +1556,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_arbres_fiche_pr' avec la classe 'clstbl_arbres_fiche_pr' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1655,7 +1573,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_ident_pepi WHERE pid={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_fiche_ident_pepi WHERE pid=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -1674,7 +1594,7 @@ namespace xEntry_Data
                             varclstbl_fiche_ident_pepi.Id = dr["id"].ToString();
                             varclstbl_fiche_ident_pepi.Nom_site = dr["nom_site"].ToString();
                             varclstbl_fiche_ident_pepi.Village = dr["village"].ToString();
-                            varclstbl_fiche_ident_pepi.Localite = dr["localite"].ToString();
+                            varclstbl_fiche_ident_pepi.Localite = dr["localité"].ToString();
                             varclstbl_fiche_ident_pepi.Territoire = dr["territoire"].ToString();
                             varclstbl_fiche_ident_pepi.Chefferie = dr["chefferie"].ToString();
                             varclstbl_fiche_ident_pepi.Groupement = dr["groupement"].ToString();
@@ -1696,9 +1616,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_fiche_ident_pepi;
         }
@@ -1711,27 +1631,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_fiche_ident_pepi  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   agent LIKE '%" + criteria + "%'";
-                    sql += "  OR   saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   association LIKE '%" + criteria + "%'";
-                    sql += "  OR   association_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   id LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom_site LIKE '%" + criteria + "%'";
-                    sql += "  OR   village LIKE '%" + criteria + "%'";
-                    sql += "  OR   localite LIKE '%" + criteria + "%'";
-                    sql += "  OR   territoire LIKE '%" + criteria + "%'";
-                    sql += "  OR   chefferie LIKE '%" + criteria + "%'";
-                    sql += "  OR   groupement LIKE '%" + criteria + "%'";
-                    sql += "  OR   grp_c LIKE '%" + criteria + "%'";
-                    sql += "  OR   contrat LIKE '%" + criteria + "%'";
-                    sql += "  OR   localisation LIKE '%" + criteria + "%'";
-                    sql += "  OR   observations LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_fiche_ident_pepi_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_ident_pepi.Load(dr);
@@ -1742,9 +1645,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_ident_pepi;
         }
@@ -1768,9 +1671,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_ident_pepi;
         }
@@ -1783,7 +1686,7 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("INSERT INTO tbl_fiche_ident_pepi ( uuid,deviceid,date,agent,saison,association,association_autre,bailleur,bailleur_autre,id,nom_site,village,localite,territoire,chefferie,groupement,date_installation_pepiniere,grp_c,nb_pepinieristes,nb_pepinieristes_formes,contrat,combien_pepinieristes,localisation,photo,observations,synchronized_on ) VALUES (@uuid,@deviceid,@date,@agent,@saison,@association,@association_autre,@bailleur,@bailleur_autre,@id,@nom_site,@village,@localite,@territoire,@chefferie,@groupement,@date_installation_pepiniere,@grp_c,@nb_pepinieristes,@nb_pepinieristes_formes,@contrat,@combien_pepinieristes,@localisation,@photo,@observations,@synchronized_on  )");
+                    cmd.CommandText = string.Format("INSERT INTO tbl_fiche_ident_pepi ( uuid,deviceid,date,agent,saison,association,association_autre,bailleur,bailleur_autre,id,nom_site,village,localité,territoire,chefferie,groupement,date_installation_pepiniere,grp_c,nb_pepinieristes,nb_pepinieristes_formes,contrat,combien_pepinieristes,localisation,photo,observations,synchronized_on ) VALUES (@uuid,@deviceid,@date,@agent,@saison,@association,@association_autre,@bailleur,@bailleur_autre,@id,@nom_site,@village,@localité,@territoire,@chefferie,@groupement,@date_installation_pepiniere,@grp_c,@nb_pepinieristes,@nb_pepinieristes_formes,@contrat,@combien_pepinieristes,@localisation,@photo,@observations,@synchronized_on  )");
                     if (varclstbl_fiche_ident_pepi.Uuid != null) cmd.Parameters.Add(getParameter(cmd, "@uuid", DbType.String, 100, varclstbl_fiche_ident_pepi.Uuid));
                     else cmd.Parameters.Add(getParameter(cmd, "@uuid", DbType.String, 100, DBNull.Value));
                     if (varclstbl_fiche_ident_pepi.Deviceid != null) cmd.Parameters.Add(getParameter(cmd, "@deviceid", DbType.String, 100, varclstbl_fiche_ident_pepi.Deviceid));
@@ -1841,9 +1744,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1891,9 +1794,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1915,9 +1818,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_ident_pepi' avec la classe 'clstbl_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -1932,7 +1835,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_grp_c_fiche_ident_pepi WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_grp_c_fiche_ident_pepi WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -1954,9 +1859,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_grp_c_fiche_ident_pepi;
         }
@@ -1969,9 +1874,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_grp_c_fiche_ident_pepi  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_grp_c_fiche_ident_pepi_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_grp_c_fiche_ident_pepi.Load(dr);
@@ -1982,9 +1888,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' suivant un critère : " + exc.GetType().ToString() + " : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_grp_c_fiche_ident_pepi;
         }
@@ -2008,9 +1914,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_grp_c_fiche_ident_pepi;
         }
@@ -2044,9 +1950,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2075,9 +1981,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2099,9 +2005,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_grp_c_fiche_ident_pepi' avec la classe 'clstbl_grp_c_fiche_ident_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2116,7 +2022,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_suivi_pepi WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_fiche_suivi_pepi WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -2158,9 +2066,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_fiche_suivi_pepi;
         }
@@ -2173,28 +2081,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_fiche_suivi_pepi  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   agent LIKE '%" + criteria + "%'";
-                    sql += "  OR   saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   association LIKE '%" + criteria + "%'";
-                    sql += "  OR   association_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom_site LIKE '%" + criteria + "%'";
-                    sql += "  OR   identifiant_pepiniere LIKE '%" + criteria + "%'";
-                    sql += "  OR   ronde_suivi_pepiniere LIKE '%" + criteria + "%'";
-                    sql += "  OR   grp_c LIKE '%" + criteria + "%'";
-                    sql += "  OR   grp_f LIKE '%" + criteria + "%'";
-                    sql += "  OR   tassement_sachet LIKE '%" + criteria + "%'";
-                    sql += "  OR   binage LIKE '%" + criteria + "%'";
-                    sql += "  OR   classement_taille LIKE '%" + criteria + "%'";
-                    sql += "  OR   classement_espece LIKE '%" + criteria + "%'";
-                    sql += "  OR   cernage LIKE '%" + criteria + "%'";
-                    sql += "  OR   etetage LIKE '%" + criteria + "%'";
-                    sql += "  OR   localisation LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_fiche_suivi_pepi_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_suivi_pepi.Load(dr);
@@ -2205,9 +2095,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_suivi_pepi;
         }
@@ -2231,9 +2121,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_suivi_pepi;
         }
@@ -2306,9 +2196,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2357,9 +2247,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2381,9 +2271,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_suivi_pepi' avec la classe 'clstbl_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2398,7 +2288,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_germoir_fiche_suivi_pepi WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_germoir_fiche_suivi_pepi WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -2426,9 +2318,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2441,17 +2333,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_germoir_fiche_suivi_pepi  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   germoir_essence LIKE '%" + criteria + "%'";
-                    sql += "  OR   germoir_essence_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   provenance LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_de_semis LIKE '%" + criteria + "%'";
-                    sql += "  OR   bien_plat LIKE '%" + criteria + "%'";
-                    sql += "  OR   arrosage LIKE '%" + criteria + "%'";
-                    sql += "  OR   desherbage LIKE '%" + criteria + "%'";
-                    sql += "  OR   qualite_semis LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_germoir_fiche_suivi_pepi_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_germoir_fiche_suivi_pepi.Load(dr);
@@ -2462,9 +2347,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2488,9 +2373,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2514,9 +2399,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2540,9 +2425,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2555,7 +2440,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_germoir_fiche_suivi_pepi where uuid= " + uuid);
+                    cmd.CommandText = "SELECT *  FROM tbl_germoir_fiche_suivi_pepi where uuid=@uuid";
+                    cmd.Parameters.Add(getParameter(cmd, "@uuid", DbType.String, 100, uuid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_germoir_fiche_suivi_pepi.Load(dr);
@@ -2566,9 +2453,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_germoir_fiche_suivi_pepi;
         }
@@ -2614,9 +2501,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2651,9 +2538,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2675,9 +2562,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_germoir_fiche_suivi_pepi' avec la classe 'clstbl_germoir_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2692,7 +2579,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_plant_repiq_fiche_suivi_pepi WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_plant_repiq_fiche_suivi_pepi WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -2719,9 +2608,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_plant_repiq_fiche_suivi_pepi;
         }
@@ -2734,12 +2623,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_plant_repiq_fiche_suivi_pepi  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   planches_repiquage_essence LIKE '%" + criteria + "%'";
-                    sql += "  OR   planches_repiquage_essence_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   observations LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_plant_repiq_fiche_suivi_pepi_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_plant_repiq_fiche_suivi_pepi.Load(dr);
@@ -2750,9 +2637,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_plant_repiq_fiche_suivi_pepi;
         }
@@ -2776,9 +2663,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_plant_repiq_fiche_suivi_pepi;
         }
@@ -2805,9 +2692,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_plant_repiq_fiche_suivi_pepi;
         }
@@ -2851,9 +2738,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2887,9 +2774,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2911,9 +2798,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_plant_repiq_fiche_suivi_pepi' avec la classe 'clstbl_plant_repiq_fiche_suivi_pepi' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -2928,7 +2815,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_territoire WHERE idt={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_territoire WHERE idt=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -2944,9 +2833,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_territoire;
         }
@@ -2959,9 +2848,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_territoire  WHERE 1=1";
-                    sql += "  OR   territoire LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_territoire_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_territoire.Load(dr);
@@ -2972,9 +2862,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_territoire;
         }
@@ -2998,9 +2888,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_territoire;
         }
@@ -3023,9 +2913,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3048,9 +2938,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3072,9 +2962,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_territoire' avec la classe 'clstbl_territoire' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3089,7 +2979,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_groupement WHERE idg={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_groupement WHERE idg=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -3106,9 +2998,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_groupement;
         }
@@ -3121,9 +3013,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_groupement  WHERE 1=1";
-                    sql += "  OR   groupement LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_groupement_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_groupement.Load(dr);
@@ -3134,9 +3027,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_groupement;
         }
@@ -3160,9 +3053,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_groupement;
         }
@@ -3186,9 +3079,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3212,9 +3105,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3236,9 +3129,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_groupement' avec la classe 'clstbl_groupement' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3253,7 +3146,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_localite WHERE idl={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_localite WHERE idl=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -3270,9 +3165,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_localite;
         }
@@ -3285,9 +3180,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_localite  WHERE 1=1";
-                    sql += "  OR   localite LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_localite_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_localite.Load(dr);
@@ -3298,9 +3194,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_localite' avec la classe 'clstbl_localite' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_localite' avec la classe 'clstbl_localite' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_localite;
         }
@@ -3324,9 +3220,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_localite;
         }
@@ -3350,9 +3246,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3376,9 +3272,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3400,9 +3296,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_localite' avec la classe 'clstbl_localite' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3417,7 +3313,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_chefferie WHERE idc={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_chefferie WHERE idc=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -3434,9 +3332,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_chefferie;
         }
@@ -3449,9 +3347,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_chefferie  WHERE 1=1";
-                    sql += "  OR   chefferie LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_chefferie_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_chefferie.Load(dr);
@@ -3462,9 +3361,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_chefferie;
         }
@@ -3488,9 +3387,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_chefferie;
         }
@@ -3514,9 +3413,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3540,9 +3439,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3564,9 +3463,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_chefferie' avec la classe 'clstbl_chefferie' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3581,7 +3480,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_village WHERE idv={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_village WHERE idv=intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -3598,9 +3499,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_village;
         }
@@ -3613,9 +3514,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_village  WHERE 1=1";
-                    sql += "  OR   village LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_village_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_village.Load(dr);
@@ -3626,9 +3528,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_village' avec la classe 'clstbl_village' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_village' avec la classe 'clstbl_village' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_village;
         }
@@ -3652,9 +3554,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_village;
         }
@@ -3678,9 +3580,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3704,9 +3606,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3728,9 +3630,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_village' avec la classe 'clstbl_village' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3745,12 +3647,13 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_saison WHERE id_saison={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_saison WHERE id_saison=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 6, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
                         {
-
                             varclstbl_saison.Id_saison = dr["id_saison"].ToString();
                             varclstbl_saison.Saison = dr["saison"].ToString();
                         }
@@ -3761,9 +3664,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_saison;
         }
@@ -3776,10 +3679,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_saison  WHERE 1=1";
-                    sql += "  OR   id_saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   saison LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_saison_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 25, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_saison.Load(dr);
@@ -3790,9 +3693,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_saison' avec la classe 'clstbl_saison' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_saison' avec la classe 'clstbl_saison' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_saison;
         }
@@ -3816,9 +3719,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_saison;
         }
@@ -3843,9 +3746,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3868,9 +3771,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3892,9 +3795,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_saison' avec la classe 'clstbl_saison' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -3909,7 +3812,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_agent WHERE id_agent={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_agent WHERE id_agent=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 100, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -3925,9 +3830,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_agent;
         }
@@ -3940,10 +3845,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_agent  WHERE 1=1";
-                    sql += "  OR   id_agent LIKE '%" + criteria + "%'";
-                    sql += "  OR   agent LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_agent_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_agent.Load(dr);
@@ -3954,9 +3859,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_agent' avec la classe 'clstbl_agent' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_agent' avec la classe 'clstbl_agent' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_agent;
         }
@@ -3980,9 +3885,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_agent;
         }
@@ -4007,9 +3912,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4032,9 +3937,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4056,9 +3961,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_agent' avec la classe 'clstbl_agent' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4073,7 +3978,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_association WHERE id_asso={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_association WHERE id_asso=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 50, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -4089,9 +3996,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_association;
         }
@@ -4104,10 +4011,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_association  WHERE 1=1";
-                    sql += "  OR   id_asso LIKE '%" + criteria + "%'";
-                    sql += "  OR   association LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_association_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 50, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_association.Load(dr);
@@ -4118,9 +4025,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_association' avec la classe 'clstbl_association' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_association' avec la classe 'clstbl_association' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_association;
         }
@@ -4144,9 +4051,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_association;
         }
@@ -4171,9 +4078,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4196,9 +4103,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4220,9 +4127,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_association' avec la classe 'clstbl_association' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4237,7 +4144,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_bailleur WHERE id_bailleur={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_bailleur WHERE id_bailleur=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 75, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -4253,9 +4162,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_bailleur;
         }
@@ -4268,10 +4177,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_bailleur  WHERE 1=1";
-                    sql += "  OR   id_bailleur LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_bailleur_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 75, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_bailleur.Load(dr);
@@ -4282,9 +4191,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_bailleur;
         }
@@ -4310,9 +4219,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_bailleur;
         }
@@ -4337,9 +4246,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4362,9 +4271,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4386,9 +4295,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_bailleur' avec la classe 'clstbl_bailleur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4403,7 +4312,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_saison_assoc WHERE id_saison_assoc={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_saison_assoc WHERE id_saison_assoc=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 32, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -4422,9 +4333,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_saison_assoc;
         }
@@ -4437,12 +4348,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_saison_assoc  WHERE 1=1";
-                    sql += "  OR   id_asso LIKE '%" + criteria + "%'";
-                    sql += "  OR   id_saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   id_saison_assoc LIKE '%" + criteria + "%'";
-                    sql += "  OR   numero_contrat_asso LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_saison_assoc_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 50, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_saison_assoc.Load(dr);
@@ -4453,9 +4362,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_saison_assoc;
         }
@@ -4479,9 +4388,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_saison_assoc;
         }
@@ -4512,9 +4421,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4540,9 +4449,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4564,9 +4473,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_saison_assoc' avec la classe 'clstbl_saison_assoc' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4581,7 +4490,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_essence_plant WHERE id_essence={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_essence_plant WHERE id_essence=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.String, 100, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -4597,9 +4508,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_essence_plant;
         }
@@ -4612,10 +4523,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_essence_plant  WHERE 1=1";
-                    sql += "  OR   id_essence LIKE '%" + criteria + "%'";
-                    sql += "  OR   essence LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_essence_plant_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_essence_plant.Load(dr);
@@ -4626,9 +4537,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_essence_plant;
         }
@@ -4652,9 +4563,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_essence_plant;
         }
@@ -4679,9 +4590,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4704,9 +4615,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4728,9 +4639,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_essence_plant' avec la classe 'clstbl_essence_plant' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4745,7 +4656,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_utilisateur WHERE id_utilisateur={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_utilisateur WHERE id_utilisateur=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, intid));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -4766,9 +4679,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_utilisateur;
         }
@@ -4781,13 +4694,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_utilisateur  WHERE 1=1";
-                    sql += "  OR   id_agentuser LIKE '%" + criteria + "%'";
-                    sql += "  OR   nomuser LIKE '%" + criteria + "%'";
-                    sql += "  OR   motpass LIKE '%" + criteria + "%'";
-                    sql += "  OR   schema_user LIKE '%" + criteria + "%'";
-                    sql += "  OR   droits LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_utilisateur_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 1000, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_utilisateur.Load(dr);
@@ -4798,9 +4708,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_utilisateur;
         }
@@ -4824,9 +4734,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_utilisateur;
         }
@@ -4859,14 +4769,14 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
 
-        public int updateClstbl_utilisateur1(clstbl_utilisateur varclstbl_utilisateur)
+        public int updateClstbl_utilisateur1(DataRowView varclstbl_utilisateur)
         {
             int i = 0;
             try
@@ -4875,13 +4785,13 @@ namespace xEntry_Data
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = string.Format("UPDATE tbl_utilisateur  SET id_agentuser=@id_agentuser,nomuser=@nomuser,motpass=@motpass,schema_user=@schema_user,droits=@droits,activation=@activation  WHERE 1=1  AND id_utilisateur=@id_utilisateur ");
-                    cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur.Id_agentuser));
-                    cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur.Nomuser));
-                    cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, varclstbl_utilisateur.Motpass));
-                    cmd.Parameters.Add(getParameter(cmd, "@schema_user", DbType.String, 20, varclstbl_utilisateur.Schema_user));
-                    cmd.Parameters.Add(getParameter(cmd, "@droits", DbType.String, 300, varclstbl_utilisateur.Droits));
-                    cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur.Activation));
-                    cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                    cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur["id_agentuser"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur["nomuser"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, varclstbl_utilisateur["motpass"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@schema_user", DbType.String, 20, varclstbl_utilisateur["schema_user"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@droits", DbType.String, 300, varclstbl_utilisateur["droits"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur["activation"]));
+                    cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                     i = cmd.ExecuteNonQuery();
                     conn.Close();
                 }
@@ -4889,14 +4799,14 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
 
-        public int deleteClstbl_utilisateur1(clstbl_utilisateur varclstbl_utilisateur)
+        public int deleteClstbl_utilisateur1(DataRowView varclstbl_utilisateur)
         {
             int i = 0;
             try
@@ -4905,7 +4815,7 @@ namespace xEntry_Data
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = string.Format("DELETE FROM tbl_utilisateur  WHERE  1=1  AND id_utilisateur=@id_utilisateur ");
-                    cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                    cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                     i = cmd.ExecuteNonQuery();
                     conn.Close();
                 }
@@ -4913,9 +4823,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -4934,9 +4844,12 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format(@"exec sp_addlogin '" + varclstbl_utilisateur.Nomuser + "','" + varclstbl_utilisateur.Motpass + "','" + clsMetier.bdEnCours + @"'                                               
-                                                      exec sp_grantdbaccess '" + varclstbl_utilisateur.Nomuser + @"'
-                                                 ");
+                    cmd.CommandText = "sp_login_user_bd";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@username", DbType.String, 30, varclstbl_utilisateur.Nomuser));
+                    cmd.Parameters.Add(getParameter(cmd, "@password", DbType.String, 1000, varclstbl_utilisateur.Motpass));
+                    cmd.Parameters.Add(getParameter(cmd, "@database", DbType.String, 255, clsMetier.bdEnCours));
+
                     int j = cmd.ExecuteNonQuery();
                     echec_create = false;
                     conn.Close();
@@ -4946,7 +4859,7 @@ namespace xEntry_Data
             {
                 message_erreur_user = exc.Message;
                 conn.Close();
-                throw new Exception(exc.Message);
+                throw;
             }
 
             //Dans la transaction on fait le reste
@@ -5003,16 +4916,16 @@ namespace xEntry_Data
                 {
                     transaction.Rollback();
 
-                    string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                    ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la création de l'utilisateur  : " + message_erreur_user + " => " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                    throw new Exception(exc.Message);
+                    
+                    ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la création de l'utilisateur  : " + message_erreur_user + " => " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                    throw;
                 }
                 conn.Close();
             }
             return i;
         }
 
-        public int updateClstbl_utilisateur(clstbl_utilisateur varclstbl_utilisateur)
+        public int updateClstbl_utilisateur(DataRowView varclstbl_utilisateur)
         {
             IDbTransaction transaction = null;
             int i = 0;
@@ -5024,15 +4937,15 @@ namespace xEntry_Data
 
                 if (clsDoTraitement.etat_modification_user == 4)
                 {
-                    varclstbl_utilisateur.Activation = clsDoTraitement.activationUser;
+                    varclstbl_utilisateur["activation"] = clsDoTraitement.activationUser;
 
                     if (conn.State != ConnectionState.Open) conn.Open();
 
-                    if ((bool)varclstbl_utilisateur.Activation)
+                    if ((bool)varclstbl_utilisateur["activation"])
                     {
                         using (IDbCommand cmd3 = conn.CreateCommand())
                         {
-                            cmd3.CommandText = string.Format(@"grant connect to " + varclstbl_utilisateur.Nomuser); //On interdit à l'utilisateur de se connecter au serveur
+                            cmd3.CommandText = string.Format(@"grant connect to " + varclstbl_utilisateur["nomuser"]); //On interdit à l'utilisateur de se connecter au serveur
                             cmd3.Transaction = transaction;
                             i = cmd3.ExecuteNonQuery();
                         }
@@ -5041,7 +4954,7 @@ namespace xEntry_Data
                     {
                         using (IDbCommand cmd3 = conn.CreateCommand())
                         {
-                            cmd3.CommandText = string.Format(@"revoke connect to " + varclstbl_utilisateur.Nomuser); //On interdit à l'utilisateur de se connecter au serveur
+                            cmd3.CommandText = string.Format(@"revoke connect to " + varclstbl_utilisateur["nomuser"]); //On interdit à l'utilisateur de se connecter au serveur
                             cmd3.Transaction = transaction;
                             i = cmd3.ExecuteNonQuery();
                         }
@@ -5050,8 +4963,8 @@ namespace xEntry_Data
                     using (IDbCommand cmd4 = conn.CreateCommand())
                     {
                         cmd4.CommandText = string.Format("UPDATE tbl_utilisateur SET activation=@activation  WHERE 1=1  AND id_utilisateur=@id_utilisateur ");
-                        cmd4.Parameters.Add(getParameter(cmd4, "@activation", DbType.Boolean, 2, varclstbl_utilisateur.Activation));
-                        cmd4.Parameters.Add(getParameter(cmd4, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                        cmd4.Parameters.Add(getParameter(cmd4, "@activation", DbType.Boolean, 2, varclstbl_utilisateur["activation"]));
+                        cmd4.Parameters.Add(getParameter(cmd4, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                         cmd4.Transaction = transaction;
 
                         i = cmd4.ExecuteNonQuery();
@@ -5064,9 +4977,9 @@ namespace xEntry_Data
                     //Avant de modifier l'utilisateur dans la table, on modifie le user de la bd
                     using (IDbCommand cmd1 = conn.CreateCommand())
                     {
-                        varclstbl_utilisateur.Nomuser = clsDoTraitement.newUser;
+                        varclstbl_utilisateur["nomuser"] = clsDoTraitement.newUser;
                         //varclstbl_utilisateur.Motpass = clsDoTraitement.oldPassword;
-                        cmd1.CommandText = string.Format("alter login " + clsDoTraitement.oldUser + " with name=" + varclstbl_utilisateur.Nomuser); //On modifie le login de l'utilisateur pour changer son mode de connexion
+                        cmd1.CommandText = string.Format("alter login " + clsDoTraitement.oldUser + " with name=" + varclstbl_utilisateur["nomuser"]); //On modifie le login de l'utilisateur pour changer son mode de connexion
                         cmd1.Transaction = transaction;
                         i = cmd1.ExecuteNonQuery();
                     }
@@ -5078,8 +4991,8 @@ namespace xEntry_Data
                     //Avant de modifier l'utilisateur dans la table, on modifie le user de la bd
                     using (IDbCommand cmd1 = conn.CreateCommand())
                     {
-                        varclstbl_utilisateur.Motpass = clsDoTraitement.newPassword;
-                        cmd1.CommandText = string.Format("alter LOGIN " + varclstbl_utilisateur.Nomuser + " WITH PASSWORD='" + ImplementChiffer.Instance.Decipher(clsDoTraitement.newPassword, "rootWWF") + "'"); //On modifie le login de l'utilisateur pour changer son mot de passe de connexion
+                        varclstbl_utilisateur["motpass"] = clsDoTraitement.newPassword;
+                        cmd1.CommandText = string.Format("alter LOGIN " + varclstbl_utilisateur["nomuser"] + " WITH PASSWORD='" + ImplementChiffer.Instance.Decipher(clsDoTraitement.newPassword, "rootWWF") + "'"); //On modifie le login de l'utilisateur pour changer son mot de passe de connexion
                         cmd1.Transaction = transaction;
                         i = cmd1.ExecuteNonQuery();
                     }
@@ -5091,10 +5004,10 @@ namespace xEntry_Data
                     //Avant de modifier l'utilisateur dans la table, on modifie le user de la bd
                     using (IDbCommand cmd1 = conn.CreateCommand())
                     {
-                        varclstbl_utilisateur.Nomuser = clsDoTraitement.newUser;
-                        varclstbl_utilisateur.Motpass = clsDoTraitement.newPassword;
+                        varclstbl_utilisateur["nomuser"] = clsDoTraitement.newUser;
+                        varclstbl_utilisateur["motpass"] = clsDoTraitement.newPassword;
                         cmd1.CommandText = string.Format("ALTER LOGIN " + clsDoTraitement.oldUser + " WITH PASSWORD='" + ImplementChiffer.Instance.Decipher(clsDoTraitement.newPassword, "rootWWF") + "'" + @"
-                                                          ALTER LOGIN " + clsDoTraitement.oldUser + " WITH NAME=" + varclstbl_utilisateur.Nomuser); //On modifie le login de l'utilisateur pour changer son mot de passe de connexion, puis on modifie son nom de login
+                                                          ALTER LOGIN " + clsDoTraitement.oldUser + " WITH NAME=" + varclstbl_utilisateur["nomuser"]); //On modifie le login de l'utilisateur pour changer son mot de passe de connexion, puis on modifie son nom de login
                         cmd1.Transaction = transaction;
                         i = cmd1.ExecuteNonQuery();
                     }
@@ -5106,13 +5019,13 @@ namespace xEntry_Data
                     using (IDbCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = string.Format("UPDATE tbl_utilisateur  SET id_agentuser=@id_agentuser,nomuser=@nomuser,activation=@activation  WHERE 1=1  AND id_utilisateur=@id_utilisateur ");
-                        if (varclstbl_utilisateur.Id_agentuser != null) cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur.Id_agentuser));
+                        if (varclstbl_utilisateur["id_agentuser"] != null) cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur["id_agentuser"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, DBNull.Value));
-                        if (varclstbl_utilisateur.Nomuser != null) cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur.Nomuser));
+                        if (varclstbl_utilisateur["nomuser"] != null) cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur["nomuser"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, DBNull.Value));
-                        if (varclstbl_utilisateur.Activation.HasValue) cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur.Activation));
+                        if (varclstbl_utilisateur["activation"] != null) cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur["activation"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, DBNull.Value));
-                        cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                        cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                         cmd.Transaction = transaction;
                         i = cmd.ExecuteNonQuery();
                         ok = true;
@@ -5124,15 +5037,15 @@ namespace xEntry_Data
                     using (IDbCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = string.Format("UPDATE tbl_utilisateur  SET id_agentuser=@id_agentuser,nomuser=@nomuser,motpass=@motpass,activation=@activation  WHERE 1=1  AND id_utilisateur=@id_utilisateur ");
-                        if (varclstbl_utilisateur.Id_agentuser != null) cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur.Id_agentuser));
+                        if (varclstbl_utilisateur["id_agentuser"] != null) cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, varclstbl_utilisateur["id_agentuser"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@id_agentuser", DbType.String, 6, DBNull.Value));
-                        if (varclstbl_utilisateur.Nomuser != null) cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur.Nomuser));
+                        if (varclstbl_utilisateur["nomuser"] != null) cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, varclstbl_utilisateur["nomuser"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, DBNull.Value));
-                        if (varclstbl_utilisateur.Motpass != null) cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, varclstbl_utilisateur.Motpass));
+                        if (varclstbl_utilisateur["motpass"] != null) cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, varclstbl_utilisateur["motpass"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, DBNull.Value));
-                        if (varclstbl_utilisateur.Activation.HasValue) cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur.Activation));
+                        if (varclstbl_utilisateur["activation"] != null) cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, varclstbl_utilisateur["activation"]));
                         else cmd.Parameters.Add(getParameter(cmd, "@activation", DbType.Boolean, 2, DBNull.Value));
-                        cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                        cmd.Parameters.Add(getParameter(cmd, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                         cmd.Transaction = transaction;
                         i = cmd.ExecuteNonQuery();
                         ok = true;
@@ -5152,24 +5065,26 @@ namespace xEntry_Data
 
                         using (IDbCommand cmd2 = conn.CreateCommand())
                         {
-                            cmd2.CommandText = string.Format(@"SELECT tbl_utilisateur.schema_user FROM tbl_utilisateur WHERE tbl_utilisateur.id_utilisateur=" + varclstbl_utilisateur.Id_utilisateur);
+                            cmd2.CommandText = string.Format(@"SELECT tbl_utilisateur.schema_user FROM tbl_utilisateur WHERE tbl_utilisateur.id_utilisateur=@id_utilisateur");
+                            cmd2.Parameters.Add(getParameter(cmd2, "@id_utilisateur", DbType.Int32, 4, Convert.ToInt32(varclstbl_utilisateur["id_utilisateur"])));
+
                             cmd2.Transaction = transaction;
 
                             using (IDataReader dr = cmd2.ExecuteReader())
                             {
                                 if (dr.Read())
                                 {
-                                    varclstbl_utilisateur.Nomuser = dr["schema_user"].ToString();
+                                    varclstbl_utilisateur["nomuser"] = dr["schema_user"].ToString();
                                 }
                             }
                         }
 
                         //Si l'on à cocher la case à cocher d'activation de l'utilisateur on doit le donner accès à se connecter ou non
-                        if ((bool)varclstbl_utilisateur.Activation)
+                        if ((bool)varclstbl_utilisateur["activation"])
                         {
                             using (IDbCommand cmd3 = conn.CreateCommand())
                             {
-                                cmd3.CommandText = string.Format(@"grant connect to " + varclstbl_utilisateur.Nomuser); //On interdit à l'utilisateur de se connecter au serveur
+                                cmd3.CommandText = string.Format(@"grant connect to " + varclstbl_utilisateur["nomuser"]); //On interdit à l'utilisateur de se connecter au serveur
                                 cmd3.Transaction = transaction;
                                 i = cmd3.ExecuteNonQuery();
                                 transaction.Commit();
@@ -5180,7 +5095,7 @@ namespace xEntry_Data
                         {
                             using (IDbCommand cmd3 = conn.CreateCommand())
                             {
-                                cmd3.CommandText = string.Format(@"revoke connect to " + varclstbl_utilisateur.Nomuser); //On interdit à l'utilisateur de se connecter au serveur
+                                cmd3.CommandText = string.Format(@"revoke connect to " + varclstbl_utilisateur["nomuser"]); //On interdit à l'utilisateur de se connecter au serveur
                                 cmd3.Transaction = transaction;
                                 i = cmd3.ExecuteNonQuery();
                                 transaction.Commit();
@@ -5196,9 +5111,9 @@ namespace xEntry_Data
                 {
                     transaction.Rollback();
 
-                    string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                    ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la modification de l'utilisateur, " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                    throw new Exception(exc.Message);
+                    
+                    ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la modification de l'utilisateur, " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                    throw;
                 }
 
                 conn.Close();
@@ -5207,7 +5122,7 @@ namespace xEntry_Data
             return i;
         }
 
-        public int deleteClstbl_utilisateur(clstbl_utilisateur varclstbl_utilisateur)
+        public int deleteClstbl_utilisateur(DataRowView varclstbl_utilisateur)
         {
             int i = 0;
             IDbTransaction transaction = null;
@@ -5218,13 +5133,16 @@ namespace xEntry_Data
 
                 using (IDbCommand cmd1 = conn.CreateCommand())
                 {
-                    cmd1.CommandText = string.Format(@"SELECT tbl_utilisateur.schema_user FROM tbl_utilisateur WHERE tbl_utilisateur.id_utilisateur=" + varclstbl_utilisateur.Id_utilisateur);
+                    cmd1.CommandText = string.Format(@"SELECT tbl_utilisateur.schema_user FROM tbl_utilisateur WHERE tbl_utilisateur.id_utilisateur=@id_utilisateur");
+                    cmd1.Parameters.Add(getParameter(cmd1, "@id_utilisateur", DbType.Int32, 4, Convert.ToInt32(varclstbl_utilisateur["id_utilisateur"])));
+
                     cmd1.Transaction = transaction;
                     using (IDataReader dr = cmd1.ExecuteReader())
                     {
                         if (dr.Read())
                         {
-                            if (!dr["schema_user"].ToString().Trim().Equals("")) varclstbl_utilisateur.Schema_user = dr["schema_user"].ToString();
+                            if (!dr["schema_user"].ToString().Trim().Equals(""))
+                                varclstbl_utilisateur["schema_user"] = dr["schema_user"].ToString();
                         }
                     }
                 }
@@ -5233,9 +5151,9 @@ namespace xEntry_Data
                 //puis on supprime son nom d'utilisateur et enfin on supprime son login
                 using (IDbCommand cmd2 = conn.CreateCommand())
                 {
-                    cmd2.CommandText = string.Format("DROP SCHEMA " + varclstbl_utilisateur.Schema_user + @" 
-                                                      DROP USER " + varclstbl_utilisateur.Schema_user + @"
-                                                      DROP LOGIN " + varclstbl_utilisateur.Nomuser);
+                    cmd2.CommandText = string.Format("DROP SCHEMA " + varclstbl_utilisateur["schema_user"] + @" 
+                                                      DROP USER " + varclstbl_utilisateur["schema_user"] + @"
+                                                      DROP LOGIN " + varclstbl_utilisateur["nomuser"]);
                     cmd2.Transaction = transaction;
                     i = cmd2.ExecuteNonQuery();
                 }
@@ -5244,7 +5162,7 @@ namespace xEntry_Data
                 using (IDbCommand cmd3 = conn.CreateCommand())
                 {
                     cmd3.CommandText = string.Format("DELETE FROM tbl_utilisateur WHERE  1=1  AND id_utilisateur=@id_utilisateur ");
-                    cmd3.Parameters.Add(getParameter(cmd3, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur.Id_utilisateur));
+                    cmd3.Parameters.Add(getParameter(cmd3, "@id_utilisateur", DbType.Int32, 4, varclstbl_utilisateur["id_utilisateur"]));
                     cmd3.Transaction = transaction;
                     i = cmd3.ExecuteNonQuery();
                     transaction.Commit();
@@ -5258,9 +5176,9 @@ namespace xEntry_Data
                 {
                     transaction.Rollback();
 
-                    string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                    ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la suppression de l'utilisateur, " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                    throw new Exception(exc.Message);
+                    
+                    ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec lors de la suppression de l'utilisateur, " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                    throw;
                 }
             }
             return i;
@@ -5276,7 +5194,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_groupe WHERE id_groupe={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_groupe WHERE id_groupe=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -5293,9 +5213,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_groupe;
         }
@@ -5308,9 +5228,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_groupe  WHERE 1=1";
-                    sql += "  OR   designation LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_groupe_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 30, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_groupe.Load(dr);
@@ -5321,9 +5242,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_groupe;
         }
@@ -5347,9 +5268,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_groupe;
         }
@@ -5374,9 +5295,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5400,9 +5321,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5424,9 +5345,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_groupe' avec la classe 'clstbl_groupe' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5441,7 +5362,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_fiche_tar WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_fiche_tar WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -5516,9 +5439,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_fiche_tar;
         }
@@ -5531,56 +5454,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_fiche_tar  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   agent LIKE '%" + criteria + "%'";
-                    sql += "  OR   saison LIKE '%" + criteria + "%'";
-                    sql += "  OR   association LIKE '%" + criteria + "%'";
-                    sql += "  OR   association_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur LIKE '%" + criteria + "%'";
-                    sql += "  OR   bailleur_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   deja_participe LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom LIKE '%" + criteria + "%'";
-                    sql += "  OR   postnom LIKE '%" + criteria + "%'";
-                    sql += "  OR   prenom LIKE '%" + criteria + "%'";
-                    sql += "  OR   sexes LIKE '%" + criteria + "%'";
-                    sql += "  OR   nom_lieu_plantation LIKE '%" + criteria + "%'";
-                    sql += "  OR   village LIKE '%" + criteria + "%'";
-                    sql += "  OR   localite LIKE '%" + criteria + "%'";
-                    sql += "  OR   territoire LIKE '%" + criteria + "%'";
-                    sql += "  OR   chefferie LIKE '%" + criteria + "%'";
-                    sql += "  OR   groupement LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_id LIKE '%" + criteria + "%'";
-                    sql += "  OR   type_id_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   nombre_id LIKE '%" + criteria + "%'";
-                    sql += "  OR   emplacement LIKE '%" + criteria + "%'";
-                    sql += "  OR   essence_principale LIKE '%" + criteria + "%'";
-                    sql += "  OR   essence_principale_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   objectifs_planteur LIKE '%" + criteria + "%'";
-                    sql += "  OR   objectifs_planteur_autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   utilisation_precedente LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_precedente_preciser LIKE '%" + criteria + "%'";
-                    sql += "  OR   arbres_existants LIKE '%" + criteria + "%'";
-                    sql += "  OR   situation LIKE '%" + criteria + "%'";
-                    sql += "  OR   pente LIKE '%" + criteria + "%'";
-                    sql += "  OR   sol LIKE '%" + criteria + "%'";
-                    sql += "  OR   eucalyptus LIKE '%" + criteria + "%'";
-                    sql += "  OR   point_deau_a_proximite LIKE '%" + criteria + "%'";
-                    sql += "  OR   chef_de_localite LIKE '%" + criteria + "%'";
-                    sql += "  OR   chef_nom LIKE '%" + criteria + "%'";
-                    sql += "  OR   chef_postnom LIKE '%" + criteria + "%'";
-                    sql += "  OR   chef_prenom LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_fonction LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_nom LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_postnom LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_prenom LIKE '%" + criteria + "%'";
-                    sql += "  OR   document_de_propriete LIKE '%" + criteria + "%'";
-                    sql += "  OR   preciser_document LIKE '%" + criteria + "%'";
-                    sql += "  OR   autre_document LIKE '%" + criteria + "%'";
-                    sql += "  OR   observations LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_fiche_tar_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 255, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_fiche_tar.Load(dr);
@@ -5591,9 +5468,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_tar;
         }
@@ -5617,9 +5494,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_fiche_tar;
         }
@@ -5758,9 +5635,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5842,9 +5719,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5866,9 +5743,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_fiche_tar' avec la classe 'clstbl_fiche_tar' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -5883,7 +5760,9 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format("SELECT *  FROM tbl_geopoint WHERE id={0}", intid);
+                    cmd.CommandText = "SELECT *  FROM tbl_geopoint WHERE id=@intid";
+                    cmd.Parameters.Add(getParameter(cmd, "@intid", DbType.Int32, 4, Convert.ToInt32(intid)));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -5906,9 +5785,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_geopoint;
         }
@@ -5921,15 +5800,10 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    string sql = "SELECT *  FROM tbl_geopoint  WHERE 1=1";
-                    sql += "  OR   uuid LIKE '%" + criteria + "%'";
-                    sql += "  OR   deviceid LIKE '%" + criteria + "%'";
-                    sql += "  OR   latitude LIKE '%" + criteria + "%'";
-                    sql += "  OR   longitude LIKE '%" + criteria + "%'";
-                    sql += "  OR   altitude LIKE '%" + criteria + "%'";
-                    sql += "  OR   EPE LIKE '%" + criteria + "%'";
-                    sql += "  OR   geo_type LIKE '%" + criteria + "%'";
-                    cmd.CommandText = string.Format(sql);
+                    cmd.CommandText = "sp_tbl_geopoint_criteria";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(getParameter(cmd, "@criteria", DbType.String, 100, criteria));
+
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
                         dtclstbl_geopoint.Load(dr);
@@ -5940,9 +5814,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' suivant un critère : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection des tous les enregistrements de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' suivant un critère : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_geopoint;
         }
@@ -5966,9 +5840,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return dtclstbl_geopoint;
         }
@@ -6004,9 +5878,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -6036,9 +5910,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Update enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -6060,9 +5934,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Suppression enregistrement de la table : 'tbl_geopoint' avec la classe 'clstbl_geopoint' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -6109,7 +5983,9 @@ namespace xEntry_Data
 
                     using (IDbCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = string.Format("SELECT motpass from tbl_utilisateur WHERE nomuser='{0}'", username);
+                        cmd.CommandText = "SELECT motpass from tbl_utilisateur WHERE nomuser=@username";
+                        cmd.Parameters.Add(getParameter(cmd, "@username", DbType.String, 30, username));
+
                         IDataReader dr = cmd.ExecuteReader();
 
                         if (dr.Read())
@@ -6119,7 +5995,6 @@ namespace xEntry_Data
                             ok = true;
                         }
                         dr.Close();
-                        cmd.Dispose();
                     }
 
 
@@ -6127,8 +6002,10 @@ namespace xEntry_Data
                     {
                         using (IDbCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = string.Format(@"SELECT tbl_agent.id_agent AS id,tbl_agent.agent AS nom,tbl_utilisateur.activation AS activation,tbl_utilisateur.nomuser,tbl_utilisateur.droits AS droits,tbl_utilisateur.motpass FROM tbl_agent 
-                            LEFT OUTER JOIN tbl_utilisateur ON tbl_agent.id_agent=tbl_utilisateur.id_agentuser WHERE tbl_utilisateur.nomuser='{0}' AND tbl_utilisateur.motpass='{1}'", username, strBDCipher);
+                            cmd.CommandText = @"SELECT tbl_agent.id_agent AS id,tbl_agent.agent AS nom,tbl_utilisateur.activation AS activation,tbl_utilisateur.nomuser,tbl_utilisateur.droits AS droits,tbl_utilisateur.motpass FROM tbl_agent 
+                            LEFT OUTER JOIN tbl_utilisateur ON tbl_agent.id_agent=tbl_utilisateur.id_agentuser WHERE tbl_utilisateur.nomuser=@nomuser AND tbl_utilisateur.motpass=@motpass";
+                            cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, username));
+                            cmd.Parameters.Add(getParameter(cmd, "@motpass", DbType.String, 1000, strBDCipher));
 
                             using (IDataReader dr = cmd.ExecuteReader())
                             {
@@ -6197,9 +6074,9 @@ namespace xEntry_Data
                 catch (Exception exc)
                 {
                     conn.Close();
-                    string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                    ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Vérification des paramètres de connexion de l'utilisateur : username et password : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                    throw new Exception(exc.Message);
+                    
+                    ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Vérification des paramètres de connexion de l'utilisateur : username et password : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                    throw;
                 }
             }
             return lstValue;
@@ -6225,9 +6102,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return lstclstbl_utilisateur;
         }
@@ -6254,9 +6131,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection de tous les enregistrements de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return lstclstbl_utilisateur;
         }
@@ -6269,9 +6146,11 @@ namespace xEntry_Data
                 if (conn.State != ConnectionState.Open) conn.Open();
                 using (IDbCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = string.Format(@"SELECT tbl_utilisateur.id_utilisateur AS idUser,tbl_utilisateur.id_agentuser,tbl_utilisateur.nomuser,tbl_utilisateur.motpass,
+                    cmd.CommandText = @"SELECT tbl_utilisateur.id_utilisateur AS idUser,tbl_utilisateur.id_agentuser,tbl_utilisateur.nomuser,tbl_utilisateur.motpass,
                     tbl_utilisateur.schema_user,tbl_utilisateur.droits,tbl_utilisateur.activation,tbl_agent.id_agent, tbl_agent.agent AS nom FROM tbl_utilisateur 
-                    INNER JOIN tbl_agent ON tbl_agent.id_agent = tbl_utilisateur.id_agentuser WHERE tbl_utilisateur.nomuser='{0}'", nom_user);
+                    INNER JOIN tbl_agent ON tbl_agent.id_agent = tbl_utilisateur.id_agentuser WHERE tbl_utilisateur.nomuser=@nomuser";
+
+                    cmd.Parameters.Add(getParameter(cmd, "@nomuser", DbType.String, 30, nom_user));
 
                     using (IDataReader dr = cmd.ExecuteReader())
                     {
@@ -6297,9 +6176,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Vérification des paramètres de connexion de l'utilisateur : username et password : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Vérification des paramètres de connexion de l'utilisateur : username et password : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return varclstbl_utilisateur;
         }
@@ -6325,9 +6204,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Insertion enregistrement de la table : 'tbl_utilisateur' avec la classe 'clstbl_utilisateur' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return i;
         }
@@ -6360,9 +6239,9 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return schema;
         }
@@ -6399,13 +6278,14 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Sélection d'un enregistrement de la table : 'tbl_fiche_menage' avec la classe 'clstbl_fiche_menage' : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
             return droits;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         public void grantPermission(List<int> permission, string nom_login, string nom_utilisateur)
         {
             try
@@ -6417,16 +6297,12 @@ namespace xEntry_Data
                     if (droit == 0)
                     {
                         #region Droit pour administrateur (Ce dernier a tous les droits sur le systeme)
-                        string requete = @"exec sp_addsrvrolemember '" + nom_login + @"','sysadmin' 
-                        exec sp_addsrvrolemember '" + nom_login + @"','securityadmin' 
-                        exec sp_addsrvrolemember '" + nom_login + @"','dbcreator' 
-                        exec sp_addrolemember 'db_owner','" + nom_utilisateur + @"'
-                        exec sp_addrolemember 'db_ddladmin','" + nom_utilisateur + @"'
-                        exec sp_addrolemember 'db_accessadmin','" + nom_utilisateur + @"'";
-
                         using (IDbCommand cmd = conn.CreateCommand())
                         {
-                            cmd.CommandText = string.Format(requete);
+                            cmd.CommandText = "sp_admin_permission_bd";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(getParameter(cmd, "@username", DbType.String, 30, nom_utilisateur));
+                            cmd.Parameters.Add(getParameter(cmd, "@loginname", DbType.String, 30, nom_login));
                             cmd.ExecuteNonQuery();
                         }
                         #endregion
@@ -6494,12 +6370,13 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec d'attribution des droits à l'utilisateur, veuillez réessayez ultérieurement : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec d'attribution des droits à l'utilisateur, veuillez réessayez ultérieurement : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         public void revokePermission(List<int> permission, string nom_login, string nom_utilisateur)
         {
             try
@@ -6576,10 +6453,23 @@ namespace xEntry_Data
             catch (Exception exc)
             {
                 conn.Close();
-                string MasterDirectory = ImplementUtilities.Instance.MasterDirectoryConfiguration;
-                ImplementLog.Instance.PutLogMessage(MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec retrait des droits à l'utilisateur, veuillez réessayez ultérieurement : " + exc.Message, DirectoryUtilLog, MasterDirectory + "LogFile.txt");
-                throw new Exception(exc.Message);
+                
+                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Echec retrait des droits à l'utilisateur, veuillez réessayez ultérieurement : " + exc.GetType().ToString() + " : " + exc.Message, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+                throw;
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                conn.Close();
+            }
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
         #endregion
     } //***fin class 
