@@ -749,70 +749,70 @@ namespace Xentry.Desktop
 
         #region Exportation vers Excel
 
-        private void ExportToExcel()
-        {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
+        //private void ExportToExcel()
+        //{
+        //    // Creating a Excel object. 
+        //    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+        //    Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(Type.Missing);
+        //    Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
 
-            try
-            {
-                worksheet = workbook.ActiveSheet; // pour que cela marche il faut ajouter la reference Microsoft.CSharp
+        //    try
+        //    {
+        //        worksheet = workbook.ActiveSheet; // pour que cela marche il faut ajouter la reference Microsoft.CSharp
 
-                worksheet.Name = "ExportedFromDatGrid";
+        //        worksheet.Name = "ExportedFromDatGrid";
 
-                int cellRowIndex = 1;
-                int cellColumnIndex = 1;
+        //        int cellRowIndex = 1;
+        //        int cellColumnIndex = 1;
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dtgvTAR.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dtgvTAR.Columns.Count; j++)
-                    {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        if (cellRowIndex == 1)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Columns[j].HeaderText;
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Rows[i].Cells[j].Value.ToString();
-                        }
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+        //        //Loop through each row and read value from each column. 
+        //        for (int i = 0; i < dtgvTAR.Rows.Count - 1; i++)
+        //        {
+        //            for (int j = 0; j < dtgvTAR.Columns.Count; j++)
+        //            {
+        //                // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
+        //                if (cellRowIndex == 1)
+        //                {
+        //                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Columns[j].HeaderText;
+        //                }
+        //                else
+        //                {
+        //                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dtgvTAR.Rows[i].Cells[j].Value.ToString();
+        //                }
+        //                cellColumnIndex++;
+        //            }
+        //            cellColumnIndex = 1;
+        //            cellRowIndex++;
+        //        }
 
-                //Getting the location and file name of the excel to save from user.
+        //        //Getting the location and file name of the excel to save from user.
 
-                using (SaveFileDialog saveDialog = new SaveFileDialog())
-                {
-                    saveDialog.Filter = stringManager.GetString("StringExcelDocumentFilterValue2", CultureInfo.InvariantCulture);
-                    saveDialog.FilterIndex = 2;
+        //        using (SaveFileDialog saveDialog = new SaveFileDialog())
+        //        {
+        //            saveDialog.Filter = stringManager.GetString("StringExcelDocumentFilterValue2", CultureInfo.InvariantCulture);
+        //            saveDialog.FilterIndex = 2;
 
-                    if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        workbook.SaveAs(saveDialog.FileName);
-                        MessageBox.Show(stringManager.GetString("StringSusccessExportExcelMessage", CultureInfo.CurrentUICulture), stringManager.GetString("StringSusccessExportExcelCaption", CultureInfo.CurrentUICulture), MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                    }
-                }
-            }
-            catch (System.IO.FileNotFoundException ex)
-            {
-                MessageBox.Show(stringManager.GetString("StringFailedExportExcelMessage", CultureInfo.CurrentUICulture), stringManager.GetString("StringFailedExportExcelCaption", CultureInfo.CurrentUICulture), MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                Properties.Settings.Default.StringLogFile = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Erreur d'exportation vers Excel : " + this.Name + " : " + ex.GetType().ToString() + " : " + ex.Message;
-                ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, Properties.Settings.Default.StringLogFile, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
-            }
-            finally
-            {
-                excel.Quit();
-                workbook = null;
-                excel = null;
-            }
+        //            if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //            {
+        //                workbook.SaveAs(saveDialog.FileName);
+        //                MessageBox.Show(stringManager.GetString("StringSusccessExportExcelMessage", CultureInfo.CurrentUICulture), stringManager.GetString("StringSusccessExportExcelCaption", CultureInfo.CurrentUICulture), MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+        //            }
+        //        }
+        //    }
+        //    catch (System.IO.FileNotFoundException ex)
+        //    {
+        //        MessageBox.Show(stringManager.GetString("StringFailedExportExcelMessage", CultureInfo.CurrentUICulture), stringManager.GetString("StringFailedExportExcelCaption", CultureInfo.CurrentUICulture), MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+        //        Properties.Settings.Default.StringLogFile = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : Erreur d'exportation vers Excel : " + this.Name + " : " + ex.GetType().ToString() + " : " + ex.Message;
+        //        ImplementLog.Instance.PutLogMessage(Properties.Settings.Default.MasterDirectory, Properties.Settings.Default.StringLogFile, Properties.Settings.Default.DirectoryUtilLog, Properties.Settings.Default.MasterDirectory + "LogFile.txt");
+        //    }
+        //    finally
+        //    {
+        //        excel.Quit();
+        //        workbook = null;
+        //        excel = null;
+        //    }
 
-        }
+        //}
 
         private static void ToCsV(DataGridView dGV, string filename)
         {

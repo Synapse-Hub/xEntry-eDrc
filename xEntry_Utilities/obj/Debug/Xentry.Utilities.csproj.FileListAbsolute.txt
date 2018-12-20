@@ -2,3 +2,7 @@ D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\Xentry.Uti
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\bin\Debug\Xentry.Utilities.pdb
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\Xentry.Utilities.dll
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\xEntry_Utilities\obj\Debug\Xentry.Utilities.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\bin\Debug\Xentry.Utilities.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\bin\Debug\Xentry.Utilities.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\Xentry.Utilities.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\xEntry_Utilities\obj\Debug\Xentry.Utilities.pdb

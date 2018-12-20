@@ -12,3 +12,16 @@ D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\fr-FR\Xent
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.dll
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.pdb
 D:\DOC\GitHub\SYNAPSHUB_XEntry\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\bin\Debug\Xentry.Resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\bin\Debug\Xentry.Resources.pdb
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\bin\Debug\en-US\Xentry.Resources.resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\bin\Debug\fr-FR\Xentry.Resources.resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.Properties.Resources.resources
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.resources
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.en-US.resources
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.XentryResource.fr-FR.resources
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\en-US\Xentry.Resources.resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\fr-FR\Xentry.Resources.resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.dll
+\\Mac\Home\Documents\Developer\xEntry-eDrc\Xentry.Resources\obj\Debug\Xentry.Resources.pdb
